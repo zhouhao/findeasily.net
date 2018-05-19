@@ -1,4 +1,4 @@
-package eu.kielczewski.example.domain;
+package com.sbzhouhao.example.domain;
 
 public enum Role {
 

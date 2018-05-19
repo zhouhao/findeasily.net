@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>eu.kielczewski.example</groupId>
+    <groupId>com.sbzhouhao.example</groupId>
     <artifactId>example-spring-boot-security</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
@@ -16,7 +16,6 @@
     </parent>
 
     <name>Spring Boot Security Example</name>
-    <url>http://kielczewski.eu/2014/12/spring-boot-security-application/</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,9 +24,6 @@
     </properties>
 
     <dependencies>
-
-        <!-- Spring Boot -->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -72,9 +68,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
 
 </project>

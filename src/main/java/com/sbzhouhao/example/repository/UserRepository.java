@@ -1,9 +1,10 @@
-package eu.kielczewski.example.repository;
-
-import eu.kielczewski.example.domain.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+package com.sbzhouhao.example.repository;
 
 import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.sbzhouhao.example.domain.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

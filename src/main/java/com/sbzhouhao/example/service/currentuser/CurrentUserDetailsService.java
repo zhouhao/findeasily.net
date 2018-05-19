@@ -1,14 +1,15 @@
-package eu.kielczewski.example.service.currentuser;
+package com.sbzhouhao.example.service.currentuser;
 
-import eu.kielczewski.example.domain.CurrentUser;
-import eu.kielczewski.example.domain.User;
-import eu.kielczewski.example.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.sbzhouhao.example.domain.CurrentUser;
+import com.sbzhouhao.example.domain.User;
+import com.sbzhouhao.example.service.user.UserService;
 
 @Service
 public class CurrentUserDetailsService implements UserDetailsService {

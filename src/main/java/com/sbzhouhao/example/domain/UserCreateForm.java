@@ -1,8 +1,7 @@
-package eu.kielczewski.example.domain;
+package com.sbzhouhao.example.domain;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserCreateForm {
 

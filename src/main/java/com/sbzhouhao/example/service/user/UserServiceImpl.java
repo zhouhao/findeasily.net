@@ -1,4 +1,4 @@
-package eu.kielczewski.example.service.user;
+package com.sbzhouhao.example.service.user;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -10,9 +10,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import eu.kielczewski.example.domain.User;
-import eu.kielczewski.example.domain.UserCreateForm;
-import eu.kielczewski.example.repository.UserRepository;
+import com.sbzhouhao.example.domain.User;
+import com.sbzhouhao.example.domain.UserCreateForm;
+import com.sbzhouhao.example.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Collection<User> getAllUsers() {
         LOGGER.debug("Getting all users");
-        return userRepository.findAll(new Sort("email"));
+        return userRepository.findAll(Sort.by("email"));
     }
 
     @Override

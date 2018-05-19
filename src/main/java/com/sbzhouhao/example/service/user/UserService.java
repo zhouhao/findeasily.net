@@ -1,10 +1,10 @@
-package eu.kielczewski.example.service.user;
-
-import eu.kielczewski.example.domain.User;
-import eu.kielczewski.example.domain.UserCreateForm;
+package com.sbzhouhao.example.service.user;
 
 import java.util.Collection;
 import java.util.Optional;
+
+import com.sbzhouhao.example.domain.User;
+import com.sbzhouhao.example.domain.UserCreateForm;
 
 public interface UserService {
 

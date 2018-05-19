@@ -1,4 +1,4 @@
-package eu.kielczewski.example.controller;
+package com.sbzhouhao.example.controller;
 
 import java.util.NoSuchElementException;
 
@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import eu.kielczewski.example.domain.UserCreateForm;
-import eu.kielczewski.example.domain.validator.UserCreateFormValidator;
-import eu.kielczewski.example.service.user.UserService;
+import com.sbzhouhao.example.domain.UserCreateForm;
+import com.sbzhouhao.example.domain.validator.UserCreateFormValidator;
+import com.sbzhouhao.example.service.user.UserService;
 
 @Controller
 public class UserController {

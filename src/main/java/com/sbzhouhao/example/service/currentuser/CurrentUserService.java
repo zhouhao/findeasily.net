@@ -1,6 +1,6 @@
-package eu.kielczewski.example.service.currentuser;
+package com.sbzhouhao.example.service.currentuser;
 
-import eu.kielczewski.example.domain.CurrentUser;
+import com.sbzhouhao.example.domain.CurrentUser;
 
 public interface CurrentUserService {
 

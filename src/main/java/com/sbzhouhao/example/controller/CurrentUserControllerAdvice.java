@@ -1,11 +1,12 @@
-package eu.kielczewski.example.controller;
+package com.sbzhouhao.example.controller;
 
-import eu.kielczewski.example.domain.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
+
+import com.sbzhouhao.example.domain.CurrentUser;
 
 @ControllerAdvice
 public class CurrentUserControllerAdvice {

@@ -1,4 +1,4 @@
-package eu.kielczewski.example.config;
+package com.sbzhouhao.example.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -13,11 +13,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@Order(SecurityProperties.DEFAULT_FILTER_ORDER) // TODO:
+// TODO:
+@Order(SecurityProperties.DEFAULT_FILTER_ORDER)
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final UserDetailsService currentUserDetailsService;
+
     @Autowired
-    private UserDetailsService currentUserDetailsService;
+    public SecurityConfig(UserDetailsService currentUserDetailsService) {
+        this.currentUserDetailsService = currentUserDetailsService;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
