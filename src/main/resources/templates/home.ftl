@@ -19,7 +19,7 @@
                 <button type="submit">Log out</button>
             </form>
         </li>
-        <li><a href="/user/${currentUser.id}">View myself</a></li>
+        <li><a href="/user">View myself</a></li>
     </#if>
     <#if currentUser?? && currentUser.role == "ADMIN">
         <li><a href="/user/create">Create a new user</a></li>

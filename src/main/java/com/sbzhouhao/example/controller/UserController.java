@@ -1,5 +1,6 @@
 package com.sbzhouhao.example.controller;
 
+import java.security.Principal;
 import java.util.NoSuchElementException;
 
 import javax.validation.Valid;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sbzhouhao.example.domain.CurrentUser;
 import com.sbzhouhao.example.domain.UserCreateForm;
 import com.sbzhouhao.example.domain.validator.UserCreateFormValidator;
 import com.sbzhouhao.example.service.user.UserService;
@@ -43,10 +46,16 @@ public class UserController {
 
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
     @RequestMapping("/user/{id}")
-    public ModelAndView getUserPage(@PathVariable Long id) {
+    public ModelAndView getUserPage(@PathVariable Long id, Principal principal) {
         LOGGER.debug("Getting user page for user={}", id);
         return new ModelAndView("user", "user", userService.getUserById(id)
                 .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
+    }
+
+    @RequestMapping("/user")
+    public ModelAndView getSelfPage(Principal principal) {
+        CurrentUser user = (CurrentUser) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
+        return new ModelAndView("self", "user", user);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

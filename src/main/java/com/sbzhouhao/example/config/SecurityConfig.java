@@ -31,26 +31,24 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/**").hasAuthority("ADMIN")
                 .anyRequest().fullyAuthenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error")
-                .usernameParameter("email")
-                .permitAll()
+                    .formLogin()
+                    .loginPage("/login")
+                    .failureUrl("/login?error")
+                    .usernameParameter("email")
+                    .permitAll()
                 .and()
-                .logout()
-                .logoutUrl("/logout")
-                .deleteCookies("remember-me")
-                .logoutSuccessUrl("/")
-                .permitAll()
+                    .logout()
+                    .logoutUrl("/logout")
+                    .deleteCookies("remember-me")
+                    .logoutSuccessUrl("/")
+                    .permitAll()
                 .and()
-                .rememberMe();
+                    .rememberMe();
     }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(currentUserDetailsService)
-                .passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(currentUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
 }
