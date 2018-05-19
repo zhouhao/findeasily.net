@@ -1,6 +1,8 @@
 Example Spring Boot Security
 ============================
 
+This is forked from: https://github.com/bkielczewski/example-spring-boot-security
+
 The application showing how to use Spring Boot with Spring Security for common needs, such as:
 
 * Customized login form
