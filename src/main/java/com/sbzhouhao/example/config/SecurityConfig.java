@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-// TODO:
 @Order(SecurityProperties.DEFAULT_FILTER_ORDER)
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 

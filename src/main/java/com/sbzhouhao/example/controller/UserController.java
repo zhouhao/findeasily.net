@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -53,9 +53,9 @@ public class UserController {
     }
 
     @RequestMapping("/user")
-    public ModelAndView getSelfPage(Principal principal) {
-        CurrentUser user = (CurrentUser) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
-        return new ModelAndView("self", "user", user);
+    public ModelAndView getSelfPage(Authentication authentication) {
+        CurrentUser user = (CurrentUser) authentication.getPrincipal();
+        return new ModelAndView("user", "user", user.getUser());
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
