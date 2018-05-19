@@ -1,8 +1,8 @@
 package eu.kielczewski.example.service.user;
 
-import eu.kielczewski.example.domain.User;
-import eu.kielczewski.example.domain.UserCreateForm;
-import eu.kielczewski.example.repository.UserRepository;
+import java.util.Collection;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +10,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Optional;
+import eu.kielczewski.example.domain.User;
+import eu.kielczewski.example.domain.UserCreateForm;
+import eu.kielczewski.example.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getUserById(long id) {
         LOGGER.debug("Getting user={}", id);
-        return Optional.ofNullable(userRepository.findOne(id));
+        return userRepository.findById(id);
     }
 
     @Override
