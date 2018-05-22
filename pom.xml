@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.sbzhouhao</groupId>
-    <artifactId>spring-step-by-step</artifactId>
+    <groupId>net.findeasily</groupId>
+    <artifactId>website</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
-    <name>Spring Boot Security Example</name>
-    <description>Demo project for Spring Boot</description>
+    <name>Website source code for findeasily.net</name>
+    <description>just a website</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

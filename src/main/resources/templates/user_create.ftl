@@ -1,5 +1,5 @@
 <#-- @ftlvariable name="_csrf" type="org.springframework.security.web.csrf.CsrfToken" -->
-<#-- @ftlvariable name="form" type="com.sbzhouhao.example.domain.UserCreateForm" -->
+<#-- @ftlvariable name="form" type="net.findeasily.website.domain.UserCreateForm" -->
 <#import "/spring.ftl" as spring>
 <!DOCTYPE html>
 <html lang="en">
