@@ -14,7 +14,7 @@ public class ControllerMonitor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ControllerMonitor.class);
 
-    @Pointcut("execution(* net.findeasily.website.*Controller.*(..))")
+    @Pointcut("execution(* net.findeasily.website.controller.*Controller.*(..))")
     public void monitor() {
     }
 
