@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sbzhouhao</groupId>
-    <artifactId>spring-step-by_step</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>spring-step-by-step</artifactId>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
     <name>Spring Boot Security Example</name>
     <description>Demo project for Spring Boot</description>
