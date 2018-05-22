@@ -17,6 +17,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService currentUserDetailsService;
+    private static final String[] PUBLIC_PAGES = new String[]{
+            "/",
+            "/public/**",
+            "/css/**",
+            "/js/**",
+            "/fonts/**",
+            "/images/**",
+            "/listing/**"
+    };
 
     @Autowired
     public SecurityConfig(UserDetailsService currentUserDetailsService) {
@@ -26,7 +35,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/public/**").permitAll()
+                .antMatchers(PUBLIC_PAGES).permitAll()
                 .antMatchers("/users/**").hasAuthority("ADMIN")
                 .anyRequest().fullyAuthenticated()
                 .and()
