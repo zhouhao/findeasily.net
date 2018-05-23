@@ -24,6 +24,8 @@ public class User implements Serializable {
     private String password;
     private Date registerTime;
     private Integer activated;
+    private Integer lockStatus;
+    private String role;
 
 
     public String getId() {
@@ -74,6 +76,22 @@ public class User implements Serializable {
         this.activated = activated;
     }
 
+    public Integer getLockStatus() {
+        return lockStatus;
+    }
+
+    public void setLockStatus(Integer lockStatus) {
+        this.lockStatus = lockStatus;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -83,6 +101,8 @@ public class User implements Serializable {
         ", password=" + password +
         ", registerTime=" + registerTime +
         ", activated=" + activated +
+        ", lockStatus=" + lockStatus +
+        ", role=" + role +
         "}";
     }
 }

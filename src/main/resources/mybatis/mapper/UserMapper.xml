@@ -10,6 +10,8 @@
         <result column="password" property="password" />
         <result column="register_time" property="registerTime" />
         <result column="activated" property="activated" />
+        <result column="lock_status" property="lockStatus" />
+        <result column="role" property="role" />
     </resultMap>
 
 </mapper>
