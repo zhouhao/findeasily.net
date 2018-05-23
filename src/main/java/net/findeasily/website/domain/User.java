@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Hao Zhou
- * @since 2018-05-22
+ * @since 2018-05-23
  */
 public class User implements Serializable {
 
@@ -23,7 +23,7 @@ public class User implements Serializable {
     private String email;
     private String password;
     private Date registerTime;
-    private Integer activated;
+    private Boolean activated;
     private Integer lockStatus;
     private String role;
 
@@ -68,11 +68,11 @@ public class User implements Serializable {
         this.registerTime = registerTime;
     }
 
-    public Integer getActivated() {
+    public Boolean getActivated() {
         return activated;
     }
 
-    public void setActivated(Integer activated) {
+    public void setActivated(Boolean activated) {
         this.activated = activated;
     }
 
