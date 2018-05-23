@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService currentUserDetailsService;
+    private final PasswordEncoder passwordEncoder;
     private static final String[] PUBLIC_PAGES = new String[]{
             "/",
             "/public/**",
@@ -28,8 +29,9 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     };
 
     @Autowired
-    public SecurityConfig(UserDetailsService currentUserDetailsService) {
+    public SecurityConfig(UserDetailsService currentUserDetailsService, PasswordEncoder passwordEncoder) {
         this.currentUserDetailsService = currentUserDetailsService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -56,7 +58,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(currentUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(currentUserDetailsService).passwordEncoder(passwordEncoder);
     }
 
 }
