@@ -24,6 +24,17 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
     }
 
     @Override
+    public boolean isEnabled() {
+        return user.getActivated();
+    }
+
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return user.getLockStatus() == 0;
+    }
+
+    @Override
     public String toString() {
         return "CurrentUser{" +
                 "user=" + user +

@@ -2,6 +2,8 @@ package net.findeasily.website.controller;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,8 +18,11 @@ public class LoginController {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView getLoginPage(@RequestParam Optional<String> error) {
+    public ModelAndView getLoginPage(@RequestParam Optional<String> error, HttpSession session) {
         LOGGER.debug("Getting login page, error={}", error);
+        if (error.isPresent()) {
+            LOGGER.error("ERROR = " + ((Exception) session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION")).getMessage());
+        }
         return new ModelAndView("login", "error", error);
     }
 
