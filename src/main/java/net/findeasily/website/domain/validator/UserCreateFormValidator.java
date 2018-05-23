@@ -8,7 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import net.findeasily.website.domain.UserCreateForm;
-import net.findeasily.website.service.user.UserService;
+import net.findeasily.website.service.UserService;
 
 @Component
 public class UserCreateFormValidator implements Validator {
@@ -41,7 +41,7 @@ public class UserCreateFormValidator implements Validator {
     }
 
     private void validateEmail(Errors errors, UserCreateForm form) {
-        if (userService.getUserByEmail(form.getEmail()).isPresent()) {
+        if (userService.getUserByEmail(form.getEmail()) != null) {
             errors.reject("email.exists", "User with this email already exists");
         }
     }

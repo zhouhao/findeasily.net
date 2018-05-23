@@ -25,3 +25,4 @@
 /.nb-gradle/
 src/main/resources/application-hzhou.properties
 target
+.DS_Store

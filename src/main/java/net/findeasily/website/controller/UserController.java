@@ -2,6 +2,8 @@ package net.findeasily.website.controller;
 
 import java.security.Principal;
 import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -24,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import net.findeasily.website.domain.CurrentUser;
 import net.findeasily.website.domain.UserCreateForm;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
-import net.findeasily.website.service.user.UserService;
+import net.findeasily.website.service.UserService;
 
 @Controller
 public class UserController {
@@ -46,9 +48,9 @@ public class UserController {
 
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
     @RequestMapping("/user/{id}")
-    public ModelAndView getUserPage(@PathVariable Long id, Principal principal) {
+    public ModelAndView getUserPage(@PathVariable UUID id, Principal principal) {
         LOGGER.debug("Getting user page for user={}", id);
-        return new ModelAndView("user", "user", userService.getUserById(id)
+        return new ModelAndView("user", "user", Optional.ofNullable(userService.getUserById(id.toString()))
                 .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
     }
 

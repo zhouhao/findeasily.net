@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import net.findeasily.website.domain.CurrentUser;
 import net.findeasily.website.domain.User;
-import net.findeasily.website.service.user.UserService;
+import net.findeasily.website.service.UserService;
 
 @Service
 public class CurrentUserDetailsService implements UserDetailsService {
@@ -25,8 +25,10 @@ public class CurrentUserDetailsService implements UserDetailsService {
     @Override
     public CurrentUser loadUserByUsername(String email) throws UsernameNotFoundException {
         LOGGER.debug("Authenticating user with email={}", email.replaceFirst("@.*", "@***"));
-        User user = userService.getUserByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with email=%s was not found", email)));
+        User user = userService.getUserByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("User with email=%s was not found", email));
+        }
         return new CurrentUser(user);
     }
 

@@ -1,35 +1,45 @@
 package net.findeasily.website.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Date;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.enums.IdType;
+import java.io.Serializable;
 
-@Entity
-@Table(name = "user")
-public class User {
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author Hao Zhou
+ * @since 2018-05-22
+ */
+public class User implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
-    private Long id;
+    private static final long serialVersionUID = 1L;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @TableId(value = "id", type = IdType.UUID)
+    private String id;
+    private String username;
     private String email;
+    private String password;
+    private Date registerTime;
+    private Integer activated;
 
-    @Column(name = "password_hash", nullable = false)
-    private String passwordHash;
 
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
-    public Long getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -40,29 +50,39 @@ public class User {
         this.email = email;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public Date getRegisterTime() {
+        return registerTime;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRegisterTime(Date registerTime) {
+        this.registerTime = registerTime;
+    }
+
+    public Integer getActivated() {
+        return activated;
+    }
+
+    public void setActivated(Integer activated) {
+        this.activated = activated;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", email='" + email.replaceFirst("@.*", "@***") +
-                ", passwordHash='" + passwordHash.substring(0, 10) +
-                ", role=" + role +
-                '}';
+        ", id=" + id +
+        ", username=" + username +
+        ", email=" + email +
+        ", password=" + password +
+        ", registerTime=" + registerTime +
+        ", activated=" + activated +
+        "}";
     }
 }

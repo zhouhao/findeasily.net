@@ -2,6 +2,7 @@ package net.findeasily.website.generator;
 
 import org.aeonbits.owner.ConfigFactory;
 
+import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
@@ -36,6 +37,7 @@ public class MyBatisGenerator {
                 .setInclude("user");
 
         config.setActiveRecord(false)
+                .setIdType(IdType.UUID)
                 .setAuthor("Hao Zhou")
                 .setOutputDir("src/main/java")
                 .setBaseResultMap(true)
