@@ -1,14 +1,20 @@
 package net.findeasily.website.domain;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 public class UserCreateForm {
 
-    @NotEmpty
+    @Length(min = 4)
+    private String username;
+
+    @Email
     private String email = "";
 
-    @NotEmpty
+    @Length(min = 6)
     private String password = "";
 
     @NotEmpty
@@ -49,9 +55,18 @@ public class UserCreateForm {
         this.role = role;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String toString() {
         return "UserCreateForm{" +
+                "username = " + username +
                 "email='" + email.replaceFirst("@.+", "@***") + '\'' +
                 ", password=***" + '\'' +
                 ", passwordRepeated=***" + '\'' +

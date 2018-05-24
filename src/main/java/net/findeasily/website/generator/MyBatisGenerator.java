@@ -45,7 +45,7 @@ public class MyBatisGenerator {
                 .setInclude("user");
 
         config.setActiveRecord(false)
-                .setIdType(IdType.UUID)
+                .setIdType(IdType.INPUT)
                 .setAuthor("Hao Zhou")
                 .setOutputDir("src/main/java")
                 .setBaseResultMap(true)

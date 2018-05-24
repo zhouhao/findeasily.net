@@ -1,13 +1,15 @@
 package net.findeasily.website.domain;
 
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Hao Zhou
@@ -17,7 +19,7 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.UUID)
+    @TableId(value = "id", type = IdType.INPUT)
     private String id;
     private String username;
     private String email;
@@ -95,14 +97,14 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-        ", id=" + id +
-        ", username=" + username +
-        ", email=" + email +
-        ", password=" + password +
-        ", registerTime=" + registerTime +
-        ", activated=" + activated +
-        ", lockStatus=" + lockStatus +
-        ", role=" + role +
-        "}";
+                ", id=" + id +
+                ", username=" + username +
+                ", email=" + email +
+                ", password=" + password +
+                ", registerTime=" + registerTime +
+                ", activated=" + activated +
+                ", lockStatus=" + lockStatus +
+                ", role=" + role +
+                "}";
     }
 }

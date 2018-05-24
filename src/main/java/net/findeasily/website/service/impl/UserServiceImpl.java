@@ -1,6 +1,7 @@
 package net.findeasily.website.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -47,7 +48,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public boolean create(UserCreateForm form) {
         User user = new User();
+        user.setId(UUID.randomUUID().toString());
         user.setEmail(form.getEmail());
+        user.setUsername(form.getUsername());
         user.setPassword(passwordEncoder.encode(form.getPassword()));
         return insert(user);
     }
