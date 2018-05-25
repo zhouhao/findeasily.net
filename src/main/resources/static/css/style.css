@@ -1257,6 +1257,11 @@ section.gray-section .section-separator {
 	-webkit-transform: translate3d(0,0,0);
 	background:rgba(0,0,0,0.81);
 }
+.main-register-wrap.main-register-single-page {
+	position: unset;
+	display: block;
+	background: unset;
+}
 .hid-body {
     overflow:hidden;
 }
@@ -1265,6 +1270,9 @@ section.gray-section .section-separator {
 	margin:100px auto 50px;
 	position:relative;
 	z-index:5;
+}
+.main-register-single-page .main-register-holder {
+	margin:50px auto 50px;
 }
 .main-register h3 {
 	float:left;
