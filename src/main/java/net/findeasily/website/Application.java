@@ -11,6 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
+import com.google.common.hash.HashFunction;
+import com.google.common.hash.Hashing;
+
 @SpringBootApplication
 @EnableRedisHttpSession
 @MapperScan("net.findeasily.website.mapper")
@@ -30,5 +33,10 @@ public class Application {
         SimpleApplicationEventMulticaster eventMulticaster = new SimpleApplicationEventMulticaster();
         eventMulticaster.setTaskExecutor(new SimpleAsyncTaskExecutor());
         return eventMulticaster;
+    }
+
+    @Bean
+    public HashFunction hashFunction() {
+        return Hashing.sha256();
     }
 }
