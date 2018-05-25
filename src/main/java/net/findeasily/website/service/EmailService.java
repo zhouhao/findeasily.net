@@ -5,13 +5,18 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import freemarker.template.Configuration;
+
 @Service
 public class EmailService {
     private JavaMailSender javaMailSender;
 
+    private final Configuration ftlConf;
+
     @Autowired
-    public EmailService(JavaMailSender javaMailSender) {
+    public EmailService(JavaMailSender javaMailSender, Configuration ftlConf) {
         this.javaMailSender = javaMailSender;
+        this.ftlConf = ftlConf;
     }
 
     public void sendMail(String toEmail, String subject, String message) {
