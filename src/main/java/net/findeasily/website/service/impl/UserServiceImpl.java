@@ -3,8 +3,9 @@ package net.findeasily.website.service.impl;
 import java.util.List;
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -58,5 +59,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public List<User> getAllUsers() {
         return selectList(null);
+    }
+
+    @Override
+    public boolean activate(@NotNull Integer userId) {
+        User user = selectById(userId);
+        if (user == null) {
+            return false;
+        }
+        user.setActivated(true); // todo: check user whether already activated or not
+        return updateById(user);
+    }
+
+    @Override
+    public boolean Lock(@NotNull Integer userId, @NotNull Integer lockCode) {
+        User user = selectById(userId);
+        if (user == null) {
+            return false;
+        }
+        user.setLockStatus(lockCode);
+        return updateById(user);
     }
 }

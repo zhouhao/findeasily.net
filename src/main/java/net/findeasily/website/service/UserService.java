@@ -1,7 +1,8 @@
 package net.findeasily.website.service;
 
 import java.util.List;
-import java.util.UUID;
+
+import javax.validation.constraints.NotNull;
 
 import com.baomidou.mybatisplus.service.IService;
 import net.findeasily.website.domain.User;
@@ -24,4 +25,8 @@ public interface UserService extends IService<User> {
     boolean create(UserCreateForm form);
 
     List<User> getAllUsers();
+
+    boolean activate(@NotNull Integer userId);
+
+    boolean Lock(@NotNull Integer userId, @NotNull Integer lockCode);
 }
