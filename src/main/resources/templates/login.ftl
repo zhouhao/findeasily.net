@@ -37,10 +37,9 @@
                                 <div class="custom-form">
                                     <form method="post" name="registerform" class="main-register-form"
                                           id="main-register-form2">
-                                        <label>First Name * </label>
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        <label>Username * </label>
                                         <input name="name" type="text" onClick="this.select()" value="">
-                                        <label>Second Name *</label>
-                                        <input name="name2" type="text" onClick="this.select()" value="">
                                         <label>Email Address *</label>
                                         <input name="email" type="text" onClick="this.select()" value="">
                                         <label>Password *</label>
