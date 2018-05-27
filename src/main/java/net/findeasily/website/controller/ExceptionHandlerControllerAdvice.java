@@ -2,17 +2,16 @@ package net.findeasily.website.controller;
 
 import java.util.NoSuchElementException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ControllerAdvice
-public class ExceptionHandlerControllerAdvice {
+import lombok.extern.slf4j.Slf4j;
 
-    private static Logger LOGGER = LoggerFactory.getLogger(ExceptionHandlerControllerAdvice.class);
+@ControllerAdvice
+@Slf4j
+public class ExceptionHandlerControllerAdvice {
 
     @ExceptionHandler(NoSuchElementException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

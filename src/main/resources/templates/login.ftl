@@ -16,7 +16,7 @@
                             <div class="custom-form">
                                 <form method="post" name="registerform" action="/login">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <label>Username or Email Address * </label>
+                                    <label>Email Address * </label>
                                     <input name="email" type="text" onClick="this.select()" required autofocus value="">
                                     <label>Password * </label>
                                     <input name="password" type="password" onClick="this.select()" required value="">

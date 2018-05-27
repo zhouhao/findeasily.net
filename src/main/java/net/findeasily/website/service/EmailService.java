@@ -1,5 +1,7 @@
 package net.findeasily.website.service;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -27,4 +29,9 @@ public class EmailService {
         mailMessage.setFrom("contact@mail.findeasily.net");
         javaMailSender.send(mailMessage);
     }
+
+    public void sendMail(@NotNull SimpleMailMessage mailMessage) {
+        javaMailSender.send(mailMessage);
+    }
+
 }

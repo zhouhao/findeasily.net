@@ -1,18 +1,17 @@
 package net.findeasily.website.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-public class HomeController {
+import lombok.extern.slf4j.Slf4j;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+@Controller
+@Slf4j
+public class HomeController {
 
     @RequestMapping("/")
     public String getHomePage() {
-        LOGGER.debug("Getting home page");
+        log.debug("Getting home page");
         return "index";
     }
 
