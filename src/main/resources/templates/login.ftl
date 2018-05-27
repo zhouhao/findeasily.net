@@ -1,5 +1,12 @@
 <#include "layout/layout.ftl"/>
 <#assign pageTitle = 'Login'/>
+<#assign inlineCss>
+    <style>
+        .show-reg-form {
+            display: none;
+        }
+    </style>
+</#assign>
 <@layout>
 <!--register form -->
     <div class="main-register-wrap main-register-single-page">
@@ -39,11 +46,15 @@
                                           id="main-register-form2">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <label>Username * </label>
-                                        <input name="name" type="text" onClick="this.select()" value="">
+                                        <input name="name" type="text" onClick="this.select()" value="" required>
                                         <label>Email Address *</label>
-                                        <input name="email" type="text" onClick="this.select()" value="">
+                                        <input name="email" type="text" onClick="this.select()" value="" required>
                                         <label>Password *</label>
-                                        <input name="password" type="password" onClick="this.select()" value="">
+                                        <input name="password" type="password" onClick="this.select()" value=""
+                                               required>
+                                        <label>Password Repeat *</label>
+                                        <input name="passwordRepeated" type="password" onClick="this.select()" value=""
+                                               required>
                                         <button type="submit" class="log-submit-btn"><span>Register</span></button>
                                     </form>
                                 </div>

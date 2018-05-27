@@ -5,7 +5,8 @@
     <!--=============== basic  ===============-->
     <meta charset="UTF-8">
     <title>${pageTitle!'Find House Rent Easily'}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow"/>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
@@ -20,6 +21,7 @@
     </#list>
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="images/favicon.ico">
+    ${inlineCss!""}
 </head>
 <body>
 <!--loader-->
@@ -117,6 +119,7 @@
 <#list js as path>
 <script src="${path}"></script>
 </#list>
+${inlineJs!""}
 </body>
 </html>
 </#macro>
