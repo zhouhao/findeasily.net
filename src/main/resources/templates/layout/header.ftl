@@ -24,7 +24,16 @@
         <div class="show-search-button"><i class="fa fa-search"></i> <span>Search</span></div>
         <a href="dashboard-add-listing.html" class="add-list">Add Listing <span><i
                 class="fa fa-plus"></i></span></a>
+    <#if !currentUser??>
         <div class="show-reg-form modal-open"><i class="fa fa-sign-in"></i>Sign In</div>
+    </#if>
+    <#if currentUser??>
+        <div class="show-reg-form" id="logout-header"><i class="fa fa-sign-out"></i>Log out
+            <form action="/logout" method="post" class="hide" id="logout-header-form">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </form>
+        </div>
+    </#if>
         <!-- nav-button-wrap-->
         <div class="nav-button-wrap color-bg">
             <div class="nav-button">

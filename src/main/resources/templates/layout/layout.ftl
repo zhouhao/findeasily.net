@@ -50,12 +50,6 @@
             <div class="main-register fl-wrap">
                 <div class="close-reg"><i class="fa fa-times"></i></div>
                 <h3>Sign In <span>City<strong>Book</strong></span></h3>
-                <div class="soc-log fl-wrap">
-                    <p>For faster login or register use your social account.</p>
-                    <a href="#" class="facebook-log"><i class="fa fa-facebook-official"></i>Log in with Facebook</a>
-                    <a href="#" class="twitter-log"><i class="fa fa-twitter"></i> Log in with Twitter</a>
-                </div>
-                <div class="log-separator fl-wrap"><span>or</span></div>
                 <div id="tabs-container">
                     <ul class="tabs-menu">
                         <li class="current"><a href="#tab-1">Login</a></li>
@@ -64,15 +58,16 @@
                     <div class="tab">
                         <div id="tab-1" class="tab-content">
                             <div class="custom-form">
-                                <form method="post" name="registerform">
-                                    <label>Username or Email Address * </label>
-                                    <input name="email" type="text" onClick="this.select()" value="">
+                                <form method="post" name="registerform" action="/login">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <label>Email Address * </label>
+                                    <input name="email" type="text" onClick="this.select()" required autofocus value="">
                                     <label>Password * </label>
-                                    <input name="password" type="password" onClick="this.select()" value="">
+                                    <input name="password" type="password" onClick="this.select()" required value="">
                                     <button type="submit" class="log-submit-btn"><span>Log In</span></button>
                                     <div class="clearfix"></div>
                                     <div class="filter-tags">
-                                        <input id="check-a" type="checkbox" name="check">
+                                        <input type="checkbox" name="remember-me" id="remember-me">
                                         <label for="check-a">Remember me</label>
                                     </div>
                                 </form>
@@ -86,14 +81,17 @@
                                 <div class="custom-form">
                                     <form method="post" name="registerform" class="main-register-form"
                                           id="main-register-form2">
-                                        <label>First Name * </label>
-                                        <input name="name" type="text" onClick="this.select()" value="">
-                                        <label>Second Name *</label>
-                                        <input name="name2" type="text" onClick="this.select()" value="">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        <label>Username * </label>
+                                        <input name="name" type="text" onClick="this.select()" value="" required>
                                         <label>Email Address *</label>
-                                        <input name="email" type="text" onClick="this.select()" value="">
+                                        <input name="email" type="text" onClick="this.select()" value="" required>
                                         <label>Password *</label>
-                                        <input name="password" type="password" onClick="this.select()" value="">
+                                        <input name="password" type="password" onClick="this.select()" value=""
+                                               required>
+                                        <label>Password Repeat *</label>
+                                        <input name="passwordRepeated" type="password" onClick="this.select()" value=""
+                                               required>
                                         <button type="submit" class="log-submit-btn"><span>Register</span></button>
                                     </form>
                                 </div>
