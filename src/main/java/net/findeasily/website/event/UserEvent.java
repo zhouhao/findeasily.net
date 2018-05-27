@@ -4,7 +4,10 @@ import org.springframework.context.ApplicationEvent;
 
 import net.findeasily.website.domain.User;
 
-public abstract class UserEvent extends ApplicationEvent {
+public class UserEvent extends ApplicationEvent {
+
+    private User user;
+    private Type type;
 
     /**
      * Create a new ApplicationEvent.
@@ -13,12 +16,22 @@ public abstract class UserEvent extends ApplicationEvent {
      */
     public UserEvent(Object source, Type type, User user) {
         super(source);
+        this.type = type;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     public enum Type {
         ACCOUNT_CONFIRMATION("account_confirmation.ftl", "Confirm your account"),
-        PASSOWRD_RESET_REQUEST("account_password_reset_request.ftl", "Request for password reset"),
-        PASSOWRD_RESET_COMPLETE("account_password_reset_complete.ftl", "Your password is reset");
+        PASSWORD_RESET_REQUEST("account_password_reset_request.ftl", "Request for password reset"),
+        PASSWORD_RESET_COMPLETE("account_password_reset_complete.ftl", "Your password is reset");
 
         private String templateFile;
         private String subject;
