@@ -17,6 +17,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final PasswordEncoder passwordEncoder;
     private static final String[] PUBLIC_PAGES = new String[]{
             "/",
+            "/signup",
             "/public/**",
             "/css/**",
             "/js/**",
