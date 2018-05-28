@@ -60,7 +60,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setEmail(form.getEmail());
         user.setUsername(form.getUsername());
         user.setPassword(passwordEncoder.encode(form.getPassword()));
-        return insert(user) ? user : null;
+        return insert(user) ? getUserById(user.getId()) : null;
     }
 
     @Override
