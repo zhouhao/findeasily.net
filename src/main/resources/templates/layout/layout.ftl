@@ -43,6 +43,7 @@
     </div>
     <!-- wrapper end -->
     <#include "footer.ftl">
+<#if showHeaderLogin!true>
     <!--register form -->
     <div class="main-register-wrap modal">
         <div class="main-overlay"></div>
@@ -103,6 +104,7 @@
         </div>
     </div>
     <!--register form end -->
+</#if>
     <a class="to-top"><i class="fa fa-angle-up"></i></a>
 </div>
 <!-- Main end -->

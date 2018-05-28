@@ -1,12 +1,6 @@
 <#include "layout/layout.ftl"/>
 <#assign pageTitle = 'Login'/>
-<#assign inlineCss>
-    <style>
-        .show-reg-form {
-            display: none;
-        }
-    </style>
-</#assign>
+<#assign showHeaderLogin = false />
 <@layout>
 <!--register form -->
     <div class="main-register-wrap main-register-single-page">
@@ -42,7 +36,8 @@
                         <div class="tab">
                             <div id="tab-2" class="tab-content">
                                 <div class="custom-form">
-                                    <form method="post" role="form" name="form" class="main-register-form" action="/signup"
+                                    <form method="post" role="form" name="form" class="main-register-form"
+                                          action="/signup"
                                           id="main-register-form2">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <label>Username * </label>
