@@ -42,11 +42,11 @@
                         <div class="tab">
                             <div id="tab-2" class="tab-content">
                                 <div class="custom-form">
-                                    <form method="post" name="registerform" class="main-register-form"
+                                    <form method="post" role="form" name="form" class="main-register-form" action="/signup"
                                           id="main-register-form2">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <label>Username * </label>
-                                        <input name="name" type="text" onClick="this.select()" value="" required>
+                                        <input name="username" type="text" onClick="this.select()" value="" required>
                                         <label>Email Address *</label>
                                         <input name="email" type="text" onClick="this.select()" value="" required>
                                         <label>Password *</label>

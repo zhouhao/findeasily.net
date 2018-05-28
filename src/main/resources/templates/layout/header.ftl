@@ -2,7 +2,7 @@
 <header class="main-header dark-header fs-header sticky">
     <div class="header-inner">
         <div class="logo-holder">
-            <a href="index.html"><img src="images/logo.png" alt=""></a>
+            <a href="/"><img src="images/logo.png" alt=""></a>
         </div>
         <div class="header-search vis-header-search">
             <div class="header-search-input-item">
