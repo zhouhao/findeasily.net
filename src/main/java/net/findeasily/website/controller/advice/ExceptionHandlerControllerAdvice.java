@@ -2,6 +2,7 @@ package net.findeasily.website.controller.advice;
 
 import java.util.NoSuchElementException;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,9 +25,15 @@ public class ExceptionHandlerControllerAdvice {
 
 
     @ExceptionHandler(UserCreationException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<GenericError> handleUserCreationException(UserCreationException e) {
-        return ResponseEntity.badRequest().body(new GenericError(HttpStatus.BAD_REQUEST, e.getMessage()));
+        return ResponseEntity.badRequest().body(new GenericError(HttpStatus.BAD_REQUEST, e.getMessages()));
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<GenericError> handleRuntimeException(RuntimeException e) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new GenericError(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()));
     }
 
 }

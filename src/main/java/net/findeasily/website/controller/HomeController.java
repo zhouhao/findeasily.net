@@ -1,12 +1,13 @@
 package net.findeasily.website.controller;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,10 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.common.base.Joiner;
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.UserCreateForm;
@@ -62,32 +61,15 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    @ResponseBody
-    public UserDto postRegistration(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
+    public ResponseEntity<UserDto> postRegistration(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
         log.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
         if (bindingResult.hasErrors()) {
             // failed validation
-            throw new UserCreationException(Joiner.on("|").join(bindingResult.getAllErrors()));
+            throw new UserCreationException(bindingResult.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .collect(Collectors.toList()));
         }
-        User user = null;
-        try {
-            user = userService.create(form);
-        } catch (DataIntegrityViolationException e) {
-            // probably email already exists - very rare case when multiple admins are adding same user
-            // at the same time and form validation has passed for more than one of them.
-            log.warn("Exception occurred when trying to save the user, assuming duplicate email", e);
-            bindingResult.reject("email.exists", "Email already exists");
-            bindingResult.reject("username.exists", "Username already exists");
-            return null;
-        }
-        // ok, redirect
-        return new UserDto(user);
-    }
-
-
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public ResponseEntity<UserDto> getRegistration() {
-        User user = userService.getUserByEmail("hzhou.me@gmail.com");
+        User user = userService.create(form);
         return ResponseEntity.ok(new UserDto(user));
     }
 
