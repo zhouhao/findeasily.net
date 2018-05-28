@@ -42,18 +42,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
+    public User getUserByName(String name) {
+        User user = new User();
+        user.setUsername(name);
+        return this.selectOne(new EntityWrapper<>(user));
+    }
+
+    @Override
     public User getUserById(String id) {
         return selectById(id);
     }
 
     @Override
-    public boolean create(UserCreateForm form) {
+    public User create(UserCreateForm form) {
         User user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setEmail(form.getEmail());
         user.setUsername(form.getUsername());
         user.setPassword(passwordEncoder.encode(form.getPassword()));
-        return insert(user);
+        return insert(user) ? user : null;
     }
 
     @Override

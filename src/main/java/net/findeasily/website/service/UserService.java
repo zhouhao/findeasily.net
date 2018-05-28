@@ -20,9 +20,11 @@ public interface UserService extends IService<User> {
 
     User getUserByEmail(String email);
 
+    User getUserByName(String name);
+
     User getUserById(String id);
 
-    boolean create(UserCreateForm form);
+    User create(UserCreateForm form);
 
     List<User> getAllUsers();
 
