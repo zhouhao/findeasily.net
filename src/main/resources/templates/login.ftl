@@ -1,6 +1,27 @@
 <#include "layout/layout.ftl"/>
 <#assign pageTitle = 'Login'/>
 <#assign showHeaderLogin = false />
+<#assign inlineJs>
+    <script>
+        let form = $("#main-register-form");
+        form.submit(function (e) {
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize(), // serializes the form's elements.
+                success: function (data) {
+                    toastr.success(';-) Register successfully! Please check your email to activate your account');
+                    form.trigger('reset');
+                },
+                error: function (data) {
+                    toastr.error(data.responseJSON.errors.join(', '));
+                }
+            });
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+    </script>
+</#assign>
 <@layout>
 <!--register form -->
     <div class="main-register-wrap main-register-single-page">
@@ -37,8 +58,7 @@
                             <div id="tab-2" class="tab-content">
                                 <div class="custom-form">
                                     <form method="post" role="form" name="form" class="main-register-form"
-                                          action="/signup"
-                                          id="main-register-form2">
+                                          action="/signup" id="main-register-form">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <label>Username * </label>
                                         <input name="username" type="text" onClick="this.select()" value="" required>

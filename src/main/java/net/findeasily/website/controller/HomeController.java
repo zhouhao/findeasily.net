@@ -31,19 +31,6 @@ import net.findeasily.website.service.UserService;
 @Slf4j
 public class HomeController {
 
-    private final UserCreateFormValidator userCreateFormValidator;
-    private final UserService userService;
-
-    @Autowired
-    public HomeController(UserCreateFormValidator userCreateFormValidator, UserService userService) {
-        this.userCreateFormValidator = userCreateFormValidator;
-        this.userService = userService;
-    }
-
-    @InitBinder("form")
-    public void initBinder(WebDataBinder binder) {
-        binder.addValidators(userCreateFormValidator);
-    }
 
     @RequestMapping("/")
     public String getHomePage() {
@@ -60,17 +47,10 @@ public class HomeController {
         return new ModelAndView("login", "error", error);
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ResponseEntity<UserDto> postRegistration(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
-        log.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
-        if (bindingResult.hasErrors()) {
-            // failed validation
-            throw new UserCreationException(bindingResult.getAllErrors().stream()
-                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                    .collect(Collectors.toList()));
-        }
-        User user = userService.create(form);
-        return ResponseEntity.ok(new UserDto(user));
+    @RequestMapping(value = "/account_confirmation", method = RequestMethod.GET)
+    public ModelAndView accountConfirmation(@RequestParam(name = "hash", defaultValue = "") String hash) {
+
+        return new ModelAndView("login");
     }
 
 }
