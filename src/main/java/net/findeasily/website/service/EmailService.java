@@ -1,10 +1,13 @@
 package net.findeasily.website.service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import freemarker.template.Configuration;
@@ -32,6 +35,18 @@ public class EmailService {
 
     public void sendMail(@NotNull SimpleMailMessage mailMessage) {
         javaMailSender.send(mailMessage);
+    }
+
+
+    public void sendHtmlMail(String toEmail, String subject, String content) throws MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        helper.setTo(toEmail);
+        helper.setSubject(subject);
+        helper.setFrom("no-rely@mail.findeasily.net");
+        // use the true flag to indicate the text included is HTML
+        helper.setText(content, true);
+        javaMailSender.send(message);
     }
 
 }

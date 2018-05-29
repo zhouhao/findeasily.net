@@ -678,7 +678,7 @@ table.tr {
 													<table role="presentation" class="ebtn tc" align="center" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;display: table;margin-left: auto;margin-right: auto;text-align: center;">
 														<tbody>
 															<tr>
-																<td class="accent_b" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;background-color: #2ccf9c;line-height: 22px;font-size: 18px;font-weight: bold;padding: 13px 24px;mso-line-height-rule: exactly;border-radius: 4px;text-align: center;"><a href="#" style="line-height: inherit;text-decoration: none;font-family: Arial, Helvetica, sans-serif;font-weight: bold;color: #ffffff;"><span style="line-height: inherit;font-family: Arial, Helvetica, sans-serif;font-weight: bold;color: #ffffff;">Confirm account</span></a></td>
+																<td class="accent_b" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;background-color: #2ccf9c;line-height: 22px;font-size: 18px;font-weight: bold;padding: 13px 24px;mso-line-height-rule: exactly;border-radius: 4px;text-align: center;"><a href="${webServer}account_confirmation?hash=${token}" style="line-height: inherit;text-decoration: none;font-family: Arial, Helvetica, sans-serif;font-weight: bold;color: #ffffff;"><span style="line-height: inherit;font-family: Arial, Helvetica, sans-serif;font-weight: bold;color: #ffffff;">Confirm account</span></a></td>
 															</tr>
 														</tbody>
 													</table>
