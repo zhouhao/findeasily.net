@@ -29,9 +29,9 @@ public class UserCreateFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
         log.debug("Validating {}", target);
         UserCreateForm form = (UserCreateForm) target;
-        validatePasswords(errors, form);
-        validateEmail(errors, form);
         validateUsername(errors, form);
+        validateEmail(errors, form);
+        validatePasswords(errors, form);
     }
 
     private void validatePasswords(Errors errors, UserCreateForm form) {
