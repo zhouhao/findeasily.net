@@ -28,11 +28,22 @@
     <#if !currentUser??>
         <div class="show-reg-form modal-open"><i class="fa fa-sign-in"></i>Sign In</div>
     <#else>
-        <div class="show-reg-form" id="logout-header"><i class="fa fa-sign-out"></i>Log out
-            <form action="/logout" method="post" class="hide" id="logout-header-form">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            </form>
+    <div class="header-user-menu">
+        <div class="header-user-name">
+            <span><img src="images/avatar/1.jpg" alt="" title="" style=""></span>
+            Hello , Alisa
         </div>
+        <ul>
+            <li><a href="#"> Edit profile</a></li>
+            <li><a href="#"> Add Listing</a></li>
+            <li><a href="#"> Bookings </a></li>
+            <li><a href="#"> Reviews </a></li>
+            <li><a href="#" id="logout-header">Log Out</a></li>
+        </ul>
+    </div>
+    <form action="/logout" method="post" class="hide" id="logout-header-form">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
     </#if>
 </#if>
         <!-- nav-button-wrap-->
