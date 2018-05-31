@@ -1,31 +1,20 @@
 package net.findeasily.website.controller;
 
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.http.ResponseEntity;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
-import net.findeasily.website.domain.User;
-import net.findeasily.website.domain.UserCreateForm;
-import net.findeasily.website.domain.dto.UserDto;
-import net.findeasily.website.domain.validator.UserCreateFormValidator;
-import net.findeasily.website.exception.UserCreationException;
-import net.findeasily.website.service.UserService;
 
 @Controller
 @Slf4j
@@ -49,8 +38,14 @@ public class HomeController {
 
     @RequestMapping(value = "/account_confirmation", method = RequestMethod.GET)
     public ModelAndView accountConfirmation(@RequestParam(name = "hash", defaultValue = "") String hash) {
+        Map<String, String> model = new HashMap<>();
+        if (StringUtils.isBlank(hash)) {
+            model.put("toastr", "toastr.error('Invalid hash');");
+        } else {
+            String token = new String(Base64.getDecoder().decode(hash));
+        }
 
-        return new ModelAndView("login");
+        return new ModelAndView("login", model);
     }
 
 }
