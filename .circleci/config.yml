@@ -43,6 +43,9 @@ jobs:
   deploy:
     machine:
         enabled: true
+
+    working_directory: ~/repo
+
     steps:
       - run: mvn clean package -DskipTests
       - run:
