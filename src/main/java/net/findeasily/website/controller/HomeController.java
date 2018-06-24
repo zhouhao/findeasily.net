@@ -20,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class HomeController {
 
-
     @RequestMapping("/")
     public String getHomePage() {
         log.debug("Getting home page");
