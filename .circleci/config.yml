@@ -43,11 +43,11 @@ jobs:
   deploy:
     machine:
         enabled: true
-      steps:
-        - run:
-            name: Deploy Over SSH
-            command: |
-              ssh $SSH_USER@$SSH_HOST "echo hello world > ~/hello.txt "
+    steps:
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST "echo hello world > ~/hello.txt "
 
 workflows:
   version: 2
