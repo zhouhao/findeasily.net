@@ -44,6 +44,7 @@ jobs:
     machine:
         enabled: true
     steps:
+      - run: mvn clean package -DskipTests
       - run:
           name: Deploy Over SSH
           command: |
