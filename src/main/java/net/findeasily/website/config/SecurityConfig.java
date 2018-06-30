@@ -18,6 +18,8 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String[] PUBLIC_PAGES = new String[]{
             "/",
             "/signup",
+            "/login",
+            "/account_confirmation",
             "/public/**",
             "/css/**",
             "/js/**",
