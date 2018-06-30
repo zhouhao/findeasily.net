@@ -15,7 +15,7 @@
     <link type="text/css" rel="stylesheet" href="/css/plugins.css">
     <link type="text/css" rel="stylesheet" href="/css/style.css">
     <link type="text/css" rel="stylesheet" href="/css/color.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="/images/favicon.ico">
     ${inlineCss!""}
@@ -52,6 +52,7 @@
 <script type="text/javascript" src="/js/markerclusterer.js"></script>
 <script type="text/javascript" src="/js/maps.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>${toastr!''}</script>
 ${inlineJs!""}
 </body>
 </html>
