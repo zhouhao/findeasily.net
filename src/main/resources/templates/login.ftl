@@ -3,7 +3,7 @@
 <#assign showHeaderLogin = false />
 <#assign inlineJs>
     <script>
-        let form = $("#main-register-form");
+        var form = $("#main-register-form");
         form.submit(function (e) {
             $.ajax({
                 type: form.attr('method'),
