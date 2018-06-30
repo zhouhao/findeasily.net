@@ -3,6 +3,7 @@ package net.findeasily.website.service.impl;
 import java.util.List;
 import java.util.UUID;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public boolean activate(@NotNull Integer userId) {
+    public boolean activate(@NotBlank String userId) {
         User user = selectById(userId);
         if (user == null) {
             return false;
@@ -79,7 +80,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public boolean Lock(@NotNull Integer userId, @NotNull Integer lockCode) {
+    public boolean Lock(@NotBlank String userId, @NotNull Integer lockCode) {
         User user = selectById(userId);
         if (user == null) {
             return false;

@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 
 public final class ToastrUtils {
 
+    public static final String KEY = "toastr";
+
     public static String success(@NotNull String msg) {
         return build("success", msg);
     }

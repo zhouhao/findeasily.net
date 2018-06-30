@@ -1,5 +1,7 @@
 <#include "layout/layout.ftl"/>
-<#assign pageTitle = 'Login'/>
+<#if !pageTitle?has_content>
+    <#assign pageTitle = 'Login'/>
+</#if>
 <#assign showHeaderLogin = false />
 <#assign inlineJs>
     <script>
