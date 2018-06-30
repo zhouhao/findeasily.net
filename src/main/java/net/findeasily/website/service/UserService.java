@@ -2,6 +2,7 @@ package net.findeasily.website.service;
 
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.baomidou.mybatisplus.service.IService;
@@ -28,7 +29,7 @@ public interface UserService extends IService<User> {
 
     List<User> getAllUsers();
 
-    boolean activate(@NotNull Integer userId);
+    boolean activate(@NotBlank String userId);
 
-    boolean Lock(@NotNull Integer userId, @NotNull Integer lockCode);
+    boolean Lock(@NotBlank String userId, @NotNull Integer lockCode);
 }

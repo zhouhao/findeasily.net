@@ -3,8 +3,10 @@ package net.findeasily.website.service;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import net.findeasily.website.domain.Token;
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.baomidou.mybatisplus.service.IService;
+import net.findeasily.website.domain.Token;
 
 /**
  * <p>
@@ -21,4 +23,6 @@ public interface TokenService extends IService<Token> {
     Token generate(@NotEmpty String userId);
 
     String getTokenStr(@NotNull Token token);
+
+    Pair<String, Token> parse(String hash);
 }
