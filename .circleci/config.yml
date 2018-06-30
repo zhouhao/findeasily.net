@@ -39,5 +39,5 @@ jobs:
 
       # run tests!
       - run: mvn clean package
-      - run: scp -o "StrictHostKeyChecking no" target/website.jar $SSH_USER@$SSH_HOST:/root/
-      - run: ssh $SSH_USER@$SSH_HOST "systemctl restart website.service"
+      #- run: scp -o "StrictHostKeyChecking no" target/website.jar $SSH_USER@$SSH_HOST:/root/
+      #- run: ssh $SSH_USER@$SSH_HOST "systemctl restart website.service"
