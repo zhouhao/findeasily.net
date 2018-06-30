@@ -23,6 +23,12 @@ Website for findeasily.net
 ### Tech Details
 // todo
 
+### How to Contribute
+1. Create your own branch (*Note: name your branch based on the feature*)
+2. Commit your changes in your branch
+3. Open pull request
+4. Merge after CI job (code review, if required)
+5. Delete your branch if you want
 
 ### Resources 
 (*Note*: 对于那些有版权的模板，请不要用于自己的公开项目里面 - 当然自己买了版权除外)
