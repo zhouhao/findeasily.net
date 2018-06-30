@@ -681,6 +681,10 @@ $('#logout-header').on('click', function () {
     $('#logout-header-form').submit();
 });
 
+$('#header-signin-btn').on('click', function () {
+    window.location.href='/login';
+});
+
 //   Init All ------------------
 $(function () {
     initCitybook();
