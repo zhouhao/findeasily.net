@@ -22,3 +22,10 @@ Website for findeasily.net
 
 ### Tech Details
 // todo
+
+
+### Resources 
+(*Note*: 对于那些有版权的模板，请不要用于自己的公开项目里面 - 当然自己买了版权除外)
+1. The UI template I bought: [Official Demo Link with Images](http://citybook.kwst.net/) & [Provided Html Pages with Image Placeholder `sample/sample`](http://sample.findeasily.net/)
+2. The Email template I bought: [Lil Commerce](http://notification-emails.com/transactional-email-templates) - [Already added in this folder](https://github.com/zhouhao/findeasily.net/tree/master/src/main/resources/templates/email)
+3. For the test&dev database servers, you can feel free to use them. - *Please do not delete other people's table*.
