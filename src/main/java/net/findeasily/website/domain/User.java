@@ -7,10 +7,6 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 
 /**
- * <p>
- *
- * </p>
- *
  * @author Hao Zhou
  * @since 2018-05-23
  */

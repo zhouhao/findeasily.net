@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
+import net.findeasily.website.util.ToastrUtils;
 
 @Controller
 @Slf4j
@@ -39,10 +40,11 @@ public class HomeController {
     public ModelAndView accountConfirmation(@RequestParam(name = "hash", defaultValue = "") String hash) {
         Map<String, String> model = new HashMap<>();
         if (StringUtils.isBlank(hash)) {
-            model.put("toastr", "toastr.error('Invalid hash');");
+            model.put("toastr", ToastrUtils.error("Invalid hash"));
         } else {
             String token = new String(Base64.getDecoder().decode(hash));
         }
+        model.put("pageTitle", "Account Confirmation"); // TODO: this will be overwritten by ftl assignment
 
         return new ModelAndView("login", model);
     }
