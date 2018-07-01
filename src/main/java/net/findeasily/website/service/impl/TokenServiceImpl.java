@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.google.common.hash.HashFunction;
+import io.sentry.Sentry;
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.Token;
 import net.findeasily.website.mapper.TokenMapper;
@@ -92,6 +93,7 @@ public class TokenServiceImpl extends ServiceImpl<TokenMapper, Token> implements
             return ImmutablePair.of(splits[1], token);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
+            Sentry.capture(e);
             return invalidRes;
         }
     }
