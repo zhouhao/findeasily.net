@@ -98,5 +98,10 @@ public class TokenServiceImpl extends ServiceImpl<TokenMapper, Token> implements
         }
     }
 
+    @Override
+    public int deleteFromHourBefore(int hour) {
+        return baseMapper.deleteFromHourBefore(hour);
+    }
+
 
 }
