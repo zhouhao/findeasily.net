@@ -25,4 +25,6 @@ public interface TokenService extends IService<Token> {
     String getTokenStr(@NotNull Token token);
 
     Pair<String, Token> parse(String hash);
+
+    int deleteFromHourBefore(int hour);
 }
