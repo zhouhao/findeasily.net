@@ -13,9 +13,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.session.data.redis.config.ConfigureRedisAction;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
+import io.sentry.Sentry;
+import io.sentry.SentryClient;
+import io.sentry.SentryClientFactory;
+import io.sentry.spring.SentryExceptionResolver;
 
 @SpringBootApplication
 @EnableRedisHttpSession
@@ -48,7 +53,18 @@ public class Application {
 
     // https://docs.spring.io/spring-session/docs/current/reference/html5/#api-redisoperationssessionrepository-sessiondestroyedevent
     @Bean
-    public static ConfigureRedisAction configureRedisAction() {
+    public ConfigureRedisAction configureRedisAction() {
         return ConfigureRedisAction.NO_OP;
+    }
+
+    @Bean
+    public SentryClient sentry() {
+        Sentry.init();
+        return SentryClientFactory.sentryClient();
+    }
+
+    @Bean
+    public HandlerExceptionResolver sentryExceptionResolver() {
+        return new SentryExceptionResolver();
     }
 }
