@@ -911,8 +911,8 @@ table.tr {
 												<tr>
 													<td class="column_cell pt tl switch_tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #8f8f8f;text-align: left;padding-top: 16px;line-height: inherit;">
 														<p class="mb_xs" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #8f8f8f;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;">
-															&copy;2017 Lil Commerce <br>
-															20464 Lynch Haven, Emardton, CT 12471-4107, USA
+															&copy;${.now?string('yyyy')} FindEasily.net <br>
+															Boston, MA, 02101, USA
 														</p>
 														<p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #8f8f8f;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;"><a href="#" style="line-height: inherit;text-decoration: none;color: #8f8f8f;"><span style="line-height: inherit;color: #8f8f8f;">About</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #8f8f8f;"><span style="line-height: inherit;color: #8f8f8f;">Products</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #8f8f8f;"><span style="line-height: inherit;color: #8f8f8f;">Help</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #8f8f8f;"><span style="line-height: inherit;color: #8f8f8f;">Unsubscribe</span></a></p>
 													</td>
