@@ -8,13 +8,13 @@ import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.service.TokenService;
 
 /**
- * Clean tokens which are created 12 hours ago
+ * Clean tokens which are created 72 hours ago every 12 hours
  */
 @Component
 @Slf4j
 public class TokenCleanupTask {
 
-    private static final int CLEAN_INTERVAL = 72 * 60 * 60 * 1000; // every 72 hours
+    private static final int CLEAN_INTERVAL = 12 * 60 * 60 * 1000; // every 72 hours
 
     private final TokenService tokenService;
 
@@ -25,7 +25,7 @@ public class TokenCleanupTask {
 
     @Scheduled(fixedRate = CLEAN_INTERVAL)
     public void cleanup() {
-        int count = tokenService.deleteFromHourBefore(CLEAN_INTERVAL / (60 * 60 * 1000));
+        int count = tokenService.deleteFromHourBefore(6 * CLEAN_INTERVAL / (60 * 60 * 1000));
         log.info("clean " + count + " outdated token records...");
     }
 }
