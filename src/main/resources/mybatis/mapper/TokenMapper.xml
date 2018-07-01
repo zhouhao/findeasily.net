@@ -4,10 +4,14 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="net.findeasily.website.domain.Token">
-        <id column="id" property="id" />
-        <result column="user_id" property="userId" />
-        <result column="val" property="val" />
-        <result column="create_time" property="createTime" />
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="val" property="val"/>
+        <result column="create_time" property="createTime"/>
     </resultMap>
+
+    <delete id="deleteFromHourBefore">
+        delete from token where create_time &lt; DATE_SUB(NOW() , INTERVAL #{hour} HOUR );
+    </delete>
 
 </mapper>

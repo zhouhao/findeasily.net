@@ -1,11 +1,13 @@
 package net.findeasily.website.mapper;
 
-import net.findeasily.website.domain.Token;
+import org.apache.ibatis.annotations.Param;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import net.findeasily.website.domain.Token;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Hao Zhou
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface TokenMapper extends BaseMapper<Token> {
 
+    int deleteFromHourBefore(@Param("hour") int hour);
 }
