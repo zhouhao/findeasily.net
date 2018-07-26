@@ -66,6 +66,11 @@ public class UserEventListener {
                 Token token = tokenService.generate(user.getId());
                 model.put("token", Base64.getEncoder().encodeToString((token.getId() + ":" + tokenService.getTokenStr(token)).getBytes()));
                 break;
+            case PASSWORD_RESET_REQUEST:
+                // TODO:
+                Token tokenEmail = tokenService.generate(user.getEmail());
+                model.put("token", Base64.getEncoder().encodeToString((tokenEmail.getId() + ":" + tokenService.getTokenStr(tokenEmail)).getBytes()));
+                break;
             default:
                 // todo
         }
