@@ -1,5 +1,5 @@
 //   all ------------------
-function initCitybook() {
+function initWebsite() {
     "use strict";
     //   loader ------------------
     $(".loader-wrap").fadeOut(300, function () {
@@ -687,6 +687,6 @@ $('#header-signin-btn').on('click', function () {
 
 //   Init All ------------------
 $(function () {
-    initCitybook();
+    initWebsite();
     initparallax();
 });
