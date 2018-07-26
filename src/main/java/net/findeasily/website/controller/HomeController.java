@@ -70,4 +70,9 @@ public class HomeController {
         return new ModelAndView("login", model);
     }
 
+    @RequestMapping(value = "/password/forget", method = RequestMethod.GET)
+    public ModelAndView getForgetPassword() {
+        return new ModelAndView("forget_password");
+    }
+
 }
