@@ -5,15 +5,14 @@
 <#assign inlineJs>
     <script>
         <#-- todo -->
-        var form = $("#main-register-form");
-        form.submit(function (e) {
+        var forgetPasswordForm = $("#forget-password-form");
+        forgetPasswordForm.submit(function (e) {
             $.ajax({
-                type: form.attr('method'),
-                url: form.attr('action'),
-                data: form.serialize(), // serializes the form's elements.
-                success: function (data) {
-                    toastr.success(';-) Register successfully! Please check your email to activate your account');
-                    form.trigger('reset');
+                type: forgetPasswordForm.attr('method'),
+                url: forgetPasswordForm.attr('action'),
+                data: forgetPasswordForm.serialize(), // serializes the form's elements.
+                success: function () {
+                    toastr.success(';-) Email with password reset instructions was sent successfully! Please check your email for instructions to reset your password');
                 },
                 error: function (data) {
                     toastr.error(data.responseJSON.errors.join(', '));
@@ -25,7 +24,7 @@
     </script>
 </#assign>
 <@layout>
-<!--register form -->
+<!--password forget form -->
     <div class="main-register-wrap main-register-single-page">
         <div class="main-register-holder">
             <div class="main-register fl-wrap">
@@ -33,7 +32,7 @@
                 <div id="tabs-container">
                     <div id="tab-1" class="tab-content">
                         <div class="custom-form">
-                            <form method="post" name="passwordForgetForm" action="/password/forget/handler">
+                            <form method="post" name="passwordForgetForm" action="/password/forget/handler" id="forget-password-form">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <label>Email Address * </label>
                                 <input name="email" type="text" required autofocus value="">
