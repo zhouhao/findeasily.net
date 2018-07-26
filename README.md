@@ -13,6 +13,10 @@ Website for findeasily.net
 3. *You can skip this step now*: Create you configuration file(*optional step*, e.g. your file is `application-sample.properties`) in [`resources`](https://github.com/zhouhao/findeasily.net/tree/master/src/main/resources) folder(use [`application-dev.properties`](https://github.com/zhouhao/findeasily.net/blob/master/src/main/resources/application-dev.properties) as example)
 4. `SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run`
 5. Visit [http://localhost:8080/](http://localhost:8080/), if everything is OK, you can see the home page
+6. If you make any code change, and want to deploy to live site, please run `./deploy-website.sh`. 
+    1. Please do **NOT** deploy if your code cannot pass test. 
+    2. Please do **NOT** share the keys in `script` folder for public users
+    3. After this script completes, the website will be 502 for a while
 
 
 ### Note:
@@ -37,6 +41,7 @@ Website for findeasily.net
 1. The UI template I bought: [Official Demo Link with Images](http://citybook.kwst.net/) & [Provided Html Pages with Image Placeholder `sample/sample`](http://sample.findeasily.net/)
 2. The Email template I bought: [Lil Commerce](http://notification-emails.com/transactional-email-templates) - [Already added in this folder](https://github.com/zhouhao/findeasily.net/tree/master/src/main/resources/templates/email)
 3. For the test&dev database servers, you can feel free to use them. - *Please do not delete other people's table*.
+4. The images in the emails are in this [github repo](https://github.com/findeasily/resources)
 
 ### Roadmap
 - [x] Project configuration setup
