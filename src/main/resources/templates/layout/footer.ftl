@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="copyright"> &#169; CityBook 2018 . All rights reserved.</div>
+                    <div class="copyright"> &#169; FindEasily.net ${.now?string('yyyy')} . All rights reserved.</div>
                 </div>
                 <div class="col-md-4">
                     <div class="footer-social">

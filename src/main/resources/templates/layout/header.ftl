@@ -2,7 +2,7 @@
 <header class="main-header dark-header fs-header sticky">
     <div class="header-inner">
         <div class="logo-holder">
-            <a href="/"><img src="images/logo.png" alt=""></a>
+            <a href="/"><img src="/images/logo.png" alt=""></a>
         </div>
         <div class="header-search vis-header-search">
             <div class="header-search-input-item">
@@ -29,7 +29,7 @@
     <#else>
     <div class="header-user-menu">
         <div class="header-user-name">
-            <span><img src="images/avatar/1.jpg" alt="" title="" style=""></span>
+            <span><img src="/images/avatar/1.jpg" alt="" title=""></span>
             Hello , Alisa
         </div>
         <ul>

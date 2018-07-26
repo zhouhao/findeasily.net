@@ -29,7 +29,7 @@
     <div class="main-register-wrap main-register-single-page">
         <div class="main-register-holder">
             <div class="main-register fl-wrap">
-                <h3>Sign In <span>City<strong>Book</strong></span></h3>
+                <h3>Sign In <span>Find<strong>Easily</strong></span></h3>
                 <div id="tabs-container">
                     <ul class="tabs-menu">
                         <li class="current"><a href="#tab-1">Login</a></li>
@@ -52,7 +52,7 @@
                                     </div>
                                 </form>
                                 <div class="lost_password">
-                                    <a href="#">Lost Your Password?</a>
+                                    <a href="/password/forget">Lost Your Password?</a>
                                 </div>
                             </div>
                         </div>
