@@ -17,7 +17,7 @@
     <link type="text/css" rel="stylesheet" href="/css/color.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <!--=============== favicons ===============-->
-    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.png">
     ${inlineCss!""}
 </head>
 <body>
