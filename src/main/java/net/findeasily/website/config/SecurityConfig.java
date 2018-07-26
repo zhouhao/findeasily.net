@@ -20,6 +20,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/signup",
             "/login",
             "/account_confirmation",
+            "/password/**",
             "/public/**",
             "/css/**",
             "/js/**",
