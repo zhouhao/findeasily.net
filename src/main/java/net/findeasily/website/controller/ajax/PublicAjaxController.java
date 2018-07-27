@@ -4,9 +4,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import net.findeasily.website.domain.ForgetPasswordForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.server.WebServerException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import net.findeasily.website.domain.ForgetPasswordForm;
 import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.UserCreateForm;
 import net.findeasily.website.domain.dto.UserDto;
@@ -68,7 +67,7 @@ public class PublicAjaxController {
     }
 
     @RequestMapping(value = "/password/forget/handler", method = RequestMethod.POST)
-    public void postForgetPasswordSubmit(@Valid @ModelAttribute("forgetPasswordForm") ForgetPasswordForm form, BindingResult bindingResult) {
+    public ResponseEntity<Void> postForgetPasswordSubmit(@Valid @ModelAttribute("forgetPasswordForm") ForgetPasswordForm form, BindingResult bindingResult) {
         log.debug("Processing forget password. Email={}, bindingResult={}", form.getEmail(), bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -81,7 +80,7 @@ public class PublicAjaxController {
         User user = userService.getUserByEmail(form.getEmail());
         if (user != null) {
             userEventPublisher.publish(UserEvent.Type.PASSWORD_RESET_REQUEST, user);
-            // return ResponseEntity.ok(new UserDto(user));
+            return ResponseEntity.ok().build();
         } else {
             throw new WebApplicationException("There is no existing user account associated with this email address");
         }
