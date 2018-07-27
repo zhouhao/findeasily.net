@@ -565,7 +565,7 @@ table.tr {
 										<tbody>
 											<tr>
 												<td class="column_cell py tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;padding-top: 16px;padding-bottom: 16px;line-height: inherit;">
-													<a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><img src="https://static.findeasily.net/images/email/logo.png" width="136" height="32" alt="Lil Commerce website" style="max-width: 140px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;"></a>
+													<a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><img src="https://static.findeasily.net/images/logo.png" height="32" alt="FindEasily.net Website" style="outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;"></a>
 												</td>
 											</tr>
 										</tbody>
@@ -640,13 +640,13 @@ table.tr {
 										<tbody>
 											<tr>
 												<td class="column_cell pt tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;padding-top: 16px;line-height: inherit;">
-													<p class="imgr mb_xs" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;width: 100%;height: auto;clear: both;"><a href="#" style="line-height: 1;text-decoration: none;color: #388cda;"><img src="https://static.findeasily.net/images/email/logo_xs.png" width="48" height="48" alt="Lil Commerce website" style="max-width: 48px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></a></p>
+													<p class="imgr mb_xs" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;width: 100%;height: auto;clear: both;"><a href="#" style="line-height: 1;text-decoration: none;color: #388cda;"><img src="https://static.findeasily.net/images/email/logo_xs.png" width="48" height="48" alt="FindEasily.net Website" style="max-width: 48px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></a></p>
 													<p class="mb_xs" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;">
 														20464 Lynch Haven <br>
 														Emardton <br>
 														CT 12471-4107, USA
 													</p>
-													<p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;"><a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><span style="line-height: inherit;color: #388cda;">About</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><span style="line-height: inherit;color: #388cda;">Products</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><span style="line-height: inherit;color: #388cda;">Help</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><span style="line-height: inherit;color: #388cda;">Unsubscribe</span></a></p>
+													<p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;"><a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><span style="line-height: inherit;color: #388cda;">About</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><span style="line-height: inherit;color: #388cda;">Help</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><span style="line-height: inherit;color: #388cda;">Unsubscribe</span></a></p>
 												</td>
 											</tr>
 										</tbody>
