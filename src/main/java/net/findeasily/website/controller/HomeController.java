@@ -76,12 +76,13 @@ public class HomeController {
         return new ModelAndView("forget_password");
     }
 
+    // TODO: this is for test purpose, just render email template for review
     @GetMapping("/password/email")
     public ModelAndView email() {
         Map<String, Object> model = new HashMap<>();
         model.put("token", "1234");
         model.put("webServer", "http://127.0.0.1:8080/");
-        return new ModelAndView("email/account_confirmation", model);
+        return new ModelAndView("email/account_password_reset_request", model);
     }
 
 }
