@@ -86,7 +86,7 @@ public class TokenServiceImpl extends ServiceImpl<TokenMapper, Token> implements
             }
 
             Token token = baseMapper.selectById(tokenId);
-            if (token == null || match(token, splits[1])) {
+            if (token == null || !match(token, splits[1])) {
                 return null;
             }
             return token;
