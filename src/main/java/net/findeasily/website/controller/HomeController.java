@@ -11,6 +11,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -73,6 +74,14 @@ public class HomeController {
     @RequestMapping(value = "/password/forget", method = RequestMethod.GET)
     public ModelAndView getForgetPassword() {
         return new ModelAndView("forget_password");
+    }
+
+    @GetMapping("/password/email")
+    public ModelAndView email() {
+        Map<String, Object> model = new HashMap<>();
+        model.put("token", "1234");
+        model.put("webServer", "http://127.0.0.1:8080/");
+        return new ModelAndView("email/account_confirmation", model);
     }
 
 }
