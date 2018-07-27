@@ -54,18 +54,15 @@ public class HomeController {
     @RequestMapping(value = "/account_confirmation", method = RequestMethod.GET)
     public ModelAndView accountConfirmation(@RequestParam(name = "hash", defaultValue = "") String hash) {
         Map<String, String> model = new HashMap<>();
-        if (StringUtils.isBlank(hash)) {
-            model.put(ToastrUtils.KEY, ToastrUtils.error("Invalid hash, should not be empty"));
+        Token token = tokenService.parse(hash);
+        if (token == null) {
+            model.put(ToastrUtils.KEY, ToastrUtils.error("Url is expired or not valid"));
+        } else if (userService.activate(token.getUserId())) {
+            model.put(ToastrUtils.KEY, ToastrUtils.success("Activation succeeded, please login now"));
         } else {
-            Pair<String, Token> pair = tokenService.parse(hash);
-            if (!pair.equals(ImmutablePair.nullPair()) &&
-                    tokenService.match(pair.getRight(), pair.getLeft()) &&
-                    userService.activate(pair.getRight().getUserId())) {
-                model.put(ToastrUtils.KEY, ToastrUtils.success("Activation succeeded, please login now"));
-            } else {
-                model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
-            }
+            model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
         }
+
         model.put("pageTitle", "Account Confirmation");
 
         return new ModelAndView("login", model);
@@ -74,6 +71,19 @@ public class HomeController {
     @RequestMapping(value = "/password/forget", method = RequestMethod.GET)
     public ModelAndView getForgetPassword() {
         return new ModelAndView("forget_password");
+    }
+
+    @RequestMapping(value = "/password/reset", method = RequestMethod.GET)
+    public ModelAndView getResetPassword(@RequestParam(name = "hash", defaultValue = "") String hash) {
+        Map<String, String> model = new HashMap<>();
+        Token token = tokenService.parse(hash);
+        if (token == null) {
+            model.put(ToastrUtils.KEY, ToastrUtils.error("Url is expired or not valid"));
+        } else {
+            model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
+        }
+        // TODO
+        return new ModelAndView("reset_password", model);
     }
 
     // TODO: this is for test purpose, just render email template for review
