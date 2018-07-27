@@ -66,35 +66,34 @@ public class TokenServiceImpl extends ServiceImpl<TokenMapper, Token> implements
     }
 
     @Override
-    public Pair<String, Token> parse(String hash) {
-        Pair<String, Token> invalidRes = ImmutablePair.nullPair();
+    public Token parse(String hash) {
         try {
             if (StringUtils.isBlank(hash)) {
-                return invalidRes;
+                return null;
             }
             String decodedHash = new String(Base64.getDecoder().decode(hash));
             if (StringUtils.isBlank(decodedHash) || !decodedHash.contains(":")) {
-                return invalidRes;
+                return null;
             }
             String[] splits = decodedHash.split(":");
             if (splits.length != 2) {
-                return invalidRes;
+                return null;
             }
 
             int tokenId = NumberUtils.toInt(splits[0], 0);
             if (tokenId < 1) {
-                return invalidRes;
+                return null;
             }
 
             Token token = baseMapper.selectById(tokenId);
-            if (token == null) {
-                return invalidRes;
+            if (token == null || match(token, splits[1])) {
+                return null;
             }
-            return ImmutablePair.of(splits[1], token);
+            return token;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             Sentry.capture(e);
-            return invalidRes;
+            return null;
         }
     }
 
