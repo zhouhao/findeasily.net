@@ -79,11 +79,18 @@ public class HomeController {
         Token token = tokenService.parse(hash);
         if (token == null) {
             model.put(ToastrUtils.KEY, ToastrUtils.error("Url is expired or not valid"));
-        } else {
+        } else if (userService.getUserById(token.getUserId()) != null) {
+            log.debug("Processing password reset link. userId={}", token.getUserId());
+            // TODO:
+            // model.put("userId", token.getUserId());
+            return new ModelAndView("reset_password", model);
+        }
+        else {
             model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
         }
-        // TODO
-        return new ModelAndView("reset_password", model);
+
+        // TODO:
+        return new ModelAndView("forget_password", model);
     }
 
     // TODO: this is for test purpose, just render email template for review
