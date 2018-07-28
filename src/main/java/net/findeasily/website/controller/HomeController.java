@@ -27,6 +27,7 @@ import net.findeasily.website.util.ToastrUtils;
 @Slf4j
 public class HomeController {
 
+    public static final String USER_ID_KEY = "user_id";
     private final TokenService tokenService;
     private final UserService userService;
 
@@ -54,18 +55,15 @@ public class HomeController {
     @RequestMapping(value = "/account_confirmation", method = RequestMethod.GET)
     public ModelAndView accountConfirmation(@RequestParam(name = "hash", defaultValue = "") String hash) {
         Map<String, String> model = new HashMap<>();
-        if (StringUtils.isBlank(hash)) {
-            model.put(ToastrUtils.KEY, ToastrUtils.error("Invalid hash, should not be empty"));
+        Token token = tokenService.parse(hash);
+        if (token == null) {
+            model.put(ToastrUtils.KEY, ToastrUtils.error("Url is expired or not valid"));
+        } else if (userService.activate(token.getUserId())) {
+            model.put(ToastrUtils.KEY, ToastrUtils.success("Activation succeeded, please login now"));
         } else {
-            Pair<String, Token> pair = tokenService.parse(hash);
-            if (!pair.equals(ImmutablePair.nullPair()) &&
-                    tokenService.match(pair.getRight(), pair.getLeft()) &&
-                    userService.activate(pair.getRight().getUserId())) {
-                model.put(ToastrUtils.KEY, ToastrUtils.success("Activation succeeded, please login now"));
-            } else {
-                model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
-            }
+            model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
         }
+
         model.put("pageTitle", "Account Confirmation");
 
         return new ModelAndView("login", model);
@@ -76,12 +74,29 @@ public class HomeController {
         return new ModelAndView("forget_password");
     }
 
+    @RequestMapping(value = "/password/reset", method = RequestMethod.GET)
+    public ModelAndView getResetPassword(@RequestParam(name = "hash", defaultValue = "") String hash, HttpSession session) {
+        Map<String, String> model = new HashMap<>();
+        Token token = tokenService.parse(hash);
+        if (token == null) {
+            model.put(ToastrUtils.KEY, ToastrUtils.error("Url is expired or not valid"));
+        } else if (userService.getUserById(token.getUserId()) != null) {
+            log.debug("Processing password reset link. userId={}", token.getUserId());
+            session.setAttribute(USER_ID_KEY, token.getUserId());
+            return new ModelAndView("reset_password", model);
+        } else {
+            model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
+        }
+        return new ModelAndView("forget_password", model); // todo: redirect?
+    }
+
+    // TODO: this is for test purpose, just render email template for review
     @GetMapping("/password/email")
     public ModelAndView email() {
         Map<String, Object> model = new HashMap<>();
         model.put("token", "1234");
         model.put("webServer", "http://127.0.0.1:8080/");
-        return new ModelAndView("email/account_confirmation", model);
+        return new ModelAndView("email/account_password_reset_complete", model);
     }
 
 }
