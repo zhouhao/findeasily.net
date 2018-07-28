@@ -47,7 +47,7 @@ Website for findeasily.net
 - [x] Project configuration setup
 - [x] User registration with email activation
 - [x] User login
-- [ ] Password reset with Email
+- [x] Password reset with Email
 - [ ] User profile page
 - [ ] User can create/edit/delete listing info
 - [ ] enable listing display in home page

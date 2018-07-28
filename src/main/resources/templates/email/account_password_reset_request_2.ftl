@@ -551,7 +551,7 @@ table.tr {
 	<div class="email_summary" style="box-sizing: border-box;display: none;font-size: 1px;line-height: 1px;max-height: 0px;max-width: 0px;opacity: 0;overflow: hidden;">
 		&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
 	</div>
-	<!-- header_center -->
+	<!-- header -->
 	<table role="presentation" class="email_table" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
 		<tbody>
 			<tr>
@@ -560,16 +560,32 @@ table.tr {
 					<table role="presentation" class="content_section" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;max-width: 640px;margin: 0 auto;text-align: center;min-width: 0 !important;">
 						<tbody>
 							<tr>
-								<td class="content_cell content_b brt tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-color: #ffffff;border-radius: 4px 4px 0 0;text-align: center;font-size: 0 !important;">
-									<table role="presentation" class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
-										<tbody>
-											<tr>
-												<td class="column_cell py tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;padding-top: 16px;padding-bottom: 16px;line-height: inherit;">
-													<a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><img src="https://static.findeasily.net/images/logo.png" height="32" alt="FindEasily.net Website" style="outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;"></a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
+								<td class="content_cell content_b pb brt tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-color: #ffffff;border-radius: 4px 4px 0 0;text-align: center;padding-bottom: 16px;font-size: 0 !important;">
+									<!--[if (mso)|(IE)]><table role="presentation" width="624" border="0" cellspacing="0" cellpadding="0" align="center" style="vertical-align:top;width:624px;Margin:0 auto;"><tbody><tr><td width="156" style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+									<div class="col_1" style="box-sizing: border-box;width: 100%;line-height: inherit;display: inline-block;vertical-align: top;max-width: 156px;min-width: 0 !important;font-size: 0 !important;">
+										<table role="presentation" class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
+											<tbody>
+												<tr>
+													<td class="column_cell logo_c pt tl" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: left;padding-top: 16px;line-height: 100%;">
+														<a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><img src="https://static.findeasily.net/images/logo.png" height="32" alt="FindEasily.net Website" style="outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: auto;height: 32px;"></a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<!--[if (mso)|(IE)]></td><td width="468" style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+									<div class="col_3" style="box-sizing: border-box;width: 100%;line-height: inherit;display: inline-block;vertical-align: top;max-width: 468px;min-width: 0 !important;font-size: 0 !important;">
+										<table role="presentation" class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
+											<tbody>
+												<tr>
+													<td class="column_cell nav_menu" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: right;padding-top: 24px;line-height: inherit;">
+														<p class="mb_0 tm" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #b3b3b3;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;"><a href="#" style="line-height: inherit;text-decoration: none;color: #b3b3b3;"><span style="line-height: inherit;color: #b3b3b3;">About</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #b3b3b3;"><span style="line-height: inherit;color: #b3b3b3;">Products</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #b3b3b3;"><span style="line-height: inherit;color: #b3b3b3;">Help</span></a></p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<!--[if (mso)|(IE)]></td></tr></tbody></table><![endif]-->
 								</td>
 							</tr>
 						</tbody>
@@ -579,7 +595,7 @@ table.tr {
 			</tr>
 		</tbody>
 	</table>
-	<!-- hero_welcome -->
+	<!-- hero_password -->
 	<table role="presentation" class="email_table" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
 		<tbody>
 			<tr>
@@ -588,83 +604,28 @@ table.tr {
 					<table role="presentation" class="content_section" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;max-width: 640px;margin: 0 auto;text-align: center;min-width: 0 !important;">
 						<tbody>
 							<tr>
-								<td class="content_cell default_b hero_image pt pbe tc" background="images/hero_background.png" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-repeat: no-repeat;background-position: 50% 0;background-color: #388cda;text-align: center;padding-top: 16px;padding-bottom: 24px;font-size: 0 !important;">
+								<td class="content_cell default_b hero_image py tc" background="images/hero_background.png" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-repeat: no-repeat;background-position: 50% 0;background-color: #388cda;text-align: center;padding-top: 16px;padding-bottom: 16px;font-size: 0 !important;">
 									<table role="presentation" class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
 										<tbody>
 											<tr>
-												<td class="column_cell sc pt tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #ffffff;text-align: center;padding-top: 16px;line-height: inherit;">
+												<td class="column_cell py tc sc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #ffffff;text-align: center;padding-top: 16px;padding-bottom: 16px;line-height: inherit;">
 													<table role="presentation" class="ic_h" align="center" width="80" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;display: table;margin-left: auto;margin-right: auto;">
 														<tbody>
 															<tr>
-																<td class="content_b" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: middle;background-color: #ffffff;line-height: 100%;padding: 16px;text-align: center;mso-line-height-rule: exactly;border-radius: 100px;"><img role="img" src="https://static.findeasily.net/images/email/info.png" width="48" height="48" alt="Information symbol" style="max-width: 48px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;"></td>
+																<td class="content_b" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: middle;background-color: #ffffff;line-height: 100%;padding: 16px;text-align: center;mso-line-height-rule: exactly;border-radius: 100px;"><img role="img" src="https://static.findeasily.net/images/email/key.png" width="48" height="48" alt="Shopping cart" style="max-width: 48px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;"></td>
 															</tr>
 														</tbody>
 													</table>
 													<h1 class="sc" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 8px;color: #ffffff;font-size: 26px;line-height: 34px;">Password reset</h1>
-													<p class="lead mb" style="font-family: Arial, Helvetica, sans-serif;font-size: 20px;color: #ffffff;line-height: 27px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 16px;">Soneome has requested to have your password reset.</p>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<!--[if (mso)|(IE)]></td></tr></tbody></table><![endif]-->
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<!-- spacer -->
-	<table role="presentation" class="email_table" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
-		<tbody>
-			<tr>
-				<td class="email_body tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: 100%;padding-left: 8px;padding-right: 8px;background-color: #eceff1;text-align: center;font-size: 0 !important;">
-					<!--[if (mso)|(IE)]><table role="presentation" width="640" border="0" cellspacing="0" cellpadding="0" align="center" style="vertical-align:top;width:640px;Margin:0 auto;"><tbody><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-					<table role="presentation" class="content_section" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;max-width: 640px;margin: 0 auto;text-align: center;min-width: 0 !important;">
-						<tbody>
-							<tr>
-								<td class="content_cell content_b" height="32" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-color: #ffffff;font-size: 0 !important;">&nbsp;</td>
-							</tr>
-						</tbody>
-					</table>
-					<!--[if (mso)|(IE)]></td></tr></tbody></table><![endif]-->
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<!-- content -->
-	<table role="presentation" class="email_table" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
-		<tbody>
-			<tr>
-				<td class="email_body tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: 100%;padding-left: 8px;padding-right: 8px;background-color: #eceff1;text-align: center;font-size: 0 !important;">
-					<!--[if (mso)|(IE)]><table role="presentation" width="640" border="0" cellspacing="0" cellpadding="0" align="center" style="vertical-align:top;width:640px;Margin:0 auto;"><tbody><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-					<!--[if (mso)|(IE)]></td></tr></tbody></table><![endif]-->
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<!-- button_accent -->
-	<table role="presentation" class="email_table" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
-		<tbody>
-			<tr>
-				<td class="email_body tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: 100%;padding-left: 8px;padding-right: 8px;background-color: #eceff1;text-align: center;font-size: 0 !important;">
-					<!--[if (mso)|(IE)]><table role="presentation" width="640" border="0" cellspacing="0" cellpadding="0" align="center" style="vertical-align:top;width:640px;Margin:0 auto;"><tbody><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-					<table role="presentation" class="content_section" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;max-width: 640px;margin: 0 auto;text-align: center;min-width: 0 !important;">
-						<tbody>
-							<tr>
-								<td class="content_cell content_b tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-color: #ffffff;text-align: center;font-size: 0 !important;">
-									<table role="presentation" class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
-										<tbody>
-											<tr>
-												<td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
+													<p class="lead" style="font-family: Arial, Helvetica, sans-serif;font-size: 20px;color: #ffffff;line-height: 27px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 24px;">Soneome has requested to have your password reset.</p>
 													<table role="presentation" class="ebtn tc" align="center" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;display: table;margin-left: auto;margin-right: auto;text-align: center;">
 														<tbody>
 															<tr>
-																<td class="accent_b" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;background-color: #2ccf9c;line-height: 22px;font-size: 18px;font-weight: bold;padding: 13px 24px;mso-line-height-rule: exactly;border-radius: 4px;text-align: center;"><a href="${webServer}password/reset?hash=${token}" style="line-height: inherit;text-decoration: none;font-family: Arial, Helvetica, sans-serif;font-weight: bold;color: #ffffff;"><span style="line-height: inherit;font-family: Arial, Helvetica, sans-serif;font-weight: bold;color: #ffffff;">Reset password</span></a></td>
+																<td class="accent_b" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;background-color: #2ccf9c;line-height: 22px;font-size: 18px;font-weight: bold;padding: 13px 24px;mso-line-height-rule: exactly;border-radius: 4px;text-align: center;"><a href="#" style="line-height: inherit;text-decoration: none;font-family: Arial, Helvetica, sans-serif;font-weight: bold;color: #ffffff;"><span style="line-height: inherit;font-family: Arial, Helvetica, sans-serif;font-weight: bold;color: #ffffff;">Reset password</span></a></td>
 															</tr>
 														</tbody>
 													</table>
+													<p class="mt mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #ffffff;line-height: 23px;mso-line-height-rule: exactly;margin-top: 16px;margin-bottom: 0;"><br>Ceremonially then stunning duteously a privately less asininely the upheld feverish coasted against much darn like had much a clumsily strict scorpion.</p>
 												</td>
 											</tr>
 										</tbody>
@@ -678,25 +639,7 @@ table.tr {
 			</tr>
 		</tbody>
 	</table>
-	<!-- spacer -->
-	<table role="presentation" class="email_table" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
-		<tbody>
-			<tr>
-				<td class="email_body tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: 100%;padding-left: 8px;padding-right: 8px;background-color: #eceff1;text-align: center;font-size: 0 !important;">
-					<!--[if (mso)|(IE)]><table role="presentation" width="640" border="0" cellspacing="0" cellpadding="0" align="center" style="vertical-align:top;width:640px;Margin:0 auto;"><tbody><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-					<table role="presentation" class="content_section" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;max-width: 640px;margin: 0 auto;text-align: center;min-width: 0 !important;">
-						<tbody>
-							<tr>
-								<td class="content_cell content_b" height="32" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-color: #ffffff;font-size: 0 !important;">&nbsp;</td>
-							</tr>
-						</tbody>
-					</table>
-					<!--[if (mso)|(IE)]></td></tr></tbody></table><![endif]-->
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<!-- footer_alt -->
+	<!-- footer -->
 	<table role="presentation" class="email_table" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
 		<tbody>
 			<tr>
@@ -705,21 +648,18 @@ table.tr {
 					<table role="presentation" class="content_section" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;max-width: 640px;margin: 0 auto;text-align: center;min-width: 0 !important;">
 						<tbody>
 							<tr>
-								<td class="content_cell content_b brb tc" height="16" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-color: #ffffff;border-radius: 0 0 4px 4px;text-align: center;font-size: 0 !important;">&nbsp; </td>
-							</tr>
-							<tr>
-								<td class="content_cell py brb tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;border-radius: 0 0 4px 4px;text-align: center;padding-top: 16px;padding-bottom: 16px;font-size: 0 !important;">
+								<td class="content_cell footer_b pb brb tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-color: #d4d7d9;border-radius: 0 0 4px 4px;text-align: center;padding-bottom: 16px;font-size: 0 !important;">
 									<!--[if (mso)|(IE)]><table role="presentation" width="624" border="0" cellspacing="0" cellpadding="0" align="center" style="vertical-align:top;width:624px;Margin:0 auto;"><tbody><tr><td width="468" style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
 									<div class="col_3" style="box-sizing: border-box;width: 100%;line-height: inherit;display: inline-block;vertical-align: top;max-width: 468px;min-width: 0 !important;font-size: 0 !important;">
 										<table role="presentation" class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
 											<tbody>
 												<tr>
-													<td class="column_cell pt tl switch_tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: left;padding-top: 16px;line-height: inherit;">
-														<p class="mb_xs" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;">
+													<td class="column_cell pt tl switch_tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #8f8f8f;text-align: left;padding-top: 16px;line-height: inherit;">
+														<p class="mb_xs" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #8f8f8f;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;">
 															&copy;${.now?string('yyyy')} FindEasily.net <br>
-															<span class="tm" style="line-height: inherit;color: #b3b3b3;">Boston, MA, 02101, USA</span>
+															Boston, MA, 02101, USA
 														</p>
-														<p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;"><a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><span style="line-height: inherit;color: #388cda;">About</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><span style="line-height: inherit;color: #388cda;">Help</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #388cda;"><span style="line-height: inherit;color: #388cda;">Unsubscribe</span></a></p>
+														<p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #8f8f8f;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;"><a href="#" style="line-height: inherit;text-decoration: none;color: #8f8f8f;"><span style="line-height: inherit;color: #8f8f8f;">About</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #8f8f8f;"><span style="line-height: inherit;color: #8f8f8f;">Products</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #8f8f8f;"><span style="line-height: inherit;color: #8f8f8f;">Help</span></a> &nbsp; · &nbsp; <a href="#" style="line-height: inherit;text-decoration: none;color: #8f8f8f;"><span style="line-height: inherit;color: #8f8f8f;">Unsubscribe</span></a></p>
 													</td>
 												</tr>
 											</tbody>
