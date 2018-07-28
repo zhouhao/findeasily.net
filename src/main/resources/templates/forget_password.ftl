@@ -12,6 +12,7 @@
                 url: forgetPasswordForm.attr('action'),
                 data: forgetPasswordForm.serialize(), // serializes the form's elements.
                 success: function () {
+                    forgetPasswordForm.trigger("reset");
                     toastr.success(';-) Email with password reset instructions was sent successfully! Please check your email for instructions to reset your password');
                 },
                 error: function (data) {
