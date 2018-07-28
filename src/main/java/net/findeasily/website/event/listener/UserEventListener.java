@@ -68,7 +68,6 @@ public class UserEventListener {
                 model.put("token", Base64.getEncoder().encodeToString((token.getId() + ":" + tokenService.getTokenStr(token)).getBytes()));
                 break;
             default:
-                // todo
         }
 
         return model;

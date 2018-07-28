@@ -6,15 +6,14 @@
 <#assign inlineJs>
     <script>
         var resetPasswordForm = $("#reset-password-form");
-        <#-- todo -->
-        // resetPasswordForm.elements["userId"].value = userId;
         resetPasswordForm.submit(function (e) {
             $.ajax({
                 type: resetPasswordForm.attr('method'),
                 url: resetPasswordForm.attr('action'),
                 data: resetPasswordForm.serialize(), // serializes the form's elements.
                 success: function () {
-                    toastr.success(';-) Password has been reset successfully! Please log in with your new password');
+                    resetPasswordForm.trigger("reset");
+                    toastr.success(';-) Password has been reset successfully! Please login with your new password');
                 },
                 error: function (data) {
                     toastr.error(data.responseJSON.errors.join(', '));
@@ -39,11 +38,9 @@
                                   id="reset-password-form">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <label>New Password *</label>
-                                <input name="password" type="password" onClick="this.select()" value=""
-                                       required>
+                                <input name="password" id="password" type="password" required>
                                 <label>New Password Repeat *</label>
-                                <input name="passwordRepeated" type="password" onClick="this.select()" value=""
-                                       required>
+                                <input name="passwordRepeated" id="passwordRepeated" type="password" required>
                                 <button type="submit" class="log-submit-btn"><span>Submit</span>
                                 </button>
                             </form>

@@ -1,24 +1,30 @@
 package net.findeasily.website.controller.ajax;
 
-import java.text.Bidi;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import net.findeasily.website.domain.validator.ResetPasswordFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import net.findeasily.website.controller.HomeController;
 import net.findeasily.website.domain.ForgetPasswordForm;
 import net.findeasily.website.domain.ResetPasswordForm;
 import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.UserCreateForm;
 import net.findeasily.website.domain.dto.UserDto;
+import net.findeasily.website.domain.validator.ResetPasswordFormValidator;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
 import net.findeasily.website.event.UserEvent;
 import net.findeasily.website.event.publisher.UserEventPublisher;
@@ -34,14 +40,16 @@ public class PublicAjaxController {
     private final ResetPasswordFormValidator resetPasswordFormValidator;
     private final UserService userService;
     private final UserEventPublisher userEventPublisher;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public PublicAjaxController(UserCreateFormValidator userCreateFormValidator, UserService userService,
-                                UserEventPublisher userEventPublisher, ResetPasswordFormValidator resetPasswordFormValidator) {
+                                UserEventPublisher userEventPublisher, ResetPasswordFormValidator resetPasswordFormValidator, PasswordEncoder passwordEncoder) {
         this.userCreateFormValidator = userCreateFormValidator;
         this.userService = userService;
         this.userEventPublisher = userEventPublisher;
         this.resetPasswordFormValidator = resetPasswordFormValidator;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @InitBinder("form")
@@ -93,24 +101,25 @@ public class PublicAjaxController {
     }
 
     @RequestMapping(value = "/password/reset/handler", method = RequestMethod.POST)
-    public ResponseEntity<UserDto> postResetPasswordSubmit(@Valid @ModelAttribute("resetPasswordForm") ResetPasswordForm form, BindingResult bindingResult) {
+    public ResponseEntity<UserDto> postResetPasswordSubmit(@Valid @ModelAttribute("resetPasswordForm") ResetPasswordForm form,
+                                                           BindingResult bindingResult, HttpSession session) {
         log.debug("Processing reset password. userId={}, bindingResult={}", form.getUserId(), bindingResult);
 
         if (bindingResult.hasErrors()) {
             // failed validation
-            // TODO: other exception
             throw new UserCreationException(bindingResult.getAllErrors().stream()
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
                     .collect(Collectors.toList()));
         }
 
-        User user = userService.getUserById(form.getUserId());
+        User user = userService.getUserById(String.valueOf(session.getAttribute(HomeController.USER_ID_KEY)));
         if (user != null) {
-            userEventPublisher.publish(UserEvent.Type.PASSWORD_RESET_REQUEST, user);
-            return ResponseEntity.ok(new UserDto(user));
-        } else {
-            // TODO: it should NOT end with this
-            throw new WebApplicationException("Something went wrong.");
+            user.setPassword(passwordEncoder.encode(form.getPassword()));
+            if (userService.updateById(user)) {
+                userEventPublisher.publish(UserEvent.Type.PASSWORD_RESET_COMPLETE, user);
+                return ResponseEntity.ok(new UserDto(user));
+            }
         }
+        throw new WebApplicationException("Something went wrong.");
     }
 }
