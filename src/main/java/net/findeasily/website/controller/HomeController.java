@@ -28,6 +28,7 @@ import net.findeasily.website.util.ToastrUtils;
 public class HomeController {
 
     public static final String USER_ID_KEY = "user_id";
+    public static final String TOKEN_ID_KEY = "token_id";
     private final TokenService tokenService;
     private final UserService userService;
 
@@ -60,6 +61,7 @@ public class HomeController {
             model.put(ToastrUtils.KEY, ToastrUtils.error("Url is expired or not valid"));
         } else if (userService.activate(token.getUserId())) {
             model.put(ToastrUtils.KEY, ToastrUtils.success("Activation succeeded, please login now"));
+            tokenService.deleteById(token.getId());
         } else {
             model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
         }
@@ -80,9 +82,11 @@ public class HomeController {
         Token token = tokenService.parse(hash);
         if (token == null) {
             model.put(ToastrUtils.KEY, ToastrUtils.error("Url is expired or not valid"));
+            log.debug("Processing password reset link. token is null");
         } else if (userService.getUserById(token.getUserId()) != null) {
             log.debug("Processing password reset link. userId={}", token.getUserId());
             session.setAttribute(USER_ID_KEY, token.getUserId());
+            session.setAttribute(TOKEN_ID_KEY, token.getId());
             return new ModelAndView("reset_password", model);
         } else {
             model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
