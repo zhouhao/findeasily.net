@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import net.findeasily.website.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
@@ -39,14 +40,16 @@ public class PublicAjaxController {
     private final UserCreateFormValidator userCreateFormValidator;
     private final ResetPasswordFormValidator resetPasswordFormValidator;
     private final UserService userService;
+    private final TokenService tokenService;
     private final UserEventPublisher userEventPublisher;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public PublicAjaxController(UserCreateFormValidator userCreateFormValidator, UserService userService,
-                                UserEventPublisher userEventPublisher, ResetPasswordFormValidator resetPasswordFormValidator, PasswordEncoder passwordEncoder) {
+                                UserEventPublisher userEventPublisher, ResetPasswordFormValidator resetPasswordFormValidator, PasswordEncoder passwordEncoder, TokenService tokenService) {
         this.userCreateFormValidator = userCreateFormValidator;
         this.userService = userService;
+        this.tokenService = tokenService;
         this.userEventPublisher = userEventPublisher;
         this.resetPasswordFormValidator = resetPasswordFormValidator;
         this.passwordEncoder = passwordEncoder;
@@ -117,6 +120,9 @@ public class PublicAjaxController {
             user.setPassword(passwordEncoder.encode(form.getPassword()));
             if (userService.updateById(user)) {
                 userEventPublisher.publish(UserEvent.Type.PASSWORD_RESET_COMPLETE, user);
+                int tokenId = (int) session.getAttribute(HomeController.TOKEN_ID_KEY);
+                boolean tokenDeleteSuccess = tokenService.deleteById(tokenId);
+                log.debug("token has been deleted success? {}", tokenDeleteSuccess);
                 return ResponseEntity.ok(new UserDto(user));
             }
         }
