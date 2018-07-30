@@ -120,9 +120,9 @@ public class PublicAjaxController {
             user.setPassword(passwordEncoder.encode(form.getPassword()));
             if (userService.updateById(user)) {
                 userEventPublisher.publish(UserEvent.Type.PASSWORD_RESET_COMPLETE, user);
-                int tokenId = Integer.parseInt(String.valueOf(session.getAttribute(HomeController.TOKEN_ID_KEY)));
+                int tokenId = (int) session.getAttribute(HomeController.TOKEN_ID_KEY);
                 boolean tokenDeleteSuccess = tokenService.deleteById(tokenId);
-                log.debug("token has been deleted success? {}", tokenDeleteSuccess); // TODO: what if user requested multiple password reset tokens?
+                log.debug("token has been deleted success? {}", tokenDeleteSuccess);
                 return ResponseEntity.ok(new UserDto(user));
             }
         }
