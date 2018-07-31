@@ -51,8 +51,7 @@ public class UserEventListener {
     private String buildEmailContent(UserEvent event) throws IOException, TemplateException {
         UserEvent.Type type = event.getType();
         User user = event.getUser();
-        freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/templates/email");
-        Template t = freemarkerConfig.getTemplate(type.getTemplateFile());
+        Template t = freemarkerConfig.getTemplate("email/" + type.getTemplateFile());
         return FreeMarkerTemplateUtils.processTemplateIntoString(t, buildModel(type, user));
     }
 
