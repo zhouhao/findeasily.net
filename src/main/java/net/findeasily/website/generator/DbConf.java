@@ -2,7 +2,7 @@ package net.findeasily.website.generator;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:application.properties"})
+@Config.Sources({"classpath:application-dev.properties"})
 public interface DbConf extends Config {
     @Key("spring.datasource.driverClassName")
     String driverName();
