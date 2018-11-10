@@ -2,7 +2,7 @@
 
 set -e
 
-SSH_USER=nginx
+SSH_USER=root
 SSH_HOST=findeasily.net
 mvn clean package
 
