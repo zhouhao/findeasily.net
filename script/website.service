@@ -1,0 +1,11 @@
+[Unit]
+Description=Website for findeasily.net
+After=syslog.target
+
+[Service]
+User=root
+ExecStart=/var/findeasily/website.jar
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
