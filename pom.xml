@@ -127,6 +127,8 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
+            <!--fix: https://github.com/flyway/flyway/issues/2215-->
+            <version>5.2.4</version>
         </dependency>
 
         <dependency>
