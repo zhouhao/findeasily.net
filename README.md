@@ -4,6 +4,9 @@ Website for findeasily.net
 
 [![CircleCI](https://circleci.com/gh/zhouhao/findeasily.net/tree/master.svg?style=svg&circle-token=afb24021c44ad75ddad34fd29ac8ed311887763c)](https://circleci.com/gh/zhouhao/findeasily.net/tree/master)
 
+### Note
+** I use the UI template here: https://themeforest.net/item/citybook-directory-listing-template/21360333, please purchase your license before using it in your personal project. **
+
 ### The Wish
 1. landlord can post their resources into this website easily(?How easily?)
 2. tenant can search house of rent by map, which is more informative
@@ -34,10 +37,8 @@ Website for findeasily.net
 
 ### Resources 
 (*Note*: 对于那些有版权的模板，请不要用于自己的公开项目里面 - 当然自己买了版权除外)
-1. The UI template I bought: [Official Demo Link with Images](http://citybook.kwst.net/) & [Provided Html Pages with Image Placeholder `sample/sample`](http://sample.findeasily.net/)
-2. The Email template I bought: [Lil Commerce](http://notification-emails.com/transactional-email-templates) - [Already added in this folder](https://github.com/zhouhao/findeasily.net/tree/master/src/main/resources/templates/email)
-3. For the test&dev database servers, you can feel free to use them. - *Please do not delete other people's table*.
-4. The images in the emails are in this [github repo](https://github.com/findeasily/resources)
+1. The UI template I bought: [Official Demo Link with Images](http://citybook.kwst.net/)
+
 
 ### Roadmap
 - [x] Project configuration setup
