@@ -5,7 +5,7 @@ Website for findeasily.net
 [![CircleCI](https://circleci.com/gh/zhouhao/findeasily.net/tree/master.svg?style=svg&circle-token=afb24021c44ad75ddad34fd29ac8ed311887763c)](https://circleci.com/gh/zhouhao/findeasily.net/tree/master)
 
 ### Note
-** I use the UI template here: https://themeforest.net/item/citybook-directory-listing-template/21360333, please purchase your license before using it in your personal project. **
+**I use the UI template here: https://themeforest.net/item/citybook-directory-listing-template/21360333, please purchase your license before using it in your personal project.**
 
 ### The Wish
 1. landlord can post their resources into this website easily(?How easily?)
