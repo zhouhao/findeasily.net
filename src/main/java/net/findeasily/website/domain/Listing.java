@@ -1,13 +1,14 @@
 package net.findeasily.website.domain;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.enums.IdType;
 import java.io.Serializable;
+import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Hao Zhou
@@ -176,23 +177,23 @@ public class Listing implements Serializable {
     @Override
     public String toString() {
         return "Listing{" +
-        ", id=" + id +
-        ", propertyId=" + propertyId +
-        ", ownerId=" + ownerId +
-        ", rentPrice=" + rentPrice +
-        ", securityDeposit=" + securityDeposit +
-        ", availableDate=" + availableDate +
-        ", bedroomCount=" + bedroomCount +
-        ", bathroomCount=" + bathroomCount +
-        ", duration=" + duration +
-        ", contactType=" + contactType +
-        ", contactName=" + contactName +
-        ", contactEmail=" + contactEmail +
-        ", contactPhone=" + contactPhone +
-        ", showEmail=" + showEmail +
-        ", showPhone=" + showPhone +
-        ", description=" + description +
-        ", type=" + type +
-        "}";
+                ", id=" + id +
+                ", propertyId=" + propertyId +
+                ", ownerId=" + ownerId +
+                ", rentPrice=" + rentPrice +
+                ", securityDeposit=" + securityDeposit +
+                ", availableDate=" + availableDate +
+                ", bedroomCount=" + bedroomCount +
+                ", bathroomCount=" + bathroomCount +
+                ", duration=" + duration +
+                ", contactType=" + contactType +
+                ", contactName=" + contactName +
+                ", contactEmail=" + contactEmail +
+                ", contactPhone=" + contactPhone +
+                ", showEmail=" + showEmail +
+                ", showPhone=" + showPhone +
+                ", description=" + description +
+                ", type=" + type +
+                "}";
     }
 }

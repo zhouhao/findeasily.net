@@ -1,15 +1,15 @@
 package net.findeasily.website.domain;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
+import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Hao Zhou
@@ -61,10 +61,10 @@ public class Token implements Serializable {
     @Override
     public String toString() {
         return "Token{" +
-        ", id=" + id +
-        ", userId=" + userId +
-        ", val=" + val +
-        ", createTime=" + createTime +
-        "}";
+                ", id=" + id +
+                ", userId=" + userId +
+                ", val=" + val +
+                ", createTime=" + createTime +
+                "}";
     }
 }

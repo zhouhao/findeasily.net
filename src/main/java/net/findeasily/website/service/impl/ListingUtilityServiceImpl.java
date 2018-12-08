@@ -3,7 +3,7 @@ package net.findeasily.website.service.impl;
 import net.findeasily.website.domain.ListingUtility;
 import net.findeasily.website.mapper.ListingUtilityMapper;
 import net.findeasily.website.service.ListingUtilityService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

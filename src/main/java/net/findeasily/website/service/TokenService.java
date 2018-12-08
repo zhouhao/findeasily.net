@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import net.findeasily.website.domain.Token;
 
 /**

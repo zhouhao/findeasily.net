@@ -9,12 +9,10 @@ import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.hash.HashFunction;
 import io.sentry.Sentry;
 import lombok.extern.slf4j.Slf4j;
@@ -56,7 +54,7 @@ public class TokenServiceImpl extends ServiceImpl<TokenMapper, Token> implements
         token.setUserId(userId);
         token.setCreateTime(new Date());
         token.setVal(UUID.randomUUID().toString());
-        return insert(token) ? token : null;
+        return save(token) ? token : null;
     }
 
     @Override

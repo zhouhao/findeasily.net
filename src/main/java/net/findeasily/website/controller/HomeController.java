@@ -58,7 +58,7 @@ public class HomeController {
             model.put(ToastrUtils.KEY, ToastrUtils.error("Url is expired or not valid"));
         } else if (userService.activate(token.getUserId())) {
             model.put(ToastrUtils.KEY, ToastrUtils.success("Activation succeeded, please login now"));
-            tokenService.deleteById(token.getId());
+            tokenService.removeById(token.getId());
         } else {
             model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
         }

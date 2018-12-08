@@ -1,12 +1,13 @@
 package net.findeasily.website.domain;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.enums.IdType;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Hao Zhou
@@ -94,14 +95,14 @@ public class ListingUtility implements Serializable {
     @Override
     public String toString() {
         return "ListingUtility{" +
-        ", listingId=" + listingId +
-        ", ac=" + ac +
-        ", electricity=" + electricity +
-        ", water=" + water +
-        ", hotWater=" + hotWater +
-        ", heater=" + heater +
-        ", internet=" + internet +
-        ", parking=" + parking +
-        "}";
+                ", listingId=" + listingId +
+                ", ac=" + ac +
+                ", electricity=" + electricity +
+                ", water=" + water +
+                ", hotWater=" + hotWater +
+                ", heater=" + heater +
+                ", internet=" + internet +
+                ", parking=" + parking +
+                "}";
     }
 }

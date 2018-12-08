@@ -5,7 +5,8 @@ import java.util.Map;
 
 import org.aeonbits.owner.ConfigFactory;
 
-import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
@@ -15,7 +16,6 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
-import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.google.common.collect.Lists;
 
@@ -39,7 +39,6 @@ public class MyBatisGenerator {
 
         strategyConfig.setCapitalMode(true)
                 .setEntityLombokModel(false)
-                .setDbColumnUnderline(true)
                 .setColumnNaming(NamingStrategy.underline_to_camel)
                 .setNaming(NamingStrategy.underline_to_camel)
                 .setInclude("user");

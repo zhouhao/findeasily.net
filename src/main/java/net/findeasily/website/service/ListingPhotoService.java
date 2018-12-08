@@ -1,11 +1,11 @@
 package net.findeasily.website.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import net.findeasily.website.domain.ListingPhoto;
-import com.baomidou.mybatisplus.service.IService;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author Hao Zhou

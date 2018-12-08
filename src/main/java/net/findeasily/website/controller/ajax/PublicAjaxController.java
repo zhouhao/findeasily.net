@@ -121,7 +121,7 @@ public class PublicAjaxController {
             if (userService.updateById(user)) {
                 userEventPublisher.publish(UserEvent.Type.PASSWORD_RESET_COMPLETE, user);
                 int tokenId = (int) session.getAttribute(HomeController.TOKEN_ID_KEY);
-                boolean tokenDeleteSuccess = tokenService.deleteById(tokenId);
+                boolean tokenDeleteSuccess = tokenService.removeById(tokenId);
                 log.debug("token has been deleted success? {}", tokenDeleteSuccess);
                 return ResponseEntity.ok(new UserDto(user));
             }

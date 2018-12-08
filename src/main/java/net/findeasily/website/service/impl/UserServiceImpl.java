@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.UserCreateForm;
 import net.findeasily.website.mapper.UserMapper;
@@ -39,19 +39,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public User getUserByEmail(String email) {
         User user = new User();
         user.setEmail(email);
-        return this.selectOne(new EntityWrapper<>(user));
+        return this.getOne(new QueryWrapper<>(user));
     }
 
     @Override
     public User getUserByName(String name) {
         User user = new User();
         user.setUsername(name);
-        return this.selectOne(new EntityWrapper<>(user));
+        return this.getOne(new QueryWrapper<>(user));
     }
 
     @Override
     public User getUserById(String id) {
-        return selectById(id);
+        return getById(id);
     }
 
     @Override
@@ -61,17 +61,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setEmail(form.getEmail());
         user.setUsername(form.getUsername());
         user.setPassword(passwordEncoder.encode(form.getPassword()));
-        return insert(user) ? getUserById(user.getId()) : null;
+        return save(user) ? getUserById(user.getId()) : null;
     }
 
     @Override
     public List<User> getAllUsers() {
-        return selectList(null);
+        return list(null);
     }
 
     @Override
     public boolean activate(@NotBlank String userId) {
-        User user = selectById(userId);
+        User user = getById(userId);
         if (user == null) {
             return false;
         }
@@ -81,7 +81,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public boolean Lock(@NotBlank String userId, @NotNull Integer lockCode) {
-        User user = selectById(userId);
+        User user = getById(userId);
         if (user == null) {
             return false;
         }

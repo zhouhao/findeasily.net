@@ -1,11 +1,12 @@
 package net.findeasily.website.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import net.findeasily.website.domain.ListingUtility;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Hao Zhou
