@@ -1,7 +1,6 @@
 Website for findeasily.net
 ============================
 
-**NOTE**: 不好意思，我最近在准备面试，所以短时间内可能无法正常提交code change！ 不好意思！大家有兴趣，可以随意提交代码，添加自己喜欢的功能！多谢大家！
 
 [![CircleCI](https://circleci.com/gh/zhouhao/findeasily.net/tree/master.svg?style=svg&circle-token=afb24021c44ad75ddad34fd29ac8ed311887763c)](https://circleci.com/gh/zhouhao/findeasily.net/tree/master)
 
