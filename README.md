@@ -14,11 +14,6 @@ Website for findeasily.net
 3. *You can skip this step now*: Create you configuration file(*optional step*, e.g. your file is `application-sample.properties`) in [`resources`](https://github.com/zhouhao/findeasily.net/tree/master/src/main/resources) folder(use [`application-dev.properties`](https://github.com/zhouhao/findeasily.net/blob/master/src/main/resources/application-dev.properties) as example)
 4. `SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run`
 5. Visit [http://localhost:8080/](http://localhost:8080/), if everything is OK, you can see the home page
-6. If you make any code change, and want to deploy to live site, please run `./deploy-website.sh`. 
-    1. Please do **NOT** deploy if your code cannot pass test. 
-    2. Please do **NOT** share the keys in `script` folder for public users
-    3. After this script completes, the website will be 502 for a while
-
 
 ### Note:
 1. I recommend [**Intellij**](https://www.jetbrains.com/idea/download/#section=mac) as IDE(either Ultimate or Community).(Eclipse is OK, but as I know, Lombok plugin does not work well in Eclipse)
