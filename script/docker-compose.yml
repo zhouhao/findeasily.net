@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: findeasily
+      MYSQL_ROOT_PASSWORD: 88888888
+    volumes:
+      - mysql_data:/var/lib/mysql/data
+  redis:
+    image: 'redis:5.0-alpine'
+    command: redis-server --requirepass 88888888
+    ports:
+      - '6379:6379'
+
+volumes:
+  mysql_data:
