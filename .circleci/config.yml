@@ -48,7 +48,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp -o "StrictHostKeyChecking no" target/website.jar $SSH_USER@$SSH_HOST:/var/findeasily/
+            scp -o "StrictHostKeyChecking no" ~/repo/target/website.jar $SSH_USER@$SSH_HOST:/var/findeasily/
       - run:
           name: restart website
           command: |
