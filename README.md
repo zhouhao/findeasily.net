@@ -16,7 +16,7 @@ Website for findeasily.net
 ### Quick start
 1. Please make sure you have `Java8` and `git` installed
 2. `git clone https://github.com/zhouhao/findeasily.net.git`
-3. *You can skip this step now*: Create you configuration file(*optional step*, e.g. your file is `application-sample.properties`) in [`resources`](https://github.com/zhouhao/findeasily.net/tree/master/src/main/resources) folder(use [`application-dev.properties`](https://github.com/zhouhao/findeasily.net/blob/master/src/main/resources/application-dev.properties) as example)
+3. Follow [this](https://github.com/zhouhao/findeasily.net/blob/master/script/README.md) to start mysql & redis with docker
 4. `SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run`
 5. Visit [http://localhost:8080/](http://localhost:8080/), if everything is OK, you can see the home page
 
@@ -38,9 +38,9 @@ Website for findeasily.net
 5. Delete your branch if you want
 
 ### Resources 
-(*Note*: 对于那些有版权的模板，请不要用于自己的公开项目里面 - 当然自己买了版权除外)
+(*Note*: You need to purchase licenses before using these 2 resources into your personal project)
 1. The UI template I bought: [Official Demo Link with Images](http://citybook.kwst.net/)
-
+2. The Email template I bought: [Lil Commerce](http://notification-emails.com/transactional-email-templates) 
 
 ### Roadmap
 - [x] Project configuration setup
