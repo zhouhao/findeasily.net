@@ -1,8 +1,7 @@
 Website for findeasily.net
 ============================
 
-
-[![CircleCI](https://circleci.com/gh/zhouhao/findeasily.net/tree/master.svg?style=svg&circle-token=afb24021c44ad75ddad34fd29ac8ed311887763c)](https://circleci.com/gh/zhouhao/findeasily.net/tree/master)
+[![CircleCI](https://circleci.com/gh/findeasily/findeasily.net.svg?style=svg)](https://circleci.com/gh/findeasily/findeasily.net)
 
 ### Note
 **I use some commercial resources in my project, for which I have no right to sell or distribute for free, so please purchase your license before using it in your personal project. Thank you!**
