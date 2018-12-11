@@ -8,6 +8,21 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk@sha256:1c27b0d618763e59a71dd62c7298677db5f925e7eb7f41cf0f21beaf0ac1770f
+        environment:
+          JDBC_DATABASE_URL: "jdbc:mysql://127.0.0.1/findeasily?useSSL=false&useUnicode=true&characterEncoding=utf-8"
+          JDBC_DATABASE_USERNAME: user
+          JDBC_DATABASE_PASSWORD: Passw0d1
+          REDIS_HOST: 127.0.0.1
+          REDIS_PASSWORD: Passw0d1
+
+      - image: circleci/mysql:5.6-ram
+        environment:
+          MYSQL_DATABASE: findeasily
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_PASSWORD: Passw0d1
+          MYSQL_USER: user
+      - image: circleci/redis:5.0-alpine3.8
+        command: redis-server --requirepass Passw0d1
 
     working_directory: ~/repo
     environment:
@@ -15,6 +30,7 @@ jobs:
 
     steps:
       - checkout
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
@@ -27,7 +43,10 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      - run: mvn clean package
+      - run:
+          name: Maven Build & Test
+          command: |
+            mvn clean package
 
       - store_test_results:
           path: target/surefire-reports
