@@ -37,6 +37,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //@formatter:off
         http.authorizeRequests()
                 .antMatchers(PUBLIC_PAGES).permitAll()
                 .antMatchers("/users/**").hasAuthority("ADMIN")
@@ -55,6 +56,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .and()
                     .rememberMe();
+        //@formatter:on
     }
 
     @Override

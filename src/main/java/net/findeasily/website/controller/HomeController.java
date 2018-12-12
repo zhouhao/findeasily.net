@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,7 +40,7 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping("/login")
     public ModelAndView getLoginPage(@RequestParam Optional<String> error, HttpSession session) {
         log.debug("Getting login page, error={}", error);
         if (error.isPresent()) {
@@ -50,7 +49,7 @@ public class HomeController {
         return new ModelAndView("login", "error", error);
     }
 
-    @RequestMapping(value = "/account_confirmation", method = RequestMethod.GET)
+    @GetMapping("/account_confirmation")
     public ModelAndView accountConfirmation(@RequestParam(name = "hash", defaultValue = "") String hash) {
         Map<String, String> model = new HashMap<>();
         Token token = tokenService.parse(hash);
@@ -68,12 +67,12 @@ public class HomeController {
         return new ModelAndView("login", model);
     }
 
-    @RequestMapping(value = "/password/forget", method = RequestMethod.GET)
+    @GetMapping("/password/forget")
     public ModelAndView getForgetPassword() {
         return new ModelAndView("forget_password");
     }
 
-    @RequestMapping(value = "/password/reset", method = RequestMethod.GET)
+    @GetMapping("/password/reset")
     public ModelAndView getResetPassword(@RequestParam(name = "hash", defaultValue = "") String hash, HttpSession session) {
         Map<String, String> model = new HashMap<>();
         Token token = tokenService.parse(hash);
