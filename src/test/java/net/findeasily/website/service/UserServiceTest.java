@@ -15,6 +15,7 @@ import net.findeasily.website.domain.Role;
 import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.UserCreateForm;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -29,6 +30,7 @@ public class UserServiceTest {
     private Faker faker = new Faker();
 
     private User user;
+    private String username;
 
     @Before
     public void setUp() throws Exception {
@@ -38,19 +40,28 @@ public class UserServiceTest {
         ucf.setPassword(pwd);
         ucf.setPasswordRepeated(pwd);
         ucf.setRole(Role.USER);
-        ucf.setUsername(faker.name().username());
+        username = faker.name().username();
+        ucf.setUsername(username);
         user = userService.create(ucf);
         assertNotNull(user);
     }
 
     @Test
-    public void getUserByEmailValid() {
+    public void getUserByEmailTest() {
         assertNotNull(userService.getUserByEmail(user.getEmail()));
+        assertNull(userService.getUserByEmail(user.getEmail() + "dummySuffix"));
     }
 
     @Test
-    public void getUserByEmailInvalid() {
-        assertNull(userService.getUserByEmail(user.getEmail() + "dummySuffix"));
+    public void getUserByNameTest() {
+        assertNotNull(userService.getUserByName(username));
+        assertNull(userService.getUserByName(username + "dummySuffix"));
+    }
+
+    @Test
+    public void activateTest() {
+        assertTrue(userService.activate(user.getId()));
+        assertFalse(userService.activate(user.getId() + 100));
     }
 
     @After

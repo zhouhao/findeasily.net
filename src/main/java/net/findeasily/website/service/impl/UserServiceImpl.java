@@ -80,7 +80,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public boolean Lock(@NotBlank String userId, @NotNull Integer lockCode) {
+    public boolean lock(@NotBlank String userId, @NotNull Integer lockCode) {
         User user = getById(userId);
         if (user == null) {
             return false;
