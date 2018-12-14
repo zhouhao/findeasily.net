@@ -31,5 +31,5 @@ public interface UserService extends IService<User> {
 
     boolean activate(@NotBlank String userId);
 
-    boolean Lock(@NotBlank String userId, @NotNull Integer lockCode);
+    boolean lock(@NotBlank String userId, @NotNull Integer lockCode);
 }

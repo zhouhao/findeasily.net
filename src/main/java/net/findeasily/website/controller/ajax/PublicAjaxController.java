@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import net.findeasily.website.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +30,7 @@ import net.findeasily.website.event.UserEvent;
 import net.findeasily.website.event.publisher.UserEventPublisher;
 import net.findeasily.website.exception.UserCreationException;
 import net.findeasily.website.exception.WebApplicationException;
+import net.findeasily.website.service.TokenService;
 import net.findeasily.website.service.UserService;
 
 @RestController
@@ -46,7 +46,8 @@ public class PublicAjaxController {
 
     @Autowired
     public PublicAjaxController(UserCreateFormValidator userCreateFormValidator, UserService userService,
-                                UserEventPublisher userEventPublisher, ResetPasswordFormValidator resetPasswordFormValidator, PasswordEncoder passwordEncoder, TokenService tokenService) {
+                                UserEventPublisher userEventPublisher, ResetPasswordFormValidator resetPasswordFormValidator,
+                                PasswordEncoder passwordEncoder, TokenService tokenService) {
         this.userCreateFormValidator = userCreateFormValidator;
         this.userService = userService;
         this.tokenService = tokenService;

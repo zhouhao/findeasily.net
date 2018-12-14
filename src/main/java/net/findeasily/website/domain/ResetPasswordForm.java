@@ -1,8 +1,8 @@
 package net.findeasily.website.domain;
 
-import org.hibernate.validator.constraints.Length;
-
 import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 public class ResetPasswordForm {
 

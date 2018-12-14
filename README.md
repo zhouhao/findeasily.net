@@ -14,14 +14,15 @@ Website for findeasily.net
 
 ### Quick start
 1. Please make sure you have `Java8` and `git` installed
-2. `git clone https://github.com/zhouhao/findeasily.net.git`
-3. Follow [this](https://github.com/zhouhao/findeasily.net/blob/master/script/README.md) to start mysql & redis with docker
-4. `SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run`
-5. Visit [http://localhost:8080/](http://localhost:8080/), if everything is OK, you can see the home page
+2. `git clone https://github.com/findeasily/findeasily.net.git`
+3. Follow [this](https://github.com/findeasily/findeasily.net/blob/master/script/README.md) to start mysql & redis with docker
+4. You can create your own [mailgun](https://www.mailgun.com/) account, and update Email sending account [here](https://github.com/findeasily/findeasily.net/blob/master/src/main/resources/application-dev.properties) (otherwise, user cannot receive confirmation email)
+5. `SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run`
+6. Visit [http://localhost:8080/](http://localhost:8080/), if everything is OK, you can see the home page
 
 ### Note:
 1. I recommend [**Intellij**](https://www.jetbrains.com/idea/download/#section=mac) as IDE(either Ultimate or Community).(Eclipse is OK, but as I know, Lombok plugin does not work well in Eclipse)
-2. You do not need to patch DB schemas manually, as flyway can do it automatically. (Attention: All DB change should have its SQL file in [db/migration](https://github.com/zhouhao/findeasily.net/tree/master/src/main/resources/db/migration) folder)
+2. You do not need to patch DB schemas manually, as flyway can do it automatically. (Attention: All DB change should have its SQL file in [db/migration](https://github.com/findeasily/findeasily.net/tree/master/src/main/resources/db/migration) folder)
 3. For people who just want to read the source code, you can install [Octotree plugin for Chrome](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc?hl=en-US)
 
 ### Tech Details
