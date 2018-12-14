@@ -2,6 +2,7 @@ Website for findeasily.net
 ============================
 
 [![CircleCI](https://circleci.com/gh/findeasily/findeasily.net.svg?style=svg)](https://circleci.com/gh/findeasily/findeasily.net)
+[![Known Vulnerabilities](https://snyk.io/test/github/findeasily/findeasily.net/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/findeasily/findeasily.net?targetFile=pom.xml)
 
 ### Note
 **I use some commercial resources in my project, for which I have no right to sell or distribute for free, so please purchase your license before using it in your personal project. Thank you!**
