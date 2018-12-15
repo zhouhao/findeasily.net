@@ -3,6 +3,9 @@ package net.findeasily.website.exception;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.Getter;
+
+@Getter
 public class UserCreationException extends RuntimeException {
     private List<String> messages;
 
@@ -15,7 +18,4 @@ public class UserCreationException extends RuntimeException {
         this.messages = messages;
     }
 
-    public List<String> getMessages() {
-        return messages;
-    }
 }
