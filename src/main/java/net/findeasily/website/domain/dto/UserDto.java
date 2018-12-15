@@ -5,8 +5,10 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
+import lombok.Getter;
 import net.findeasily.website.domain.User;
 
+@Getter
 public class UserDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,27 +28,4 @@ public class UserDto implements Serializable {
         this.role = user.getRole();
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Date getRegisterTime() {
-        return registerTime;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public String getRole() {
-        return role;
-    }
 }
