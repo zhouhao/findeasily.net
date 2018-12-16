@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>${pageTitle!'Find House Rent Easily'}</title>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow"/>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
@@ -47,10 +46,12 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="/js/plugins.js"></script>
 <script type="text/javascript" src="/js/scripts.js"></script>
+<#if includeMap!false>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8lHMqT3f4RbfwD9aoQrGOCjAqeR4mwCc&libraries=places&callback=initAutocomplete"></script>
 <script type="text/javascript" src="/js/map_infobox.js"></script>
 <script type="text/javascript" src="/js/markerclusterer.js"></script>
 <script type="text/javascript" src="/js/maps.js"></script>
+</#if>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>${toastr!''}</script>
 ${inlineJs!""}
