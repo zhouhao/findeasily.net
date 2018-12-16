@@ -1,4 +1,4 @@
-package net.findeasily.website.domain;
+package net.findeasily.website.domain.form;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -13,7 +13,7 @@ public class ResetPasswordForm {
 
     private String userId = "";
 
-    @Length(min = 6)
+    @Length(min = 6, max = 128)
     private String password = "";
 
     @NotEmpty

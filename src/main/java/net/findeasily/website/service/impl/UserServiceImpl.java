@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import net.findeasily.website.domain.User;
-import net.findeasily.website.domain.UserCreateForm;
+import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.mapper.UserMapper;
 import net.findeasily.website.service.UserService;
 

@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import net.findeasily.website.domain.User;
-import net.findeasily.website.domain.UserCreateForm;
+import net.findeasily.website.domain.form.UserCreateForm;
 
 /**
  * <p>

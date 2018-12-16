@@ -1,4 +1,4 @@
-package net.findeasily.website.domain;
+package net.findeasily.website.domain.form;
 
 import javax.validation.constraints.Email;
 

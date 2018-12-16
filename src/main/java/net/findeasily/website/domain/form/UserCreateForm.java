@@ -1,4 +1,4 @@
-package net.findeasily.website.domain;
+package net.findeasily.website.domain.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -8,22 +8,23 @@ import org.hibernate.validator.constraints.Length;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.findeasily.website.domain.Role;
 
 @Getter
 @Setter
 public class UserCreateForm {
 
-    @Length(min = 4)
+    @Length(min = 4, max = 128)
     private String username;
 
     @Email
-    private String email = "";
+    private String email;
 
-    @Length(min = 6)
-    private String password = "";
+    @Length(min = 6, max = 128)
+    private String password;
 
     @NotEmpty
-    private String passwordRepeated = "";
+    private String passwordRepeated;
 
     @NotNull
     private Role role = Role.USER;
