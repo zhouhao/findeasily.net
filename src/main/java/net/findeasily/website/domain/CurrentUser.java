@@ -2,6 +2,9 @@ package net.findeasily.website.domain;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(callSuper = true)
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
 
     private User user;
@@ -27,7 +30,6 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
     public boolean isEnabled() {
         return user.getActivated();
     }
-
 
     @Override
     public boolean isAccountNonLocked() {

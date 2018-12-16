@@ -2,8 +2,10 @@ package net.findeasily.website.event;
 
 import org.springframework.context.ApplicationEvent;
 
+import lombok.Getter;
 import net.findeasily.website.domain.User;
 
+@Getter
 public class UserEvent extends ApplicationEvent {
 
     private User user;
@@ -18,14 +20,6 @@ public class UserEvent extends ApplicationEvent {
         super(source);
         this.type = type;
         this.user = user;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public Type getType() {
-        return type;
     }
 
     public enum Type {

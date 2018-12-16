@@ -5,6 +5,9 @@ import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * <p>
@@ -14,6 +17,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
  * @author Hao Zhou
  * @since 2018-08-08
  */
+
+@Getter
+@Setter
+@ToString
 public class ListingPhoto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,55 +32,4 @@ public class ListingPhoto implements Serializable {
     private String path;
     private String description;
 
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getListingId() {
-        return listingId;
-    }
-
-    public void setListingId(String listingId) {
-        this.listingId = listingId;
-    }
-
-    public Date getUploadDate() {
-        return uploadDate;
-    }
-
-    public void setUploadDate(Date uploadDate) {
-        this.uploadDate = uploadDate;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "ListingPhoto{" +
-                ", id=" + id +
-                ", listingId=" + listingId +
-                ", uploadDate=" + uploadDate +
-                ", path=" + path +
-                ", description=" + description +
-                "}";
-    }
 }

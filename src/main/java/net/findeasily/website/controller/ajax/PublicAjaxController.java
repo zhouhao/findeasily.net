@@ -13,16 +13,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.controller.HomeController;
-import net.findeasily.website.domain.ForgetPasswordForm;
-import net.findeasily.website.domain.ResetPasswordForm;
+import net.findeasily.website.domain.form.ForgetPasswordForm;
+import net.findeasily.website.domain.form.ResetPasswordForm;
 import net.findeasily.website.domain.User;
-import net.findeasily.website.domain.UserCreateForm;
+import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.dto.UserDto;
 import net.findeasily.website.domain.validator.ResetPasswordFormValidator;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
@@ -66,7 +65,7 @@ public class PublicAjaxController {
         binder.addValidators(resetPasswordFormValidator);
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @PostMapping("/signup")
     public ResponseEntity<UserDto> postRegistration(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
         log.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -84,7 +83,7 @@ public class PublicAjaxController {
         }
     }
 
-    @RequestMapping(value = "/password/forget/handler", method = RequestMethod.POST)
+    @PostMapping("/password/forget/handler")
     public ResponseEntity<Void> postForgetPasswordSubmit(@Valid @ModelAttribute("forgetPasswordForm") ForgetPasswordForm form, BindingResult bindingResult) {
         log.debug("Processing forget password. Email={}, bindingResult={}", form.getEmail(), bindingResult);
 
@@ -104,7 +103,7 @@ public class PublicAjaxController {
         }
     }
 
-    @RequestMapping(value = "/password/reset/handler", method = RequestMethod.POST)
+    @PostMapping("/password/reset/handler")
     public ResponseEntity<UserDto> postResetPasswordSubmit(@Valid @ModelAttribute("resetPasswordForm") ResetPasswordForm form,
                                                            BindingResult bindingResult, HttpSession session) {
         log.debug("Processing reset password. userId={}, bindingResult={}", form.getUserId(), bindingResult);

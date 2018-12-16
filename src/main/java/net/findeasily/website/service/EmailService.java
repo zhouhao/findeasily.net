@@ -43,7 +43,7 @@ public class EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setTo(toEmail);
         helper.setSubject(subject);
-        helper.setFrom("no-rely@mail.findeasily.net");
+        helper.setFrom("no-reply@mail.findeasily.net");
         // use the true flag to indicate the text included is HTML
         helper.setText(content, true);
         javaMailSender.send(message);
