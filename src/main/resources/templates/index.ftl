@@ -1,4 +1,5 @@
 <#include "layout/layout.ftl"/>
+<#assign includeMap = true />
 <@layout>
 <!-- home-map-->
 <div class="home-map fl-wrap">

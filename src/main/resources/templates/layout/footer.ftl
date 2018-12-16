@@ -10,12 +10,9 @@
                             eu mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, consectetuer
                             adipiscing elit, sed diam. </p>
                         <ul class="footer-contacts fl-wrap">
-                            <li><span><i class="fa fa-envelope-o"></i> Mail :</span><a href="#" target="_blank">yourmail@domain.com</a>
-                            </li>
-                            <li><span><i class="fa fa-map-marker"></i> Adress :</span><a href="#" target="_blank">USA
-                                27TH Brooklyn NY</a></li>
-                            <li><span><i class="fa fa-phone"></i> Phone :</span><a href="#">+7(111)123456789</a>
-                            </li>
+                            <li><span><i class="fa fa-envelope-o"></i> Mail :</span><a href="#" target="_blank">contact@findeasily.com</a></li>
+                            <li><span><i class="fa fa-map-marker"></i> Address :</span><a href="#" target="_blank">USA Boston MA</a></li>
+                            <li><span><i class="fa fa-phone"></i> Phone :</span><a href="#">+1(111)888-8888</a></li>
                         </ul>
                     </div>
                 </div>
@@ -26,24 +23,21 @@
                     <div class="widget-posts fl-wrap">
                         <ul>
                             <li class="clearfix">
-                                <a href="#" class="widget-posts-img"><img src="images/all/1.jpg" class="respimg"
-                                                                          alt=""></a>
+                                <a href="#" class="widget-posts-img"><img src="/images/all/1.jpg" class="respimg" alt=""></a>
                                 <div class="widget-posts-descr">
                                     <a href="#" title="">Vivamus dapibus rutrum</a>
                                     <span class="widget-posts-date"> 21 Mar 09.05 </span>
                                 </div>
                             </li>
                             <li class="clearfix">
-                                <a href="#" class="widget-posts-img"><img src="images/all/1.jpg" class="respimg"
-                                                                          alt=""></a>
+                                <a href="#" class="widget-posts-img"><img src="/images/all/1.jpg" class="respimg" alt=""></a>
                                 <div class="widget-posts-descr">
                                     <a href="#" title=""> In hac habitasse platea</a>
                                     <span class="widget-posts-date"> 7 Mar 18.21 </span>
                                 </div>
                             </li>
                             <li class="clearfix">
-                                <a href="#" class="widget-posts-img"><img src="images/all/1.jpg" class="respimg"
-                                                                          alt=""></a>
+                                <a href="#" class="widget-posts-img"><img src="/images/all/1.jpg" class="respimg" alt=""></a>
                                 <div class="widget-posts-descr">
                                     <a href="#" title="">Tortor tempor in porta</a>
                                     <span class="widget-posts-date"> 7 Mar 16.42 </span>
@@ -63,15 +57,12 @@
                 <div class="footer-widget fl-wrap">
                     <h3>Subscribe</h3>
                     <div class="subscribe-widget fl-wrap">
-                        <p>Want to be notified when we launch a new template or an udpate. Just sign up and we'll
-                            send you a notification by email.</p>
+                        <p>Want to be notified when we launch a new template or an udpate. Just sign up and we'll send you a notification by
+                            email.</p>
                         <div class="subcribe-form">
                             <form id="subscribe">
-                                <input class="enteremail" name="email" id="subscribe-email" placeholder="Email"
-                                       spellcheck="false" type="text">
-                                <button type="submit" id="subscribe-button" class="subscribe-button"><i
-                                        class="fa fa-rss"></i> Subscribe
-                                </button>
+                                <input class="enteremail" name="email" id="subscribe-email" placeholder="Email" spellcheck="false" type="text">
+                                <button type="submit" id="subscribe-button" class="subscribe-button"><i class="fa fa-rss"></i> Subscribe</button>
                                 <label for="subscribe-email" class="subscribe-message"></label>
                             </form>
                         </div>
@@ -95,11 +86,11 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="about-widget">
-                        <img src="images/logo.png" alt="">
+                        <img src="/images/logo.png" alt="">
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="copyright"> &#169; FindEasily.net ${.now?string('yyyy')} . All rights reserved.</div>
+                    <div class="copyright"> &#169; findeasily.net ${.now?string('yyyy')} . All rights reserved.</div>
                 </div>
                 <div class="col-md-4">
                     <div class="footer-social">

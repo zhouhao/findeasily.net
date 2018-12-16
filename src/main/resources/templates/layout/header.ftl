@@ -18,33 +18,31 @@
                     <option>Events</option>
                 </select>
             </div>
-            <button class="header-search-button" onclick="window.location.href='listing.html'">Search
-            </button>
+            <button class="header-search-button" onclick="window.location.href='listing.html'">Search</button>
         </div>
         <div class="show-search-button"><i class="fa fa-search"></i> <span>Search</span></div>
         <a href="dashboard-add-listing.html" class="add-list">Add Listing <span><i class="fa fa-plus"></i></span></a>
-<#if showHeaderLogin!true>
-    <#if !currentUser??>
-        <div class="show-reg-form modal-open" id="header-signin-btn"><i class="fa fa-sign-in"></i>Sign In</div>
-    <#else>
-    <div class="header-user-menu">
-        <div class="header-user-name">
-            <span><img src="/images/avatar/1.jpg" alt="" title=""></span>
-            Hello , Alisa
-        </div>
-        <ul>
-            <li><a href="#"> Edit profile</a></li>
-            <li><a href="#"> Add Listing</a></li>
-            <li><a href="#"> Bookings </a></li>
-            <li><a href="#"> Reviews </a></li>
-            <li><a href="#" id="logout-header">Log Out</a></li>
-        </ul>
-    </div>
-    <form action="/logout" method="post" class="hide" id="logout-header-form">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    </form>
-    </#if>
-</#if>
+        <#if showHeaderLogin!true>
+            <#if !currentUser??>
+                <div class="show-reg-form modal-open" id="header-signin-btn"><i class="fa fa-sign-in"></i>Sign In</div>
+            <#else>
+                <div class="header-user-menu">
+                    <div class="header-user-name">
+                        <span><img src="/images/avatar/1.jpg" alt="" title=""></span>Hello , ${currentUser.user.username!''}
+                    </div>
+                    <ul>
+                        <li><a href="/user"> Edit profile</a></li>
+                        <li><a href="#"> Add Listing</a></li>
+                        <li><a href="#"> Bookings </a></li>
+                        <li><a href="#"> Reviews </a></li>
+                        <li><a href="#" id="logout-header">Log Out</a></li>
+                    </ul>
+                </div>
+                <form action="/logout" method="post" class="hide" id="logout-header-form">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+            </#if>
+        </#if>
         <!-- nav-button-wrap-->
         <div class="nav-button-wrap color-bg">
             <div class="nav-button">
