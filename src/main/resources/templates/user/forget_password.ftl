@@ -1,23 +1,22 @@
-<#include "layout/layout.ftl"/>
+<#include "../layout/layout.ftl"/>
 <#if !pageTitle?has_content>
-    <#assign pageTitle = 'Reset Password'/>
+    <#assign pageTitle = 'Forget Password'/>
 </#if>
-
 <#assign inlineJs>
     <script>
-        var resetPasswordForm = $("#reset-password-form");
-        resetPasswordForm.submit(function (e) {
+        <#-- todo -->
+        var forgetPasswordForm = $("#forget-password-form");
+        forgetPasswordForm.submit(function (e) {
             $.ajax({
-                type: resetPasswordForm.attr('method'),
-                url: resetPasswordForm.attr('action'),
-                data: resetPasswordForm.serialize(), // serializes the form's elements.
+                type: forgetPasswordForm.attr('method'),
+                url: forgetPasswordForm.attr('action'),
+                data: forgetPasswordForm.serialize(), // serializes the form's elements.
                 success: function () {
-                    resetPasswordForm.trigger("reset");
-                    toastr.success(';-) Password has been reset successfully! Please login with your new password');
+                    forgetPasswordForm.trigger("reset");
+                    toastr.success(';-) Email with password reset instructions was sent successfully! Please check your email for instructions to reset your password');
                 },
                 error: function (data) {
                     toastr.error(data.responseJSON.errors.join(', '));
-                    resetPasswordForm.trigger("reset");
                 }
             });
 
@@ -30,17 +29,14 @@
     <div class="main-register-wrap main-register-single-page">
         <div class="main-register-holder">
             <div class="main-register fl-wrap">
-                <h3>Reset Your Password</h3>
+                <h3>Forget Your Password?</h3>
                 <div id="tabs-container">
                     <div id="tab-1" class="tab-content">
                         <div class="custom-form">
-                            <form method="post" name="passwordResetForm" action="/password/reset/handler"
-                                  id="reset-password-form">
+                            <form method="post" name="passwordForgetForm" action="/password/forget/handler" id="forget-password-form">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <label>New Password *</label>
-                                <input name="password" id="password" type="password" required>
-                                <label>New Password Repeat *</label>
-                                <input name="passwordRepeated" id="passwordRepeated" type="password" required>
+                                <label>Email Address * </label>
+                                <input name="email" type="text" required autofocus value="">
                                 <button type="submit" class="log-submit-btn"><span>Submit</span>
                                 </button>
                             </form>
