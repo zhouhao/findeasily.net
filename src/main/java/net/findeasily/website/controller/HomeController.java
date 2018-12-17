@@ -83,11 +83,11 @@ public class HomeController {
             log.debug("Processing password reset link. userId={}", token.getUserId());
             session.setAttribute(USER_ID_KEY, token.getUserId());
             session.setAttribute(TOKEN_ID_KEY, token.getId());
-            return new ModelAndView("reset_password", model);
+            return new ModelAndView("user/reset_password", model);
         } else {
             model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
         }
-        return new ModelAndView("forget_password", model); // todo: redirect?
+        return new ModelAndView("user/forget_password", model); // todo: redirect?
     }
 
     // TODO: this is for test purpose, just render email template for review

@@ -50,21 +50,21 @@ public class UserController {
     @RequestMapping("/user/{id}")
     public ModelAndView getUserPage(@PathVariable UUID id, Principal principal) {
         log.debug("Getting user page for user={}", id);
-        return new ModelAndView("user", "user", Optional.ofNullable(userService.getUserById(id.toString()))
+        return new ModelAndView("user/user", "user", Optional.ofNullable(userService.getUserById(id.toString()))
                 .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
     }
 
     @RequestMapping("/user")
     public ModelAndView getSelfPage(Authentication authentication) {
         CurrentUser user = (CurrentUser) authentication.getPrincipal();
-        return new ModelAndView("user", "user", user.getUser());
+        return new ModelAndView("user/user", "user", user.getUser());
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/user/create")
     public ModelAndView getUserCreatePage() {
         log.debug("Getting user create form");
-        return new ModelAndView("user_create", "form", new UserCreateForm());
+        return new ModelAndView("user/user_create", "form", new UserCreateForm());
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -73,7 +73,7 @@ public class UserController {
         log.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
         if (bindingResult.hasErrors()) {
             // failed validation
-            return "user_create";
+            return "user/user_create";
         }
         try {
             userService.create(form);
@@ -82,7 +82,7 @@ public class UserController {
             // at the same time and form validation has passed for more than one of them.
             log.warn("Exception occurred when trying to save the user, assuming duplicate email", e);
             bindingResult.reject("email.exists", "Email already exists");
-            return "user_create";
+            return "user/user_create";
         }
         // ok, redirect
         return "redirect:/users";
