@@ -10,7 +10,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
-import net.findeasily.website.domain.CurrentUser;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
 import net.findeasily.website.service.UserService;
@@ -54,10 +52,14 @@ public class UserController {
                 .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
     }
 
-    @RequestMapping("/user")
-    public ModelAndView getSelfPage(Authentication authentication) {
-        CurrentUser user = (CurrentUser) authentication.getPrincipal();
-        return new ModelAndView("user/user", "user", user.getUser());
+    @GetMapping("/user")
+    public ModelAndView getSelfPage() {
+        return new ModelAndView("user/user");
+    }
+
+    @GetMapping("/user/password")
+    public ModelAndView getPwsUpdate() {
+        return new ModelAndView("user/password");
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
