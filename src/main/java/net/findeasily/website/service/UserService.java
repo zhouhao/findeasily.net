@@ -1,35 +1,83 @@
 package net.findeasily.website.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.form.UserCreateForm;
+import net.findeasily.website.mapper.UserMapper;
 
 /**
  * <p>
- * 服务类
+ * 服务实现类
  * </p>
  *
  * @author Hao Zhou
  * @since 2018-05-22
  */
-public interface UserService extends IService<User> {
+@Service
+public class UserService extends ServiceImpl<UserMapper, User> {
 
-    User getUserByEmail(String email);
+    private final PasswordEncoder passwordEncoder;
 
-    User getUserByName(String name);
+    @Autowired
+    public UserService(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
-    User getUserById(String id);
+    public User getUserByEmail(String email) {
+        User user = new User();
+        user.setEmail(email);
+        return this.getOne(new QueryWrapper<>(user));
+    }
 
-    User create(UserCreateForm form);
+    public User getUserByName(String name) {
+        User user = new User();
+        user.setUsername(name);
+        return this.getOne(new QueryWrapper<>(user));
+    }
 
-    List<User> getAllUsers();
+    public User getUserById(String id) {
+        return getById(id);
+    }
 
-    boolean activate(@NotBlank String userId);
+    public User create(UserCreateForm form) {
+        User user = new User();
+        user.setId(UUID.randomUUID().toString());
+        user.setEmail(form.getEmail());
+        user.setUsername(form.getUsername());
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
+        return save(user) ? getUserById(user.getId()) : null;
+    }
 
-    boolean lock(@NotBlank String userId, @NotNull Integer lockCode);
+    public List<User> getAllUsers() {
+        return list(null);
+    }
+
+    public boolean activate(@NotBlank String userId) {
+        User user = getById(userId);
+        if (user == null) {
+            return false;
+        }
+        user.setActivated(true); // todo: check user whether already activated or not
+        return updateById(user);
+    }
+
+    public boolean lock(@NotBlank String userId, @NotNull Integer lockCode) {
+        User user = getById(userId);
+        if (user == null) {
+            return false;
+        }
+        user.setLockStatus(lockCode);
+        return updateById(user);
+    }
 }

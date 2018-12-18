@@ -1,16 +1,20 @@
 package net.findeasily.website.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import net.findeasily.website.domain.Property;
+import net.findeasily.website.mapper.PropertyMapper;
 
 /**
  * <p>
- * 服务类
+ * 服务实现类
  * </p>
  *
  * @author Hao Zhou
  * @since 2018-08-08
  */
-public interface PropertyService extends IService<Property> {
+@Service
+public class PropertyService extends ServiceImpl<PropertyMapper, Property> {
 
 }
