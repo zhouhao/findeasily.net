@@ -26,7 +26,7 @@
     </script>
 </#assign>
 <@layout>
-<!--password forget form -->
+    <!--password forget form -->
     <div class="main-register-wrap main-register-single-page">
         <div class="main-register-holder">
             <div class="main-register fl-wrap">
@@ -34,15 +34,13 @@
                 <div id="tabs-container">
                     <div id="tab-1" class="tab-content">
                         <div class="custom-form">
-                            <form method="post" name="passwordResetForm" action="/password/reset/handler"
-                                  id="reset-password-form">
+                            <form method="post" name="passwordResetForm" action="/password/reset/handler" id="reset-password-form">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <label>New Password *</label>
                                 <input name="password" id="password" type="password" required>
                                 <label>New Password Repeat *</label>
                                 <input name="passwordRepeated" id="passwordRepeated" type="password" required>
-                                <button type="submit" class="log-submit-btn"><span>Submit</span>
-                                </button>
+                                <button type="submit" class="log-submit-btn"><span>Submit</span></button>
                             </form>
                         </div>
                     </div>
@@ -50,5 +48,5 @@
             </div>
         </div>
     </div>
-    <!--register form end -->
+    <!--password forget end -->
 </@layout>

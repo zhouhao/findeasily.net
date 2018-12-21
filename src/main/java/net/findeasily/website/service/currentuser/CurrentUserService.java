@@ -1,21 +1,18 @@
 package net.findeasily.website.service.currentuser;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.CurrentUser;
 import net.findeasily.website.domain.Role;
 
 @Service
+@Slf4j
 public class CurrentUserService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CurrentUserDetailsService.class);
-
     public boolean canAccessUser(CurrentUser currentUser, String userId) {
-        LOGGER.debug("Checking if user={} has access to user={}", currentUser, userId);
-        return currentUser != null
-                && (currentUser.getRole() == Role.ADMIN || currentUser.getId().equals(userId));
+        log.debug("Checking if user={} has access to user={}", currentUser, userId);
+        return currentUser != null && (currentUser.getRole() == Role.ADMIN || currentUser.getId().equals(userId));
     }
 
 }
