@@ -1,15 +1,20 @@
 package net.findeasily.website.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -19,12 +24,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
+import net.findeasily.website.domain.CurrentUser;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
 import net.findeasily.website.service.UserService;
+import net.findeasily.website.util.ToastrUtils;
 
 @Controller
 @Slf4j
@@ -32,11 +40,13 @@ public class UserController {
 
     private final UserService userService;
     private final UserCreateFormValidator userCreateFormValidator;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator) {
+    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.userCreateFormValidator = userCreateFormValidator;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @InitBinder("form")
@@ -44,7 +54,7 @@ public class UserController {
         binder.addValidators(userCreateFormValidator);
     }
 
-    @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
+    @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
     @RequestMapping("/user/{id}")
     public ModelAndView getUserPage(@PathVariable UUID id, Principal principal) {
         log.debug("Getting user page for user={}", id);
@@ -60,6 +70,28 @@ public class UserController {
     @GetMapping("/user/password")
     public ModelAndView getPwsUpdate() {
         return new ModelAndView("user/password");
+    }
+
+    @PostMapping("/user/password")
+    public ModelAndView postPwsUpdate(Authentication authentication,
+                                      @RequestParam("current-password") String currentPassword,
+                                      @RequestParam("new-password") String newPassword,
+                                      @RequestParam("repeated-password") String repeatedPassword) {
+        CurrentUser user = (CurrentUser) authentication.getPrincipal();
+        Map<String, String> model = new HashMap<>();
+        if (StringUtils.isAnyBlank(currentPassword, newPassword, repeatedPassword)) {
+            model.put(ToastrUtils.KEY, ToastrUtils.error("invalid request: current password, new password and password confirmation must be provided"));
+        }
+        if (!newPassword.equals(repeatedPassword)) {
+            model.put(ToastrUtils.KEY, ToastrUtils.error("new passwords are not matched"));
+        }
+        if (!passwordEncoder.matches(currentPassword, user.getUser().getPassword())) {
+            model.put(ToastrUtils.KEY, ToastrUtils.error("Current password is not matched"));
+        }
+        if (model.isEmpty() && userService.updatePassword(user.getId(), newPassword)) {
+            model.put(ToastrUtils.KEY, ToastrUtils.success("Password is updated successfully"));
+        }
+        return new ModelAndView("user/password", model);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
