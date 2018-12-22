@@ -44,6 +44,12 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       - run:
+          name: Create necessary folders in server
+          command: |
+            mkdir -p /var/findeasily/resources/images/user
+            mkdir  777 /var/findeasily/resources/images/user
+
+      - run:
           name: Maven Build & Test
           command: |
             mvn clean package

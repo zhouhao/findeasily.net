@@ -32,10 +32,8 @@ public class FileService {
 
     @PostConstruct
     public void init() {
-        try {
-            Files.createDirectories(fileRootPath);
-        } catch (IOException e) {
-            throw new StorageException("Could not initialize storage", e);
+        if (!fileRootPath.toFile().exists() || !Files.isWritable(fileRootPath)) {
+            throw new StorageException(fileRootPath + " does not exist or writable");
         }
     }
 
