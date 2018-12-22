@@ -1,9 +1,10 @@
 package net.findeasily.website.generator;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.aeonbits.owner.ConfigFactory;
+import java.util.Properties;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
@@ -21,17 +22,39 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import lombok.val;
 
 /**
- * @Link https://mp.baomidou.com/config/generator-config.html
+ * @See https://mp.baomidou.com/config/generator-config.html
  */
 public class MyBatisGenerator {
 
-    public static void main(String[] args) {
+    private static Properties loadProp() throws IOException {
+        String resourceName = "application-dev.properties";
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        Properties props = new Properties();
+        try (InputStream resourceStream = loader.getResourceAsStream(resourceName)) {
+            props.load(resourceStream);
+        }
+        return props;
+    }
 
+    public static void main(String[] args) throws IOException {
+        Properties props = loadProp();
         val packageName = "net.findeasily.website";
+        String[] includedTables = new String[]{
+                "flyway_schema_history"
+        };
         // code generator
         AutoGenerator mpg = new AutoGenerator();
 
-        // 全局配置
+        // configure database source
+        DataSourceConfig dsc = new DataSourceConfig();
+        dsc.setDbType(DbType.MYSQL)
+                .setUrl(props.getProperty("spring.datasource.url"))
+                .setUsername(props.getProperty("spring.datasource.username"))
+                .setPassword(props.getProperty("spring.datasource.password"))
+                .setDriverName(props.getProperty("spring.datasource.driverClassName"));
+        mpg.setDataSource(dsc);
+
+        // global configuration
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
 
@@ -41,16 +64,6 @@ public class MyBatisGenerator {
         gc.setActiveRecord(true);
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
-
-        // configure database source
-        DbConf dbConf = ConfigFactory.create(DbConf.class);
-        DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setDbType(DbType.MYSQL)
-                .setUrl(dbConf.dsUrl())
-                .setUsername(dbConf.username())
-                .setPassword(dbConf.password())
-                .setDriverName(dbConf.driverName());
-        mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
@@ -99,7 +112,7 @@ public class MyBatisGenerator {
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         // strategy.setSuperControllerClass("net.findeasily.website.common.BaseController");
-        strategy.setInclude("user_ext");
+        strategy.setInclude(includedTables);
         strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
         mpg.setStrategy(strategy);
