@@ -25,7 +25,7 @@ import net.findeasily.website.exception.StorageException;
 @Slf4j
 public class FileService {
 
-    public static final String USER_PICTURE = "/images/user";
+    public static final String USER_PICTURE = "images/user";
 
     @Value("${file.upload.path}")
     private Path fileRootPath;
