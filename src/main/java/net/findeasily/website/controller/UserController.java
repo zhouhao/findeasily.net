@@ -75,9 +75,12 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ModelAndView postUserInfo(@RequestParam("file") MultipartFile file,
-                                     @RequestParam("current-password") String selfIntro) throws IOException {
-        fileService.store(file, FileService.USER_PICTURE);
+    public ModelAndView postUserInfo(@RequestParam(value = "file", required = false) MultipartFile file,
+                                     @RequestParam("self-introduction") String selfIntro) throws IOException {
+        if (file != null) {
+            fileService.store(file, FileService.Folder.USER_PICTURE);
+        }
+        log.info(selfIntro);
         return new ModelAndView("user/user");
     }
 
@@ -134,12 +137,5 @@ public class UserController {
         }
         // ok, redirect
         return "redirect:/users";
-    }
-
-    @PostMapping("/user/picture")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
-        fileService.store(file, FileService.USER_PICTURE);
-        redirectAttributes.addFlashAttribute(ToastrUtils.KEY, "You successfully uploaded " + file.getOriginalFilename() + "!");
-        return "redirect:/user";
     }
 }
