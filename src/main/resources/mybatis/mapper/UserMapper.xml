@@ -4,14 +4,20 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="net.findeasily.website.domain.User">
-        <id column="id" property="id" />
-        <result column="username" property="username" />
-        <result column="email" property="email" />
-        <result column="password" property="password" />
-        <result column="register_time" property="registerTime" />
-        <result column="activated" property="activated" />
-        <result column="lock_status" property="lockStatus" />
-        <result column="role" property="role" />
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="email" property="email"/>
+        <result column="password" property="password"/>
+        <result column="register_time" property="registerTime"/>
+        <result column="activated" property="activated"/>
+        <result column="lock_status" property="lockStatus"/>
+        <result column="role" property="role"/>
     </resultMap>
+
+    <resultMap id="UserExtResultMap" type="net.findeasily.website.domain.UserExt">
+        <id column="user_id" property="userId"/>
+        <result column="description" property="description"/>
+    </resultMap>
+
 
 </mapper>
