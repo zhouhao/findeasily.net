@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.exception.StorageException;
@@ -25,7 +26,15 @@ import net.findeasily.website.exception.StorageException;
 @Slf4j
 public class FileService {
 
-    public static final String USER_PICTURE = "images/user";
+    public enum Folder {
+        USER_PICTURE("images/user");
+        @Getter
+        private String path;
+
+        Folder(String path) {
+            this.path = path;
+        }
+    }
 
     @Value("${file.upload.path}")
     private Path fileRootPath;
@@ -35,9 +44,21 @@ public class FileService {
         if (!fileRootPath.toFile().exists() || !Files.isWritable(fileRootPath)) {
             throw new StorageException(fileRootPath + " does not exist or writable");
         }
+
+        try {
+            for (Folder f : Folder.values()) {
+                Path path = fileRootPath.resolve(f.getPath());
+                if (!path.toFile().exists()) {
+                    Files.createDirectories(path);
+                }
+            }
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            throw new StorageException(e.getMessage());
+        }
     }
 
-    public boolean store(@NonNull MultipartFile file, String folder) throws IOException {
+    public boolean store(@NonNull MultipartFile file, Folder folder) throws IOException {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         if (file.isEmpty()) {
             throw new StorageException("Failed to store empty file " + filename);
@@ -47,7 +68,7 @@ public class FileService {
             throw new StorageException("Cannot store file with relative path outside current directory " + filename);
         }
         try (InputStream inputStream = file.getInputStream()) {
-            Files.copy(inputStream, fileRootPath.resolve(Paths.get(folder, filename)), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(inputStream, fileRootPath.resolve(Paths.get(folder.getPath(), filename)), StandardCopyOption.REPLACE_EXISTING);
         }
         return true;
     }
