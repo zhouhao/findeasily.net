@@ -1,5 +1,6 @@
 package net.findeasily.website.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,12 +26,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.CurrentUser;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
+import net.findeasily.website.service.FileService;
 import net.findeasily.website.service.UserService;
 import net.findeasily.website.util.ToastrUtils;
 
@@ -41,12 +45,15 @@ public class UserController {
     private final UserService userService;
     private final UserCreateFormValidator userCreateFormValidator;
     private final PasswordEncoder passwordEncoder;
+    private final FileService fileService;
 
     @Autowired
-    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator,
+                          PasswordEncoder passwordEncoder, FileService fileService) {
         this.userService = userService;
         this.userCreateFormValidator = userCreateFormValidator;
         this.passwordEncoder = passwordEncoder;
+        this.fileService = fileService;
     }
 
     @InitBinder("form")
@@ -64,6 +71,13 @@ public class UserController {
 
     @GetMapping("/user")
     public ModelAndView getSelfPage() {
+        return new ModelAndView("user/user");
+    }
+
+    @PostMapping("/user")
+    public ModelAndView postUserInfo(@RequestParam("file") MultipartFile file,
+                                     @RequestParam("current-password") String selfIntro) throws IOException {
+        fileService.store(file, FileService.USER_PICTURE);
         return new ModelAndView("user/user");
     }
 
@@ -122,4 +136,10 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @PostMapping("/user/picture")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
+        fileService.store(file, FileService.USER_PICTURE);
+        redirectAttributes.addFlashAttribute(ToastrUtils.KEY, "You successfully uploaded " + file.getOriginalFilename() + "!");
+        return "redirect:/user";
+    }
 }

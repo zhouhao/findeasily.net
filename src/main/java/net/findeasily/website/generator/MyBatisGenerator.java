@@ -41,14 +41,14 @@ public class MyBatisGenerator {
                 .setEntityLombokModel(false)
                 .setColumnNaming(NamingStrategy.underline_to_camel)
                 .setNaming(NamingStrategy.underline_to_camel)
-                .setInclude("user");
+                .setInclude("user_ext");
 
         config.setActiveRecord(false)
                 .setIdType(IdType.INPUT)
-                .setAuthor("Hao Zhou")
+                .setAuthor("FindEasily Team")
                 .setOutputDir("src/main/java")
                 .setBaseResultMap(true)
-                .setActiveRecord(false)
+                .setActiveRecord(true)
                 .setEnableCache(false)
                 .setFileOverride(true)
                 .setServiceName("%sService");

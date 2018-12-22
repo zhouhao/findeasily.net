@@ -41,7 +41,7 @@ public class DevProfileStartup implements CommandLineRunner {
         ucf.setPassword(testPwd);
         ucf.setPasswordRepeated(testPwd);
         ucf.setRole(Role.USER);
-        ucf.setUsername(RandomStringUtils.randomAlphabetic(6));
+        ucf.setUsername("Tester_" + RandomStringUtils.randomAlphabetic(3));
         user = userService.create(ucf);
         if (user == null) {
             log.error("failed to create test user: {}", ucf);
