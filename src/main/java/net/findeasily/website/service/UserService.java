@@ -100,4 +100,8 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         userExt.setDescription(selfIntro);
         return userExt.updateById();
     }
+
+    public UserExt getUserExt(String userId) {
+        return baseMapper.selectExtByUserId(userId);
+    }
 }
