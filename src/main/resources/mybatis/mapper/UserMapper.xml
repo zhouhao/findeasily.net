@@ -19,5 +19,11 @@
         <result column="description" property="description"/>
     </resultMap>
 
+    <select id="selectExtByUserId" resultMap="UserExtResultMap">
+        select *
+        from user_ext
+        where user_id = #{userId}
+    </select>
+
 
 </mapper>

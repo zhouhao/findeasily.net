@@ -1,14 +1,15 @@
 package net.findeasily.website.domain;
 
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author findeasily
@@ -21,7 +22,7 @@ public class UserExt extends Model<UserExt> {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer userId;
+    private String userId;
 
     private String description;
 

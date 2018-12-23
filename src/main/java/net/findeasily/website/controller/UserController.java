@@ -82,12 +82,12 @@ public class UserController {
     public ModelAndView postUserInfo(Authentication authentication,
                                      @RequestParam(value = "file", required = false) MultipartFile file,
                                      @RequestParam("self-introduction") String selfIntro) throws IOException {
-        if (file != null) {
-            CurrentUser user = (CurrentUser) authentication.getPrincipal();
+        CurrentUser user = (CurrentUser) authentication.getPrincipal();
+        if (file != null && !file.isEmpty()) {
             Path saveFile = fileService.storeUserPicture(file, user.getUser());
             eventPublisher.publishEvent(new ImageUploadedEvent(this, saveFile.toString(), user.getId()));
         }
-        log.info(selfIntro);
+        userService.updateSelfIntro(selfIntro, user.getId());
         return new ModelAndView("user/user");
     }
 
