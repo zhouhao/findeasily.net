@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.NonNull;
 import net.findeasily.website.domain.User;
+import net.findeasily.website.domain.UserExt;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.mapper.UserMapper;
 
@@ -86,5 +87,17 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         }
         user.setLockStatus(lockCode);
         return updateById(user);
+    }
+
+    public boolean updateSelfIntro(String selfIntro, String userId) {
+        UserExt userExt = baseMapper.selectExtByUserId(userId);
+        if (userExt == null) {
+            userExt = new UserExt();
+            userExt.setUserId(userId);
+            userExt.setDescription(selfIntro);
+            return userExt.insert();
+        }
+        userExt.setDescription(selfIntro);
+        return userExt.updateById();
     }
 }
