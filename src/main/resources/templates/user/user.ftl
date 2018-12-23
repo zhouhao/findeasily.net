@@ -32,7 +32,7 @@
                                     <label>Email Address<i class="fa fa-envelope-o"></i> </label>
                                     <input type="text" value="${currentUser.user.email!''}" disabled/>
                                     <label> Notes</label>
-                                    <textarea cols="40" rows="3" placeholder="About Me" name="self-introduction"></textarea>
+                                    <textarea cols="40" rows="3" placeholder="About Me" name="self-introduction">${user_ext.description}</textarea>
                                     <button class="btn  big-btn  color-bg flat-btn">Save Changes<i class="fa fa-angle-right"></i></button>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="edit-profile-photo fl-wrap">
-                                <img src="/images/avatar/1.jpg" class="respimg" alt="">
+                                <img src="${avatar!'/images/avatar/1.jpg'}" class="respimg" alt="">
                                 <div class="change-photo-btn">
                                     <div class="photoUpload">
                                         <span><i class="fa fa-upload"></i> Upload Photo</span>

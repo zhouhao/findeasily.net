@@ -105,8 +105,12 @@ public class FileService {
         }
     }
 
-    public File getFilePath(Folder folder, String file) {
+    public File getFile(Folder folder, String file) {
         return fileRootPath.resolve(Paths.get(folder.getPath(), file)).toFile();
+    }
+
+    public File getUserPicture(@NonNull String userId) {
+        return getFile(Folder.USER_PICTURE, userId + ".png");
     }
 }
 

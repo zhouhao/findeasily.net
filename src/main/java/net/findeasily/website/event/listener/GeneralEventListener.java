@@ -28,9 +28,9 @@ public class GeneralEventListener {
         log.info("ImageUploadedEvent = {}", event);
         Thumbnails.of(event.getOriginImagePath())
                 .crop(Positions.CENTER)
-                .size(100, 100)
+                .size(400, 400)
                 .keepAspectRatio(true)
-                .toFile(fileService.getFilePath(FileService.Folder.USER_PICTURE, event.getUserId() + ".png"));
+                .toFile(fileService.getUserPicture(event.getUserId()));
     }
 
 }

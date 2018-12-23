@@ -2,6 +2,7 @@ package net.findeasily.website.domain;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,6 +23,7 @@ public class UserExt extends Model<UserExt> {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId
     private String userId;
 
     private String description;

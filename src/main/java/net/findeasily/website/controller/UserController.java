@@ -1,5 +1,6 @@
 package net.findeasily.website.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.security.Principal;
@@ -74,21 +75,28 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public ModelAndView getSelfPage() {
-        return new ModelAndView("user/user");
+    public ModelAndView getSelfPage(Authentication authentication) {
+        CurrentUser user = (CurrentUser) authentication.getPrincipal();
+        File pic = fileService.getUserPicture(user.getId());
+        Map<String, Object> model = new HashMap<>();
+        if (pic.exists()) {
+            model.put("avatar", "/public/user/" + user.getId() + "/avatar");
+        }
+        model.put("user_ext", userService.getUserExt(user.getId()));
+        return new ModelAndView("user/user", model);
     }
 
     @PostMapping("/user")
-    public ModelAndView postUserInfo(Authentication authentication,
-                                     @RequestParam(value = "file", required = false) MultipartFile file,
-                                     @RequestParam("self-introduction") String selfIntro) throws IOException {
+    public String postUserInfo(Authentication authentication,
+                               @RequestParam(value = "file", required = false) MultipartFile file,
+                               @RequestParam("self-introduction") String selfIntro) throws IOException {
         CurrentUser user = (CurrentUser) authentication.getPrincipal();
         if (file != null && !file.isEmpty()) {
             Path saveFile = fileService.storeUserPicture(file, user.getUser());
             eventPublisher.publishEvent(new ImageUploadedEvent(this, saveFile.toString(), user.getId()));
         }
         userService.updateSelfIntro(selfIntro, user.getId());
-        return new ModelAndView("user/user");
+        return "redirect:/user";
     }
 
     @GetMapping("/user/password")
