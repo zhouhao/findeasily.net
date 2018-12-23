@@ -19,7 +19,7 @@ import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.Token;
 import net.findeasily.website.domain.User;
-import net.findeasily.website.event.UserEvent;
+import net.findeasily.website.event.EmailEvent;
 import net.findeasily.website.service.EmailService;
 import net.findeasily.website.service.TokenService;
 
@@ -41,21 +41,21 @@ public class UserEventListener {
     }
 
     @EventListener
-    public void handleEvent(UserEvent event) throws MessagingException, IOException, TemplateException {
+    public void handleEvent(EmailEvent event) throws MessagingException, IOException, TemplateException {
         log.info(event.getType() + " - " + event.getUser());
         emailService.sendHtmlMail(event.getUser().getEmail(), event.getType().getSubject(), buildEmailContent(event));
 
 
     }
 
-    private String buildEmailContent(UserEvent event) throws IOException, TemplateException {
-        UserEvent.Type type = event.getType();
+    private String buildEmailContent(EmailEvent event) throws IOException, TemplateException {
+        EmailEvent.Type type = event.getType();
         User user = event.getUser();
         Template t = freemarkerConfig.getTemplate("email/" + type.getTemplateFile());
         return FreeMarkerTemplateUtils.processTemplateIntoString(t, buildModel(type, user));
     }
 
-    private Map<String, Object> buildModel(UserEvent.Type type, User user) {
+    private Map<String, Object> buildModel(EmailEvent.Type type, User user) {
         Map<String, Object> model = new HashMap<>();
         model.put("user", user);
         model.put("webServer", webServer);
