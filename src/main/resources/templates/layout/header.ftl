@@ -28,7 +28,7 @@
             <#else>
                 <div class="header-user-menu">
                     <div class="header-user-name">
-                        <span><img src="/images/avatar/1.jpg" alt="" title=""></span>Hello , ${currentUser.user.username!''}
+                        <span><img src="${currentUser.avatar!'/images/avatar/1.jpg'}" alt="" title=""></span>Hello , ${currentUser.user.username!''}
                     </div>
                     <ul>
                         <li><a href="/user"> Edit profile</a></li>
@@ -39,7 +39,7 @@
                     </ul>
                 </div>
                 <form action="/logout" method="post" class="hide" id="logout-header-form">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
             </#if>
         </#if>
