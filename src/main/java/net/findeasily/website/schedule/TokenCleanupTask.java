@@ -14,7 +14,7 @@ import net.findeasily.website.service.TokenService;
 @Slf4j
 public class TokenCleanupTask {
 
-    private static final int CLEAN_INTERVAL = 12 * 60 * 60 * 1000; // every 72 hours
+    private static final int CLEAN_INTERVAL = 12 * 60 * 60 * 1000; // every 12 hours
 
     private final TokenService tokenService;
 
@@ -25,7 +25,7 @@ public class TokenCleanupTask {
 
     @Scheduled(fixedRate = CLEAN_INTERVAL)
     public void cleanup() {
-        int count = tokenService.deleteFromHourBefore(6 * CLEAN_INTERVAL / (60 * 60 * 1000));
+        int count = tokenService.deleteFromHourBefore(6 * CLEAN_INTERVAL / (60 * 60 * 1000)); // clean tokens generated 72 hours before
         log.info("clean " + count + " outdated token records...");
     }
 }
