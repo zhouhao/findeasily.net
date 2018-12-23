@@ -6,7 +6,7 @@ import lombok.Getter;
 import net.findeasily.website.domain.User;
 
 @Getter
-public class UserEvent extends ApplicationEvent {
+public class EmailEvent extends ApplicationEvent {
 
     private User user;
     private Type type;
@@ -16,7 +16,7 @@ public class UserEvent extends ApplicationEvent {
      *
      * @param source the object on which the event initially occurred (never {@code null})
      */
-    public UserEvent(Object source, Type type, User user) {
+    public EmailEvent(Object source, Type type, User user) {
         super(source);
         this.type = type;
         this.user = user;

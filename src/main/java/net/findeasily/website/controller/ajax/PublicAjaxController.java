@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,15 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.controller.HomeController;
+import net.findeasily.website.domain.User;
+import net.findeasily.website.domain.dto.UserDto;
 import net.findeasily.website.domain.form.ForgetPasswordForm;
 import net.findeasily.website.domain.form.ResetPasswordForm;
-import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.form.UserCreateForm;
-import net.findeasily.website.domain.dto.UserDto;
 import net.findeasily.website.domain.validator.ResetPasswordFormValidator;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
-import net.findeasily.website.event.UserEvent;
-import net.findeasily.website.event.publisher.UserEventPublisher;
+import net.findeasily.website.event.EmailEvent;
 import net.findeasily.website.exception.UserCreationException;
 import net.findeasily.website.exception.WebApplicationException;
 import net.findeasily.website.service.TokenService;
@@ -40,19 +40,20 @@ public class PublicAjaxController {
     private final ResetPasswordFormValidator resetPasswordFormValidator;
     private final UserService userService;
     private final TokenService tokenService;
-    private final UserEventPublisher userEventPublisher;
     private final PasswordEncoder passwordEncoder;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Autowired
     public PublicAjaxController(UserCreateFormValidator userCreateFormValidator, UserService userService,
-                                UserEventPublisher userEventPublisher, ResetPasswordFormValidator resetPasswordFormValidator,
-                                PasswordEncoder passwordEncoder, TokenService tokenService) {
+                                ResetPasswordFormValidator resetPasswordFormValidator,
+                                PasswordEncoder passwordEncoder, TokenService tokenService,
+                                ApplicationEventPublisher applicationEventPublisher) {
         this.userCreateFormValidator = userCreateFormValidator;
         this.userService = userService;
         this.tokenService = tokenService;
-        this.userEventPublisher = userEventPublisher;
         this.resetPasswordFormValidator = resetPasswordFormValidator;
         this.passwordEncoder = passwordEncoder;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @InitBinder("form")
@@ -76,7 +77,7 @@ public class PublicAjaxController {
         }
         User user = userService.create(form);
         if (user != null) {
-            userEventPublisher.publish(UserEvent.Type.ACCOUNT_CONFIRMATION, user);
+            applicationEventPublisher.publishEvent(new EmailEvent(this, EmailEvent.Type.ACCOUNT_CONFIRMATION, user));
             return ResponseEntity.ok(new UserDto(user));
         } else {
             throw new WebApplicationException("Failed to create new user");
@@ -96,7 +97,7 @@ public class PublicAjaxController {
 
         User user = userService.getUserByEmail(form.getEmail());
         if (user != null) {
-            userEventPublisher.publish(UserEvent.Type.PASSWORD_RESET_REQUEST, user);
+            applicationEventPublisher.publishEvent(new EmailEvent(this, EmailEvent.Type.PASSWORD_RESET_REQUEST, user));
             return ResponseEntity.ok().build();
         } else {
             throw new WebApplicationException("There is no existing user account associated with this email address");
@@ -119,7 +120,7 @@ public class PublicAjaxController {
         if (user != null) {
             user.setPassword(passwordEncoder.encode(form.getPassword()));
             if (userService.updateById(user)) {
-                userEventPublisher.publish(UserEvent.Type.PASSWORD_RESET_COMPLETE, user);
+                applicationEventPublisher.publishEvent(new EmailEvent(this, EmailEvent.Type.PASSWORD_RESET_COMPLETE, user));
                 int tokenId = (int) session.getAttribute(HomeController.TOKEN_ID_KEY);
                 boolean tokenDeleteSuccess = tokenService.removeById(tokenId);
                 log.debug("token has been deleted success? {}", tokenDeleteSuccess);
