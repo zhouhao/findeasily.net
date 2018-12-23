@@ -50,6 +50,6 @@ Website for findeasily.net
 - [x] User registration with email activation
 - [x] User login
 - [x] Password reset with Email
-- [ ] User profile page
+- [x] User profile page
 - [ ] User can create/edit/delete listing info
 - [ ] enable listing display in home page
