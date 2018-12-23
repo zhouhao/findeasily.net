@@ -1,6 +1,7 @@
 package net.findeasily.website.controller;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +13,7 @@ import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -33,6 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.CurrentUser;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
+import net.findeasily.website.event.ImageUploadedEvent;
 import net.findeasily.website.service.FileService;
 import net.findeasily.website.service.UserService;
 import net.findeasily.website.util.ToastrUtils;
@@ -45,14 +48,16 @@ public class UserController {
     private final UserCreateFormValidator userCreateFormValidator;
     private final PasswordEncoder passwordEncoder;
     private final FileService fileService;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Autowired
     public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator,
-                          PasswordEncoder passwordEncoder, FileService fileService) {
+                          PasswordEncoder passwordEncoder, FileService fileService, ApplicationEventPublisher eventPublisher) {
         this.userService = userService;
         this.userCreateFormValidator = userCreateFormValidator;
         this.passwordEncoder = passwordEncoder;
         this.fileService = fileService;
+        this.eventPublisher = eventPublisher;
     }
 
     @InitBinder("form")
@@ -79,7 +84,8 @@ public class UserController {
                                      @RequestParam("self-introduction") String selfIntro) throws IOException {
         if (file != null) {
             CurrentUser user = (CurrentUser) authentication.getPrincipal();
-            fileService.storeUserPicture(file, user.getUser());
+            Path saveFile = fileService.storeUserPicture(file, user.getUser());
+            eventPublisher.publishEvent(new ImageUploadedEvent(this, saveFile.toString(), user.getId()));
         }
         log.info(selfIntro);
         return new ModelAndView("user/user");

@@ -1,5 +1,6 @@
 package net.findeasily.website.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -11,7 +12,6 @@ import java.nio.file.StandardCopyOption;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -65,7 +65,6 @@ public class FileService {
 
     public Path store(@NonNull MultipartFile file, Folder folder, String savedName) throws IOException {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
-        log.info("content type: " + file.getContentType());
         if (file.isEmpty()) {
             throw new StorageException("Failed to store empty file " + filename);
         }
@@ -106,8 +105,8 @@ public class FileService {
         }
     }
 
-    private String genUniqueFileName(String fileExt) {
-        return System.currentTimeMillis() + RandomStringUtils.randomAlphabetic(4) + "." + fileExt;
+    public File getFilePath(Folder folder, String file) {
+        return fileRootPath.resolve(Paths.get(folder.getPath(), file)).toFile();
     }
 }
 
