@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.CurrentUser;
+import net.findeasily.website.domain.UserExt;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
 import net.findeasily.website.event.ImageUploadedEvent;
@@ -82,7 +83,8 @@ public class UserController {
         if (pic.exists()) {
             model.put("avatar", "/public/user/" + user.getId() + "/avatar");
         }
-        model.put("user_ext", userService.getUserExt(user.getId()));
+        UserExt userExt = userService.getUserExt(user.getId());
+        model.put("user_ext", userExt == null ? new UserExt() : userExt);
         return new ModelAndView("user/user", model);
     }
 

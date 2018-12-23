@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
 
+    private static final long serialVersionUID = 1L;
+
     private User user;
 
     public CurrentUser(User user) {
@@ -41,5 +43,9 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
         return "CurrentUser{" +
                 "user=" + user +
                 "} " + super.toString();
+    }
+
+    public String getAvatar() {
+        return "/public/user/" + user.getId() + "/avatar";
     }
 }

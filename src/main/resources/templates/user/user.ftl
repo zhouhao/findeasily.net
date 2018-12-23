@@ -32,7 +32,7 @@
                                     <label>Email Address<i class="fa fa-envelope-o"></i> </label>
                                     <input type="text" value="${currentUser.user.email!''}" disabled/>
                                     <label> Notes</label>
-                                    <textarea cols="40" rows="3" placeholder="About Me" name="self-introduction">${user_ext.description}</textarea>
+                                    <textarea cols="40" rows="3" placeholder="About Me" name="self-introduction">${user_ext.description!''}</textarea>
                                     <button class="btn  big-btn  color-bg flat-btn">Save Changes<i class="fa fa-angle-right"></i></button>
                                 </div>
                             </div>
