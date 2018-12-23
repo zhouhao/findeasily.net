@@ -10,6 +10,8 @@ import java.nio.file.StandardCopyOption;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -20,7 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import net.findeasily.website.config.Constant;
+import net.findeasily.website.domain.User;
 import net.findeasily.website.exception.StorageException;
+import net.findeasily.website.exception.UnsupportedMediaTypeException;
 
 @Service
 @Slf4j
@@ -58,8 +63,9 @@ public class FileService {
         }
     }
 
-    public boolean store(@NonNull MultipartFile file, Folder folder) throws IOException {
+    public Path store(@NonNull MultipartFile file, Folder folder, String savedName) throws IOException {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        log.info("content type: " + file.getContentType());
         if (file.isEmpty()) {
             throw new StorageException("Failed to store empty file " + filename);
         }
@@ -67,10 +73,19 @@ public class FileService {
             // This is a security check
             throw new StorageException("Cannot store file with relative path outside current directory " + filename);
         }
+        Path savedFile = fileRootPath.resolve(Paths.get(folder.getPath(), savedName + "." + FilenameUtils.getExtension(filename)));
         try (InputStream inputStream = file.getInputStream()) {
-            Files.copy(inputStream, fileRootPath.resolve(Paths.get(folder.getPath(), filename)), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(inputStream, savedFile, StandardCopyOption.REPLACE_EXISTING);
         }
-        return true;
+        return savedFile;
+    }
+
+    public Path storeUserPicture(@NonNull MultipartFile file, @NonNull User user) throws IOException {
+        // we will only support PNG and JPG(JPEG) images now
+        if (!Constant.IMAGE_CONTENT_TYPE.contains(file.getContentType())) {
+            throw new UnsupportedMediaTypeException(file.getContentType() + " is not supported yet. Only PNG and JPG are supported now");
+        }
+        return store(file, Folder.USER_PICTURE, Constant.ORIGIN_IMAGE_PREFIX + user.getId());
     }
 
     public Path load(@NonNull String filename) {
@@ -91,5 +106,8 @@ public class FileService {
         }
     }
 
+    private String genUniqueFileName(String fileExt) {
+        return System.currentTimeMillis() + RandomStringUtils.randomAlphabetic(4) + "." + fileExt;
+    }
 }
 

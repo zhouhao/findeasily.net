@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.CurrentUser;
@@ -75,10 +74,12 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ModelAndView postUserInfo(@RequestParam(value = "file", required = false) MultipartFile file,
+    public ModelAndView postUserInfo(Authentication authentication,
+                                     @RequestParam(value = "file", required = false) MultipartFile file,
                                      @RequestParam("self-introduction") String selfIntro) throws IOException {
         if (file != null) {
-            fileService.store(file, FileService.Folder.USER_PICTURE);
+            CurrentUser user = (CurrentUser) authentication.getPrincipal();
+            fileService.storeUserPicture(file, user.getUser());
         }
         log.info(selfIntro);
         return new ModelAndView("user/user");
