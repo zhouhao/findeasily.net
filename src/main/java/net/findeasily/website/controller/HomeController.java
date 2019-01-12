@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,12 +42,13 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public ModelAndView getLoginPage(@RequestParam Optional<String> error, HttpSession session) {
-        log.debug("Getting login page, error={}", error);
+    public String getLoginPage(@RequestParam Optional<String> error, HttpSession session, Model model) {
         if (error.isPresent()) {
-            log.error("ERROR = " + ((Exception) session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION")).getMessage());
+            String errorMsg = ((Exception) session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION")).getMessage();
+            log.error("ERROR = {}", errorMsg);
+            model.addAttribute(ToastrUtils.KEY, ToastrUtils.error(errorMsg));
         }
-        return new ModelAndView("login", "error", error);
+        return "login";
     }
 
     @GetMapping("/account_confirmation")
@@ -87,10 +89,10 @@ public class HomeController {
         } else {
             model.put(ToastrUtils.KEY, ToastrUtils.error("Activation failed, please contact our support team"));
         }
-        return new ModelAndView("user/forget_password", model); // todo: redirect?
+        return new ModelAndView("user/forget_password", model);
     }
 
-    // TODO: this is for test purpose, just render email template for review
+    // Note: this is for test purpose, just render email template for review
     @GetMapping("/password/email")
     public ModelAndView email() {
         Map<String, Object> model = new HashMap<>();
