@@ -19,7 +19,7 @@ Website for findeasily.net
 1. Please make sure you have `Java8` and `git` installed
 2. `git clone https://github.com/findeasily/findeasily.net.git`
 3. Follow [this](https://github.com/findeasily/findeasily.net/blob/master/script/README.md) to start mysql & redis with docker
-4. You can create your own [mailgun](https://www.mailgun.com/) account, and update Email sending account [here](https://github.com/findeasily/findeasily.net/blob/master/src/main/resources/application-dev.properties) (otherwise, user cannot receive confirmation email)
+4. <del>You can create your own [mailgun](https://www.mailgun.com/) account, and update Email sending account</del> [here](https://github.com/findeasily/findeasily.net/blob/master/src/main/resources/application-dev.properties) (**NOTE: Just use your gmail here**)
 5. `SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run`
 6. Visit [http://localhost:8080/](http://localhost:8080/), if everything is OK, you can see the home page
 
