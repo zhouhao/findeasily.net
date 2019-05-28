@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/openjdk@sha256:1c27b0d618763e59a71dd62c7298677db5f925e7eb7f41cf0f21beaf0ac1770f
+      - image: circleci/openjdk:11-jdk
         environment:
           JDBC_DATABASE_URL: "jdbc:mysql://127.0.0.1/findeasily?useSSL=false&useUnicode=true&characterEncoding=utf-8"
           JDBC_DATABASE_USERNAME: user
