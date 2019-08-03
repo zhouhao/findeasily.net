@@ -1,8 +1,9 @@
 package net.findeasily.website.service;
 
 import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
 import java.util.Base64;
-import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
@@ -12,12 +13,11 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.hash.HashFunction;
 import io.sentry.Sentry;
 import lombok.extern.slf4j.Slf4j;
-import net.findeasily.website.domain.Token;
-import net.findeasily.website.mapper.TokenMapper;
+import net.findeasily.website.entity.Token;
+import net.findeasily.website.repository.TokenRepository;
 
 /**
  * <p>
@@ -29,13 +29,15 @@ import net.findeasily.website.mapper.TokenMapper;
  */
 @Service
 @Slf4j
-public class TokenService extends ServiceImpl<TokenMapper, Token> {
+public class TokenService {
 
     private final HashFunction hashFunction;
+    private final TokenRepository tokenRepository;
 
     @Autowired
-    public TokenService(HashFunction hashFunction) {
+    public TokenService(HashFunction hashFunction, TokenRepository tokenRepository) {
         this.hashFunction = hashFunction;
+        this.tokenRepository = tokenRepository;
     }
 
     public boolean match(Token token, String val) {
@@ -49,9 +51,9 @@ public class TokenService extends ServiceImpl<TokenMapper, Token> {
     public Token generate(String userId) {
         Token token = new Token();
         token.setUserId(userId);
-        token.setCreateTime(new Date());
+        token.setCreateTime(new Timestamp(System.currentTimeMillis()));
         token.setVal(UUID.randomUUID().toString());
-        return save(token) ? token : null;
+        return tokenRepository.save(token);
     }
 
     public String getTokenStr(@NotNull Token token) {
@@ -78,11 +80,11 @@ public class TokenService extends ServiceImpl<TokenMapper, Token> {
                 return null;
             }
 
-            Token token = baseMapper.selectById(tokenId);
-            if (token == null || !match(token, splits[1])) {
+            Optional<Token> token = tokenRepository.findById(tokenId);
+            if (!token.isPresent() || !match(token.get(), splits[1])) {
                 return null;
             }
-            return token;
+            return token.get();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             Sentry.capture(e);
@@ -90,9 +92,13 @@ public class TokenService extends ServiceImpl<TokenMapper, Token> {
         }
     }
 
-    public int deleteFromHourBefore(int hour) {
-        return baseMapper.deleteFromHourBefore(hour);
+    public long deleteFromHourBefore(int hour) {
+        Timestamp ts = new Timestamp(System.currentTimeMillis() - hour * 3600 * 1000);
+        return tokenRepository.deleteByCreateTimeBefore(ts);
     }
 
 
+    public void removeById(int tokenId) {
+        tokenRepository.deleteById(tokenId);
+    }
 }

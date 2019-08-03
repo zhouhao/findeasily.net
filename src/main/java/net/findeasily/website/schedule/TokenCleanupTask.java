@@ -25,7 +25,7 @@ public class TokenCleanupTask {
 
     @Scheduled(fixedRate = CLEAN_INTERVAL)
     public void cleanup() {
-        int count = tokenService.deleteFromHourBefore(6 * CLEAN_INTERVAL / (60 * 60 * 1000)); // clean tokens generated 72 hours before
+        long count = tokenService.deleteFromHourBefore(6 * CLEAN_INTERVAL / (60 * 60 * 1000)); // clean tokens generated 72 hours before
         log.info("clean " + count + " outdated token records...");
     }
 }

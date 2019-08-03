@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.controller.HomeController;
-import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.dto.UserDto;
 import net.findeasily.website.domain.form.ForgetPasswordForm;
 import net.findeasily.website.domain.form.ResetPasswordForm;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.ResetPasswordFormValidator;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
+import net.findeasily.website.entity.User;
 import net.findeasily.website.event.EmailEvent;
 import net.findeasily.website.exception.UserCreationException;
 import net.findeasily.website.exception.WebApplicationException;
@@ -122,8 +122,7 @@ public class PublicAjaxController {
             if (userService.updateById(user)) {
                 applicationEventPublisher.publishEvent(new EmailEvent(this, EmailEvent.Type.PASSWORD_RESET_COMPLETE, user));
                 int tokenId = (int) session.getAttribute(HomeController.TOKEN_ID_KEY);
-                boolean tokenDeleteSuccess = tokenService.removeById(tokenId);
-                log.debug("token has been deleted success? {}", tokenDeleteSuccess);
+                tokenService.removeById(tokenId);
                 return ResponseEntity.ok(new UserDto(user));
             }
         }

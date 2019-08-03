@@ -12,8 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.github.javafaker.Faker;
 import net.findeasily.website.domain.Role;
-import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.form.UserCreateForm;
+import net.findeasily.website.entity.User;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

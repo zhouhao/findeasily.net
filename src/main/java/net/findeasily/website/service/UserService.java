@@ -6,17 +6,17 @@ import java.util.UUID;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.NonNull;
-import net.findeasily.website.domain.User;
-import net.findeasily.website.domain.UserExt;
 import net.findeasily.website.domain.form.UserCreateForm;
-import net.findeasily.website.mapper.UserMapper;
+import net.findeasily.website.entity.User;
+import net.findeasily.website.entity.UserExt;
+import net.findeasily.website.repository.UserExtRepository;
+import net.findeasily.website.repository.UserRepository;
 
 /**
  * <p>
@@ -27,29 +27,29 @@ import net.findeasily.website.mapper.UserMapper;
  * @since 2018-05-22
  */
 @Service
-public class UserService extends ServiceImpl<UserMapper, User> {
+public class UserService {
 
     private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final UserExtRepository userExtRepository;
 
     @Autowired
-    public UserService(PasswordEncoder passwordEncoder) {
+    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository, UserExtRepository userExtRepository) {
         this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+        this.userExtRepository = userExtRepository;
     }
 
     public User getUserByEmail(String email) {
-        User user = new User();
-        user.setEmail(email);
-        return this.getOne(new QueryWrapper<>(user));
+        return userRepository.getByEmail(email);
     }
 
     public User getUserByName(String name) {
-        User user = new User();
-        user.setUsername(name);
-        return this.getOne(new QueryWrapper<>(user));
+        return userRepository.getByUsername(name);
     }
 
     public User getUserById(String id) {
-        return getById(id);
+        return userRepository.findById(id).orElse(null);
     }
 
     public User create(UserCreateForm form) {
@@ -58,7 +58,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         user.setEmail(form.getEmail());
         user.setUsername(form.getUsername());
         user.setPassword(passwordEncoder.encode(form.getPassword()));
-        return save(user) ? getUserById(user.getId()) : null;
+        return userRepository.save(user);
     }
 
     public boolean updatePassword(@NonNull String userId, @NonNull String newPwd) {
@@ -68,20 +68,20 @@ public class UserService extends ServiceImpl<UserMapper, User> {
     }
 
     public List<User> getAllUsers() {
-        return list(null);
+        return userRepository.findAll();
     }
 
     public boolean activate(@NotBlank String userId) {
-        User user = getById(userId);
+        User user = getUserById(userId);
         if (user == null) {
             return false;
         }
-        user.setActivated(true); // todo: check user whether already activated or not
+        user.setActivated(true);
         return updateById(user);
     }
 
     public boolean lock(@NotBlank String userId, @NotNull Integer lockCode) {
-        User user = getById(userId);
+        User user = getUserById(userId);
         if (user == null) {
             return false;
         }
@@ -90,18 +90,30 @@ public class UserService extends ServiceImpl<UserMapper, User> {
     }
 
     public boolean updateSelfIntro(String selfIntro, String userId) {
-        UserExt userExt = baseMapper.selectExtByUserId(userId);
+        UserExt userExt = userExtRepository.findById(userId).orElse(null);
         if (userExt == null) {
             userExt = new UserExt();
             userExt.setUserId(userId);
             userExt.setDescription(selfIntro);
-            return userExt.insert();
         }
         userExt.setDescription(selfIntro);
-        return userExt.updateById();
+        return userExtRepository.save(userExt) != null;
     }
 
     public UserExt getUserExt(String userId) {
-        return baseMapper.selectExtByUserId(userId);
+        return userExtRepository.findById(userId).orElse(null);
+    }
+
+    public boolean updateById(User user) {
+        if (user == null || StringUtils.isBlank(user.getId())) {
+            return false;
+        }
+        userRepository.save(user);
+        return true;
+    }
+
+    public boolean removeById(String id) {
+        userRepository.deleteById(id);
+        return true;
     }
 }
