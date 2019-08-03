@@ -17,8 +17,6 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
-import net.findeasily.website.domain.Token;
-import net.findeasily.website.domain.User;
 import net.findeasily.website.event.EmailEvent;
 import net.findeasily.website.service.EmailService;
 import net.findeasily.website.service.TokenService;

@@ -3,7 +3,6 @@ package net.findeasily.website.event;
 import org.springframework.context.ApplicationEvent;
 
 import lombok.Getter;
-import net.findeasily.website.domain.User;
 
 @Getter
 public class EmailEvent extends ApplicationEvent {

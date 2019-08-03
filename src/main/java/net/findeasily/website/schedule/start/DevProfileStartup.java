@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.Role;
-import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.service.UserService;
 

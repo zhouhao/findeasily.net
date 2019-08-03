@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.controller.HomeController;
-import net.findeasily.website.domain.User;
 import net.findeasily.website.domain.dto.UserDto;
 import net.findeasily.website.domain.form.ForgetPasswordForm;
 import net.findeasily.website.domain.form.ResetPasswordForm;

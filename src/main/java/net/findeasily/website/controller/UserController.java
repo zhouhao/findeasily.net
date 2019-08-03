@@ -34,9 +34,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.CurrentUser;
-import net.findeasily.website.domain.UserExt;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
+import net.findeasily.website.entity.UserExt;
 import net.findeasily.website.event.ImageUploadedEvent;
 import net.findeasily.website.service.FileService;
 import net.findeasily.website.service.UserService;

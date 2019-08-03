@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.CurrentUser;
-import net.findeasily.website.domain.User;
 import net.findeasily.website.service.UserService;
 
 @Service

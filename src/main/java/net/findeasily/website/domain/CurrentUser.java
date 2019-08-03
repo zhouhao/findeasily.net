@@ -3,6 +3,7 @@ package net.findeasily.website.domain;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 import lombok.EqualsAndHashCode;
+import net.findeasily.website.entity.User;
 
 @EqualsAndHashCode(callSuper = true)
 public class CurrentUser extends org.springframework.security.core.userdetails.User {

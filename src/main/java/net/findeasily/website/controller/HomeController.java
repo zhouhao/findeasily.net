@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
-import net.findeasily.website.domain.Token;
 import net.findeasily.website.service.TokenService;
 import net.findeasily.website.service.UserService;
 import net.findeasily.website.util.ToastrUtils;

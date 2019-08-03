@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
-import net.findeasily.website.domain.User;
+import net.findeasily.website.entity.User;
 
 @Getter
 public class UserDto implements Serializable {

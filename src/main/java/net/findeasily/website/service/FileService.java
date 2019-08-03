@@ -23,7 +23,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.config.Constant;
-import net.findeasily.website.domain.User;
+import net.findeasily.website.entity.User;
 import net.findeasily.website.exception.StorageException;
 import net.findeasily.website.exception.UnsupportedMediaTypeException;
 

@@ -11,12 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.NonNull;
-import net.findeasily.website.domain.User;
-import net.findeasily.website.domain.UserExt;
 import net.findeasily.website.domain.form.UserCreateForm;
-import net.findeasily.website.mapper.UserMapper;
+import net.findeasily.website.entity.User;
+import net.findeasily.website.entity.UserExt;
+import net.findeasily.website.repository.UserExtRepository;
+import net.findeasily.website.repository.UserRepository;
 
 /**
  * <p>
@@ -27,13 +27,17 @@ import net.findeasily.website.mapper.UserMapper;
  * @since 2018-05-22
  */
 @Service
-public class UserService extends ServiceImpl<UserMapper, User> {
+public class UserService {
 
     private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final UserExtRepository userExtRepository;
 
     @Autowired
-    public UserService(PasswordEncoder passwordEncoder) {
+    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository, UserExtRepository userExtRepository) {
         this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+        this.userExtRepository = userExtRepository;
     }
 
     public User getUserByEmail(String email) {
