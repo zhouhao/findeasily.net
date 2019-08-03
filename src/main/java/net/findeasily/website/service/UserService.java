@@ -108,4 +108,7 @@ public class UserService {
     public UserExt getUserExt(String userId) {
         return baseMapper.selectExtByUserId(userId);
     }
+
+    public boolean updateById(User user) {
+    }
 }

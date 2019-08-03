@@ -15,6 +15,7 @@ public class ControllerMonitor {
 
     @Pointcut("execution(* net.findeasily.website.controller.*Controller.*(..))")
     public void monitor() {
+        // an utility for aop
     }
 
     @Around("monitor()")

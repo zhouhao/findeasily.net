@@ -25,6 +25,7 @@ import net.findeasily.website.domain.form.ResetPasswordForm;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.ResetPasswordFormValidator;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
+import net.findeasily.website.entity.User;
 import net.findeasily.website.event.EmailEvent;
 import net.findeasily.website.exception.UserCreationException;
 import net.findeasily.website.exception.WebApplicationException;

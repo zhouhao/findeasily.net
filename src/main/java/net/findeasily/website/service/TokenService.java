@@ -97,4 +97,7 @@ public class TokenService {
     }
 
 
+    public boolean removeById(int tokenId) {
+        return false;
+    }
 }
