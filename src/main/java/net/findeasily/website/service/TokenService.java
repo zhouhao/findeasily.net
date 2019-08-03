@@ -92,12 +92,13 @@ public class TokenService {
         }
     }
 
-    public int deleteFromHourBefore(int hour) {
-        return baseMapper.deleteFromHourBefore(hour);
+    public long deleteFromHourBefore(int hour) {
+        Timestamp ts = new Timestamp(System.currentTimeMillis() - hour * 3600 * 1000);
+        return tokenRepository.deleteByCreateTimeBefore(ts);
     }
 
 
-    public boolean removeById(int tokenId) {
-        return false;
+    public void removeById(int tokenId) {
+        tokenRepository.deleteById(tokenId);
     }
 }
