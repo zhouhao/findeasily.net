@@ -5,6 +5,7 @@ import javax.mail.internet.MimeMessage;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -15,8 +16,10 @@ import freemarker.template.Configuration;
 @Service
 public class EmailService {
     private JavaMailSender javaMailSender;
-
     private final Configuration ftlConf;
+
+    @Value("${mail.default.sender}")
+    private String emailSender;
 
     @Autowired
     public EmailService(JavaMailSender javaMailSender, Configuration ftlConf) {
@@ -29,7 +32,7 @@ public class EmailService {
         mailMessage.setTo(toEmail);
         mailMessage.setSubject(subject);
         mailMessage.setText(message);
-        mailMessage.setFrom("contact@mail.findeasily.net");
+        mailMessage.setFrom(emailSender);
         javaMailSender.send(mailMessage);
     }
 
@@ -37,13 +40,12 @@ public class EmailService {
         javaMailSender.send(mailMessage);
     }
 
-
     public void sendHtmlMail(String toEmail, String subject, String content) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setTo(toEmail);
         helper.setSubject(subject);
-        helper.setFrom("no-reply@mail.findeasily.net");
+        helper.setFrom(emailSender);
         // use the true flag to indicate the text included is HTML
         helper.setText(content, true);
         javaMailSender.send(message);

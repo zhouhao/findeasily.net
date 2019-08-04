@@ -23,6 +23,6 @@ public final class ToastrUtils {
     }
 
     private static String build(String type, String msg) {
-        return String.format("toastr.%s('%s');", type, msg.replace("'", "\'"));
+        return String.format("toastr.%s('%s');", type, msg.replace("'", "\\'"));
     }
 }

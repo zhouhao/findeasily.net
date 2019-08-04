@@ -19,10 +19,6 @@ import net.findeasily.website.repository.UserExtRepository;
 import net.findeasily.website.repository.UserRepository;
 
 /**
- * <p>
- * 服务实现类
- * </p>
- *
  * @author Hao Zhou
  * @since 2018-05-22
  */
@@ -89,7 +85,7 @@ public class UserService {
         return updateById(user);
     }
 
-    public boolean updateSelfIntro(String selfIntro, String userId) {
+    public void updateSelfIntro(String selfIntro, String userId) {
         UserExt userExt = userExtRepository.findById(userId).orElse(null);
         if (userExt == null) {
             userExt = new UserExt();
@@ -97,7 +93,7 @@ public class UserService {
             userExt.setDescription(selfIntro);
         }
         userExt.setDescription(selfIntro);
-        return userExtRepository.save(userExt) != null;
+        userExtRepository.save(userExt);
     }
 
     public UserExt getUserExt(String userId) {
