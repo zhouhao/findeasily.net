@@ -20,10 +20,6 @@ import net.findeasily.website.entity.Token;
 import net.findeasily.website.repository.TokenRepository;
 
 /**
- * <p>
- * 服务实现类
- * </p>
- *
  * @author Hao Zhou
  * @since 2018-05-25
  */
@@ -40,7 +36,7 @@ public class TokenService {
         this.tokenRepository = tokenRepository;
     }
 
-    public boolean match(Token token, String val) {
+    private boolean match(Token token, String val) {
         if (token == null || StringUtils.isBlank(val)) {
             return false;
         }
