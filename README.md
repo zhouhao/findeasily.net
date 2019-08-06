@@ -18,10 +18,17 @@ Website for findeasily.net
 ### Quick start
 1. Please make sure you have `Java11` and `git` installed
 2. `git clone https://github.com/findeasily/findeasily.net.git`
-3. Follow [this](https://github.com/findeasily/findeasily.net/blob/master/script/README.md) to start mysql & redis with docker
-4. <del>You can create your own [mailgun](https://www.mailgun.com/) account, and update Email sending account</del> [here](https://github.com/findeasily/findeasily.net/blob/master/src/main/resources/application-dev.properties) (**NOTE: Just use your gmail here**)
-5. `SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run`
-6. Visit [http://localhost:8080/](http://localhost:8080/), if everything is OK, you can see the home page
+3. Create a writable folder for file uploading with following commands:
+    ```bash
+    sudo mkdir -p /var/findeasily/resources  # create folder
+    sudo chmod 777 /var/findeasily/resources  # make folder writable
+    ```
+   Or you can change the folder by updating this [configuration](./src/main/resources/application.properties#L34).
+4. You may need to configure Intellij for lombok support, please see this [document](./docs/Intellij-lombok-setup.md) for more details.
+5. Follow [this](https://github.com/findeasily/findeasily.net/blob/master/script/README.md) to start mysql & redis with docker
+6. <del>You can create your own [mailgun](https://www.mailgun.com/) account, and update Email sending account</del> [here](https://github.com/findeasily/findeasily.net/blob/master/src/main/resources/application-dev.properties) (**NOTE: Just use your gmail here**)
+7. `SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run`
+8. Visit [http://localhost:8080/](http://localhost:8080/), if everything is OK, you can see the home page
 
 ### Note:
 1. I recommend [**Intellij**](https://www.jetbrains.com/idea/download/) as IDE(either Ultimate or Community).(Eclipse is OK, but as I know, Lombok plugin does not work well in Eclipse)
