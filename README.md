@@ -53,3 +53,7 @@ Website for findeasily.net
 - [x] User profile page
 - [ ] User can create/edit/delete listing info
 - [ ] enable listing display in home page
+
+
+### Discussion
+Feel free to open new issues, or find me via [Slack](https://join.slack.com/t/findeasily/shared_invite/enQtNzExMDA0OTM5NDkwLTQ1MDIxYTUxYThhOGMxOTE3MDM4NTE3M2FhMzUyMzU0NWI0YzMyNmRjMmEyZTZjNjg3M2Q4YTE4ODQ1NjQwODA)
