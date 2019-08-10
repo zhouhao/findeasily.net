@@ -47,7 +47,7 @@
 <script type="text/javascript" src="/js/plugins.js"></script>
 <script type="text/javascript" src="/js/scripts.js"></script>
 <#if includeMap!false>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8lHMqT3f4RbfwD9aoQrGOCjAqeR4mwCc&libraries=places&callback=initAutocomplete"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=${google_map_api_key}&libraries=places&callback=initAutocomplete"></script>
 <script type="text/javascript" src="/js/map_infobox.js"></script>
 <script type="text/javascript" src="/js/markerclusterer.js"></script>
 <script type="text/javascript" src="/js/maps.js"></script>

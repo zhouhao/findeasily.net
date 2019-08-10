@@ -1,7 +1,7 @@
 # 2 Steps for Lombok Setup
 
 ### Install Lombok Plugin
-![](lombok-plugin.png)
+![](./image/lombok-plugin.png)
 
 ### Enable Annotation Processors
-![](enable-annotation-processors.png)
+![](./image/enable-annotation-processors.png)

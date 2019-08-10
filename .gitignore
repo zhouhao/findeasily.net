@@ -25,3 +25,4 @@
 /.nb-gradle/
 .DS_Store
 **/application-test.properties
+**/application-zhouhao.properties
