@@ -25,14 +25,15 @@ Website for findeasily.net
     ```
    Or you can change the folder by updating this [configuration](./src/main/resources/application.properties#L34).
 4. You may need to configure Intellij for lombok support, please see this [document](./docs/Intellij-lombok-setup.md) for more details.
-5. Follow [this](https://github.com/findeasily/findeasily.net/blob/master/script/README.md) to start mysql & redis with docker
-6. <del>You can create your own [mailgun](https://www.mailgun.com/) account, and update Email sending account</del> [here](https://github.com/findeasily/findeasily.net/blob/master/src/main/resources/application-dev.properties) (**NOTE: Just use your gmail here**)
+5. Follow [this](./script/README.md) to start mysql & redis with docker
+6. <del>You can create your own [mailgun](https://www.mailgun.com/) account, and update Email sending account</del> [here](./src/main/resources/application-dev.properties) (**NOTE: Just use your gmail here**)
 7. `SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run`
 8. Visit [http://localhost:8080/](http://localhost:8080/), if everything is OK, you can see the home page
+9. If you want to make google map work in dev mode, you can follow [this doc](./docs/how-to-get-google-map-api-key.md) to set up Google Map API key.
 
 ### Note:
 1. I recommend [**Intellij**](https://www.jetbrains.com/idea/download/) as IDE(either Ultimate or Community).(Eclipse is OK, but as I know, Lombok plugin does not work well in Eclipse)
-2. You do not need to patch DB schemas manually, as flyway can do it automatically. (Attention: All DB change should have its SQL file in [db/migration](https://github.com/findeasily/findeasily.net/tree/master/src/main/resources/db/migration) folder)
+2. You do not need to patch DB schemas manually, as flyway can do it automatically. (Attention: All DB change should have its SQL file in [db/migration](./src/main/resources/db/migration) folder)
 3. For people who just want to read the source code, you can install [Octotree plugin for Chrome](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc?hl=en-US)
 
 ### Tech Details
