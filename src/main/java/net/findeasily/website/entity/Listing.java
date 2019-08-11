@@ -1,6 +1,5 @@
 package net.findeasily.website.entity;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -10,12 +9,10 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-@Entity
 @Data
+@Entity
 @Table(name = "listing")
-public class Listing implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class Listing {
     @Id
     @Column(name = "id", insertable = false, nullable = false)
     private String id;
@@ -67,6 +64,30 @@ public class Listing implements Serializable {
 
     @Column(name = "type", nullable = false)
     private String type;
+
+    @Column(name = "address1", nullable = false)
+    private String address1 = "";
+
+    @Column(name = "address2", nullable = false)
+    private String address2 = "";
+
+    @Column(name = "city", nullable = false)
+    private String city = "";
+
+    @Column(name = "state")
+    private String state = "";
+
+    @Column(name = "country", nullable = false)
+    private String country = "";
+
+    @Column(name = "zip", nullable = false)
+    private String zip = "";
+
+    @Column(name = "latitude")
+    private Float latitude = 0F;
+
+    @Column(name = "longitude")
+    private Float longitude = 0F;
 
 
 }
