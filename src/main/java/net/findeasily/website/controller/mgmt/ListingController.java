@@ -1,4 +1,4 @@
-package net.findeasily.website.controller;
+package net.findeasily.website.controller.mgmt;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,7 @@ import net.findeasily.website.domain.CurrentUser;
 public class ListingController {
 
     // TODO
-    @GetMapping("/listing/new")
+    @GetMapping("/mgmt/listing/new")
     public ModelAndView createListing(Authentication authentication) {
         CurrentUser user = (CurrentUser) authentication.getPrincipal();
         Map<String, Object> model = new HashMap<>();

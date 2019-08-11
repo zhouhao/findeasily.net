@@ -21,7 +21,7 @@
             <button class="header-search-button" onclick="window.location.href='listing.html'">Search</button>
         </div>
         <div class="show-search-button"><i class="fa fa-search"></i> <span>Search</span></div>
-        <a href="/listing/new" class="add-list">Add Listing <span><i class="fa fa-plus"></i></span></a>
+        <a href="/mgmt/listing/new" class="add-list">Add Listing <span><i class="fa fa-plus"></i></span></a>
         <#if showHeaderLogin!true>
             <#if !currentUser??>
                 <div class="show-reg-form modal-open" id="header-signin-btn"><i class="fa fa-sign-in"></i>Sign In</div>
