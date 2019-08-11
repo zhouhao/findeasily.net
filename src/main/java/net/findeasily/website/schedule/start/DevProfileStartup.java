@@ -13,7 +13,7 @@ import net.findeasily.website.entity.User;
 import net.findeasily.website.service.UserService;
 
 @Component
-@Profile({"dev", "test"})
+@Profile({"dev", "test", "local"})
 @Slf4j
 public class DevProfileStartup implements CommandLineRunner {
     private final UserService userService;
