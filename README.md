@@ -53,7 +53,11 @@ Website for findeasily.net
 - [x] Password reset with Email
 - [x] User profile page
 - [ ] User can create/edit/delete listing info
-- [ ] enable listing display in home page
+   - [ ] Create
+   - [ ] Edit/Update
+   - [ ] Delete
+   - [ ] View
+- [ ] Enable listing display in home page
 
 
 ### Discussion
