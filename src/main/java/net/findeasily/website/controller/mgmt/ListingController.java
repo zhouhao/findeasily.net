@@ -23,4 +23,12 @@ public class ListingController {
 
         return new ModelAndView("listing/new", model);
     }
+
+    @GetMapping("/mgmt/listings")
+    public ModelAndView myListings(Authentication authentication) {
+        CurrentUser user = (CurrentUser) authentication.getPrincipal();
+        Map<String, Object> model = new HashMap<>();
+
+        return new ModelAndView("listing/new", model);
+    }
 }
