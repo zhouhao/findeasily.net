@@ -1,6 +1,7 @@
 Website for findeasily.net
 ============================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/286aea9e33f04753b8c6b458001fa4ac)](https://app.codacy.com/app/hzhou.me/findeasily.net?utm_source=github.com&utm_medium=referral&utm_content=findeasily/findeasily.net&utm_campaign=Badge_Grade_Dashboard)
 [![CircleCI](https://circleci.com/gh/findeasily/findeasily.net.svg?style=svg)](https://circleci.com/gh/findeasily/findeasily.net)
 [![Known Vulnerabilities](https://snyk.io/test/github/findeasily/findeasily.net/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/findeasily/findeasily.net?targetFile=pom.xml)
 [![codebeat badge](https://codebeat.co/badges/85b75467-0afb-4436-beaf-f8db43517f81)](https://codebeat.co/projects/github-com-findeasily-findeasily-net-master)
