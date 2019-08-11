@@ -561,7 +561,7 @@
 <!--section -->
 <section class="gradient-bg">
     <div class="cirle-bg">
-        <div class="bg" data-bg="images/bg/circle.png"></div>
+        <div class="bg" data-bg="/images/bg/circle.png"></div>
     </div>
     <div class="container">
         <div class="join-wrap fl-wrap">
