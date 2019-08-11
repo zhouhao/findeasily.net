@@ -1,8 +1,11 @@
 <#include "../layout/layout.ftl"/>
-<#assign includeMap = true />
 <#if !pageTitle?has_content>
     <#assign pageTitle = 'Add Your New Listing'/>
 </#if>
+<#assign inlineJs>
+    <script src="https://maps.googleapis.com/maps/api/js?key=${google_map_api_key}"></script>
+    <script type="text/javascript" src="/js/map-add.js"></script>
+</#assign>
 <@layout>
     <!--section -->
     <section id="sec1">
@@ -389,7 +392,7 @@
     <!--section -->
     <section class="gradient-bg">
         <div class="cirle-bg">
-            <div class="bg" data-bg="images/bg/circle.png"></div>
+            <div class="bg" data-bg="/images/bg/circle.png"></div>
         </div>
         <div class="container">
             <div class="join-wrap fl-wrap">
