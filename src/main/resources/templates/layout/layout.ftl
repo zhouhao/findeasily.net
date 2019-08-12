@@ -54,6 +54,7 @@
         <script type="text/javascript" src="/js/maps.js"></script>
     </#if>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" src="/js/utils.js"></script>
     <#if toastr?has_content>
         <script>${toastr!''}</script>
     </#if>

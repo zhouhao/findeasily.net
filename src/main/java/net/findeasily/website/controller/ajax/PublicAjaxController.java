@@ -1,10 +1,14 @@
 package net.findeasily.website.controller.ajax;
 
+import java.sql.Timestamp;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -15,20 +19,25 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.controller.HomeController;
+import net.findeasily.website.domain.GenericResponse;
 import net.findeasily.website.domain.dto.UserDto;
 import net.findeasily.website.domain.form.ForgetPasswordForm;
 import net.findeasily.website.domain.form.ResetPasswordForm;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.ResetPasswordFormValidator;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
+import net.findeasily.website.entity.ContactLog;
 import net.findeasily.website.entity.User;
 import net.findeasily.website.event.EmailEvent;
 import net.findeasily.website.exception.UserCreationException;
 import net.findeasily.website.exception.WebApplicationException;
+import net.findeasily.website.repository.ContactLogRepository;
+import net.findeasily.website.service.RecaptchaService;
 import net.findeasily.website.service.TokenService;
 import net.findeasily.website.service.UserService;
 
@@ -42,18 +51,23 @@ public class PublicAjaxController {
     private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;
     private final ApplicationEventPublisher applicationEventPublisher;
+    private final RecaptchaService recaptchaService;
+    private final ContactLogRepository contactLogRepository;
 
     @Autowired
     public PublicAjaxController(UserCreateFormValidator userCreateFormValidator, UserService userService,
                                 ResetPasswordFormValidator resetPasswordFormValidator,
                                 PasswordEncoder passwordEncoder, TokenService tokenService,
-                                ApplicationEventPublisher applicationEventPublisher) {
+                                ApplicationEventPublisher applicationEventPublisher,
+                                RecaptchaService recaptchaService, ContactLogRepository contactLogRepository) {
         this.userCreateFormValidator = userCreateFormValidator;
         this.userService = userService;
         this.tokenService = tokenService;
         this.resetPasswordFormValidator = resetPasswordFormValidator;
         this.passwordEncoder = passwordEncoder;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.recaptchaService = recaptchaService;
+        this.contactLogRepository = contactLogRepository;
     }
 
     @InitBinder("form")
@@ -127,5 +141,32 @@ public class PublicAjaxController {
             }
         }
         throw new WebApplicationException("Something went wrong.");
+    }
+
+    @PostMapping("/contact")
+    public ResponseEntity<GenericResponse> receiveContact(
+            @RequestParam(name = "g-recaptcha-response") String recaptchaResponse,
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "comment") String comment,
+            HttpServletRequest request) {
+        log.info("email = {}, name = {}, comment = {}", email, name, comment);
+        if (StringUtils.isAnyBlank(email, name, comment)) {
+            return ResponseEntity.badRequest().body(new GenericResponse(false, "Please make sure all information is filled"));
+        }
+        String ip = request.getLocalAddr();
+        Optional<String> errorResp = recaptchaService.verifyRecaptcha(ip, recaptchaResponse);
+        return errorResp
+                .map(s -> ResponseEntity.badRequest().body(new GenericResponse(false, s)))
+                .orElseGet(() -> {
+                    ContactLog cl = new ContactLog();
+                    cl.setName(name);
+                    cl.setEmail(email);
+                    cl.setMessage(comment);
+                    cl.setCreatedTime(new Timestamp(System.currentTimeMillis()));
+                    contactLogRepository.save(cl);
+                    // TODO: may send out an email to admin for notification
+                    return ResponseEntity.ok(new GenericResponse(true, ""));
+                });
     }
 }

@@ -5,6 +5,12 @@
 
 <#assign inlineJs>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        var contactForm = $("#contactform");
+        ajaxForm(contactForm, function (data) {
+            toastr.success('You message is received, we will get back to you soon');
+        });
+    </script>
 </#assign>
 
 <@layout>
@@ -36,6 +42,7 @@
                 <div id="contact-form">
                     <div id="message"></div>
                     <form class="custom-form" action="/contact" name="contactform" id="contactform" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <fieldset>
                             <label for="name"><i class="fa fa-user-o"></i></label>
                             <input type="text" name="name" id="name" placeholder="Your Name *" required value=""/>
@@ -43,7 +50,7 @@
                             <label for="email"><i class="fa fa-envelope-o"></i> </label>
                             <input type="text" name="email" id="email" placeholder="Email Address*" required value=""/>
                             <div class="clearfix"></div>
-                            <textarea name="comments" id="comments" required>Message</textarea>
+                            <textarea name="comment" id="comment" required placeholder="Message"></textarea>
                         </fieldset>
                         <br>
                         <div class="g-recaptcha" data-sitekey="${recaptcha_site_key}"></div>
