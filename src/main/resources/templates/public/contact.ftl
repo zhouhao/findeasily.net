@@ -3,9 +3,14 @@
     <#assign pageTitle = 'Contact Us'/>
 </#if>
 
+<#assign inlineJs>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</#assign>
+
 <@layout>
     <section class="parallax-section" data-scrollax-parent="true">
-        <div class="bg par-elem " data-bg="/images/bg/contact-us.jpg" data-scrollax="properties: { translateY: '30%' }"></div>
+        <div class="bg par-elem " data-bg="/images/bg/contact-us.jpg"
+             data-scrollax="properties: { translateY: '30%' }"></div>
         <div class="overlay"></div>
         <div class="bubble-bg"></div>
         <div class="container">
@@ -30,20 +35,21 @@
                 </div>
                 <div id="contact-form">
                     <div id="message"></div>
-                    <form class="custom-form" action="php/contact.php" name="contactform" id="contactform">
+                    <form class="custom-form" action="/contact" name="contactform" id="contactform" method="post">
                         <fieldset>
-                            <label><i class="fa fa-user-o"></i></label>
-                            <input type="text" name="name" id="name" placeholder="Your Name *" value=""/>
+                            <label for="name"><i class="fa fa-user-o"></i></label>
+                            <input type="text" name="name" id="name" placeholder="Your Name *" required value=""/>
                             <div class="clearfix"></div>
-                            <label><i class="fa fa-envelope-o"></i> </label>
-                            <input type="text" name="email" id="email" placeholder="Email Address*" value=""/>
+                            <label for="email"><i class="fa fa-envelope-o"></i> </label>
+                            <input type="text" name="email" id="email" placeholder="Email Address*" required value=""/>
                             <div class="clearfix"></div>
-                            <label><i class="fa fa-phone"></i> </label>
-                            <input type="text" name="phone" id="phone" placeholder="Phone *" value=""/>
-                            <textarea name="comments" id="comments" onClick="this.select()">Message</textarea>
+                            <textarea name="comments" id="comments" required>Message</textarea>
                         </fieldset>
-                        <button class="btn  big-btn  color-bg flat-btn" id="submit">Send<i
-                                    class="fa fa-angle-right"></i></button>
+                        <br>
+                        <div class="g-recaptcha" data-sitekey="${recaptcha_site_key}"></div>
+                        <button class="btn  big-btn  color-bg flat-btn" id="submit">
+                            Send<i class="fa fa-angle-right"></i>
+                        </button>
                     </form>
                 </div>
                 <!-- contact form  end-->
