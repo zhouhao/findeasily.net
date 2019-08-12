@@ -25,27 +25,21 @@
                         <!-- profile-edit-container-->
                         <div class="profile-edit-container add-list-container">
                             <div class="profile-edit-header fl-wrap">
-                                <h4>Basic Informations</h4>
+                                <h4>Basic Information</h4>
                             </div>
                             <div class="custom-form">
-                                <label>Listing Title <i class="fa fa-briefcase"></i></label>
-                                <input type="text" placeholder="Name of your business" value=""/>
+                                <label for="title">Listing Title <i class="fa fa-briefcase"></i></label>
+                                <input type="text" name="title" id="title" placeholder="Name of your business"
+                                       value=""/>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Category</label>
-                                        <select data-placeholder="All Categories" class="chosen-select">
-                                            <option>All Categories</option>
-                                            <option>Shops</option>
-                                            <option>Hotels</option>
-                                            <option>Restaurants</option>
-                                            <option>Fitness</option>
-                                            <option>Events</option>
+                                        <label for="category">Category</label>
+                                        <select name="category" id="category" data-placeholder="All Categories"
+                                                class="chosen-select">
+                                            <option>Sub-Lease</option>
+                                            <option>Long-term</option>
+                                            <option>Temp</option>
                                         </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Keywords <i class="fa fa-key"></i></label>
-                                        <input type="text" placeholder="Maximum 15, should be separated by commas"
-                                               value=""/>
                                     </div>
                                 </div>
                             </div>
@@ -57,8 +51,33 @@
                                 <h4>Location / Contacts</h4>
                             </div>
                             <div class="custom-form">
-                                <label>Address<i class="fa fa-map-marker"></i></label>
+                                <label>Address Line 1<i class="fa fa-map-marker"></i></label>
                                 <input type="text" placeholder="Address of your business" value=""/>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Address Line 2<i class="fa fa-map-marker"></i></label>
+                                        <input type="text" placeholder="Address of your business" value=""/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Zip Code:<i class="fa fa-map-marker"></i></label>
+                                        <input type="text" id="long" placeholder="" value=""/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>City:<i class="fa fa-map-marker"></i></label>
+                                        <input type="text" id="lat" placeholder="" value=""/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>State:<i class="fa fa-map-marker"></i></label>
+                                        <input type="text" id="long" placeholder="" value=""/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Country:<i class="fa fa-map-marker"></i></label>
+                                        <input type="text" id="long" placeholder="" value=""/>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Latitude:<i class="fa fa-map-marker"></i></label>
@@ -73,21 +92,10 @@
                                     <div id="singleMap" data-latitude="40.7427837"
                                          data-longitude="-73.11445617675781"></div>
                                 </div>
-                                <label>Location</label>
-                                <select data-placeholder="Location" class="chosen-select">
-                                    <option>All Locations</option>
-                                    <option>Bronx</option>
-                                    <option>Brooklyn</option>
-                                    <option>Manhattan</option>
-                                    <option>Queens</option>
-                                    <option>Staten Island</option>
-                                </select>
                                 <label>Phone<i class="fa fa-phone"></i></label>
                                 <input type="text" placeholder="Your Phone" value=""/>
                                 <label>Email<i class="fa fa-envelope-o"></i></label>
                                 <input type="text" placeholder="Your Email" value=""/>
-                                <label>Website<i class="fa fa-globe"></i></label>
-                                <input type="text" placeholder="Your Website" value=""/>
                             </div>
                         </div>
                         <!-- profile-edit-container end-->
@@ -147,12 +155,6 @@
                                             <input type="text" placeholder="https://www.youtube.com/" value=""/>
                                             <label>Vimeo <i class="fa fa-vimeo"></i></label>
                                             <input type="text" placeholder="https://vimeo.com/" value=""/>
-                                            <div class="change-photo-btn">
-                                                <div class="photoUpload">
-                                                    <span><i class="fa fa-upload"></i> Upload Video</span>
-                                                    <input type="file" class="upload">
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <!--col end-->
@@ -368,7 +370,7 @@
                         <h3>Do You Have Questions ?</h3>
                         <p>Lorem ipsum dolor sit amet, harum dolor nec in, usu molestiae at no.</p>
                     </div>
-                    <div class="col-md-4"><a href="contacts.html" class="join-wrap-btn">Get In Touch <i
+                    <div class="col-md-4"><a href="/contact" class="join-wrap-btn">Get In Touch <i
                                     class="fa fa-envelope-o"></i></a></div>
                 </div>
             </div>

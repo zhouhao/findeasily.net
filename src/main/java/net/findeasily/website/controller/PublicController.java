@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.service.FileService;
@@ -44,5 +45,10 @@ public class PublicController {
 
         StreamUtils.copy(is, response.getOutputStream());
         is.close();
+    }
+
+    @GetMapping("/contact")
+    public ModelAndView contact() {
+        return new ModelAndView("public/contact");
     }
 }

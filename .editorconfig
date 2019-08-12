@@ -1,0 +1,4 @@
+root = true
+
+[*.ftl]
+max_line_length = 500

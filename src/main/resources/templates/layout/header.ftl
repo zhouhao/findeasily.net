@@ -98,7 +98,7 @@
                         <!--second level -->
                         <ul>
                             <li><a href="about.html">About</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
+                            <li><a href="/contact">Contacts</a></li>
                             <li><a href="author-single.html">User single</a></li>
                             <li><a href="how-itworks.html">How it Works</a></li>
                             <li><a href="pricing-tables.html">Pricing</a></li>

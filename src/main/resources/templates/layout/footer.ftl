@@ -70,10 +70,9 @@
                     <div class="footer-widget fl-wrap">
                         <div class="footer-menu fl-wrap">
                             <ul>
-                                <li><a href="#">Home </a></li>
-                                <li><a href="#">Blog</a></li>
+                                <li><a href="/">Home </a></li>
                                 <li><a href="#">Listing</a></li>
-                                <li><a href="#">Contacts</a></li>
+                                <li><a href="/contact">Contacts</a></li>
                             </ul>
                         </div>
                     </div>
