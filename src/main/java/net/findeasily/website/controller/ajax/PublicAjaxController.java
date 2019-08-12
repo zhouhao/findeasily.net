@@ -1,7 +1,9 @@
 package net.findeasily.website.controller.ajax;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -15,10 +17,12 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.controller.HomeController;
+import net.findeasily.website.domain.GenericResponse;
 import net.findeasily.website.domain.dto.UserDto;
 import net.findeasily.website.domain.form.ForgetPasswordForm;
 import net.findeasily.website.domain.form.ResetPasswordForm;
@@ -29,6 +33,7 @@ import net.findeasily.website.entity.User;
 import net.findeasily.website.event.EmailEvent;
 import net.findeasily.website.exception.UserCreationException;
 import net.findeasily.website.exception.WebApplicationException;
+import net.findeasily.website.service.RecaptchaService;
 import net.findeasily.website.service.TokenService;
 import net.findeasily.website.service.UserService;
 
@@ -42,18 +47,20 @@ public class PublicAjaxController {
     private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;
     private final ApplicationEventPublisher applicationEventPublisher;
+    private final RecaptchaService recaptchaService;
 
     @Autowired
     public PublicAjaxController(UserCreateFormValidator userCreateFormValidator, UserService userService,
                                 ResetPasswordFormValidator resetPasswordFormValidator,
                                 PasswordEncoder passwordEncoder, TokenService tokenService,
-                                ApplicationEventPublisher applicationEventPublisher) {
+                                ApplicationEventPublisher applicationEventPublisher, RecaptchaService recaptchaService) {
         this.userCreateFormValidator = userCreateFormValidator;
         this.userService = userService;
         this.tokenService = tokenService;
         this.resetPasswordFormValidator = resetPasswordFormValidator;
         this.passwordEncoder = passwordEncoder;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.recaptchaService = recaptchaService;
     }
 
     @InitBinder("form")
@@ -127,5 +134,20 @@ public class PublicAjaxController {
             }
         }
         throw new WebApplicationException("Something went wrong.");
+    }
+
+    @PostMapping("/contact")
+    public ResponseEntity<GenericResponse> receiveContact(
+            @RequestParam(name = "g-recaptcha-response") String recaptchaResponse,
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "comment") String comment,
+            HttpServletRequest request) {
+        log.info("email = {}, name = {}, comment = {}", email, name, comment);
+        String ip = request.getLocalAddr();
+        Optional<String> errorResp = recaptchaService.verifyRecaptcha(ip, recaptchaResponse);
+        return errorResp
+                .map(s -> ResponseEntity.ok(new GenericResponse(false, s)))
+                .orElseGet(() -> ResponseEntity.ok(new GenericResponse(true, "")));
     }
 }
