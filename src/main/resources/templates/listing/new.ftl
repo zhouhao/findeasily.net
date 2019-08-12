@@ -370,7 +370,7 @@
                         <h3>Do You Have Questions ?</h3>
                         <p>Lorem ipsum dolor sit amet, harum dolor nec in, usu molestiae at no.</p>
                     </div>
-                    <div class="col-md-4"><a href="contacts.html" class="join-wrap-btn">Get In Touch <i
+                    <div class="col-md-4"><a href="/contact" class="join-wrap-btn">Get In Touch <i
                                     class="fa fa-envelope-o"></i></a></div>
                 </div>
             </div>
