@@ -1,5 +1,6 @@
 package net.findeasily.website.controller.ajax;
 
+import java.sql.Timestamp;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -29,10 +31,12 @@ import net.findeasily.website.domain.form.ResetPasswordForm;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.ResetPasswordFormValidator;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
+import net.findeasily.website.entity.ContactLog;
 import net.findeasily.website.entity.User;
 import net.findeasily.website.event.EmailEvent;
 import net.findeasily.website.exception.UserCreationException;
 import net.findeasily.website.exception.WebApplicationException;
+import net.findeasily.website.repository.ContactLogRepository;
 import net.findeasily.website.service.RecaptchaService;
 import net.findeasily.website.service.TokenService;
 import net.findeasily.website.service.UserService;
@@ -48,12 +52,14 @@ public class PublicAjaxController {
     private final PasswordEncoder passwordEncoder;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final RecaptchaService recaptchaService;
+    private final ContactLogRepository contactLogRepository;
 
     @Autowired
     public PublicAjaxController(UserCreateFormValidator userCreateFormValidator, UserService userService,
                                 ResetPasswordFormValidator resetPasswordFormValidator,
                                 PasswordEncoder passwordEncoder, TokenService tokenService,
-                                ApplicationEventPublisher applicationEventPublisher, RecaptchaService recaptchaService) {
+                                ApplicationEventPublisher applicationEventPublisher,
+                                RecaptchaService recaptchaService, ContactLogRepository contactLogRepository) {
         this.userCreateFormValidator = userCreateFormValidator;
         this.userService = userService;
         this.tokenService = tokenService;
@@ -61,6 +67,7 @@ public class PublicAjaxController {
         this.passwordEncoder = passwordEncoder;
         this.applicationEventPublisher = applicationEventPublisher;
         this.recaptchaService = recaptchaService;
+        this.contactLogRepository = contactLogRepository;
     }
 
     @InitBinder("form")
@@ -144,10 +151,22 @@ public class PublicAjaxController {
             @RequestParam(name = "comment") String comment,
             HttpServletRequest request) {
         log.info("email = {}, name = {}, comment = {}", email, name, comment);
+        if (StringUtils.isAnyBlank(email, name, comment)) {
+            return ResponseEntity.badRequest().body(new GenericResponse(false, "Please make sure all information is filled"));
+        }
         String ip = request.getLocalAddr();
         Optional<String> errorResp = recaptchaService.verifyRecaptcha(ip, recaptchaResponse);
         return errorResp
-                .map(s -> ResponseEntity.ok(new GenericResponse(false, s)))
-                .orElseGet(() -> ResponseEntity.ok(new GenericResponse(true, "")));
+                .map(s -> ResponseEntity.badRequest().body(new GenericResponse(false, s)))
+                .orElseGet(() -> {
+                    ContactLog cl = new ContactLog();
+                    cl.setName(name);
+                    cl.setEmail(email);
+                    cl.setMessage(comment);
+                    cl.setCreatedTime(new Timestamp(System.currentTimeMillis()));
+                    contactLogRepository.save(cl);
+                    // TODO: may send out an email to admin for notification
+                    return ResponseEntity.ok(new GenericResponse(true, ""));
+                });
     }
 }

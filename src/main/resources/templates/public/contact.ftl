@@ -7,21 +7,8 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         var contactForm = $("#contactform");
-        contactForm.submit(function (e) {
-            $.ajax({
-                type: contactForm.attr('method'),
-                url: contactForm.attr('action'),
-                data: contactForm.serialize(), // serializes the form's elements.
-                success: function (data) {
-                    // contactForm.trigger("reset");
-                    alert(JSON.stringify(data));
-                },
-                error: function (data) {
-                    alert(data.responseJSON.errors.join(', '));
-                }
-            });
-
-            e.preventDefault(); // avoid to execute the actual submit of the form.
+        ajaxForm(contactForm, function (data) {
+            toastr.success('You message is received, we will get back to you soon');
         });
     </script>
 </#assign>
