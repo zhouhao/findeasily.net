@@ -4730,7 +4730,7 @@ footer.main-footer {
 	float:left;
 	width:100%;
 	position:relative;
-	padding:90px 0 0 0;
+	/*padding:90px 0 0 0;*/
 	z-index:50;
 	overflow: hidden;
 }
@@ -4758,7 +4758,7 @@ footer.main-footer.fixed-footer {
 	padding-bottom:25px;
 }
 .sub-footer {
-	margin-top:40px;
+	/*margin-top:40px;*/
 	background:#24324F;
 	padding:28px 0;
 }
