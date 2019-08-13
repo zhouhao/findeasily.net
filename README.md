@@ -59,6 +59,7 @@ Website for findeasily.net
    - [ ] Delete
    - [ ] View
 - [ ] Enable listing display in home page
+- [x] Add contact page
 
 
 ### Discussion
