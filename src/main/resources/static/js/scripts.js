@@ -671,11 +671,17 @@ $('#logout-header').on('click', function () {
 });
 
 $('#header-signin-btn').on('click', function () {
-    window.location.href='/login';
+    window.location.href = '/login';
 });
 
 //   Init All ------------------
 $(function () {
     initWebsite();
     initparallax();
+    // if browser window is scrolled to bottom, then hide the notification container
+    window.onscroll = function (ev) {
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+            $('#notification-container').hide();
+        }
+    };
 });
