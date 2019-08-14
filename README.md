@@ -31,6 +31,7 @@ Website for findeasily.net
 7. `SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run`
 8. Visit [http://localhost:8080/](http://localhost:8080/), if everything is OK, you can see the home page
 9. If you want to make google map work in dev mode, you can follow [this doc](./docs/how-to-get-google-map-api-key.md) to set up Google Map API key.
+9. Please follow [this doc](./docs/recaptcha-setup.md) to set up Google recaptcha.
 
 ### Note:
 1. I recommend [**Intellij**](https://www.jetbrains.com/idea/download/) as IDE(either Ultimate or Community).(Eclipse is OK, but as I know, Lombok plugin does not work well in Eclipse)
@@ -53,6 +54,7 @@ Website for findeasily.net
 - [x] User login
 - [x] Password reset with Email
 - [x] User profile page
+    - [x] Update profile picture
 - [ ] User can create/edit/delete listing info
    - [ ] Create
    - [ ] Edit/Update
