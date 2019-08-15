@@ -9,9 +9,8 @@
                 <input type="text" placeholder="Keywords" value=""/>
             </div>
             <div class="header-search-select-item">
-                <select data-placeholder="All Categories" class="chosen-select">
-                    <option>All Categories</option>
-                    <option>Sub-lease</option>
+                <select data-placeholder="All Categories" class="chosen-select">   
+                    <option>Sub-Lease</option>
                     <option>Long-term</option>
                     <option>Temp</option>
                     <option>Houses</option>
@@ -19,7 +18,7 @@
                     <option>More...</option>
                 </select>
             </div>
-            <button class="header-search-button" onclick="window.location.href='listing.html'">Search</button>
+            <button class="header-search-button">Search</button>
         </div>
         <div class="show-search-button"><i class="fa fa-search"></i> <span>Search</span></div>
         <a href="/mgmt/listing/new" class="add-list">Add Listing <span><i class="fa fa-plus"></i></span></a>
@@ -29,7 +28,8 @@
             <#else>
                 <div class="header-user-menu">
                     <div class="header-user-name">
-                        <span><img src="${currentUser.avatar!'/images/avatar/1.jpg'}" alt="" title=""></span>Hello , ${currentUser.user.username!''}
+                        <span><img src="${currentUser.avatar!'/images/avatar/1.jpg'}" alt="" title=""></span>Hello
+                        , ${currentUser.user.username!''}
                     </div>
                     <ul>
                         <li><a href="/user"> Edit profile</a></li>
@@ -56,16 +56,7 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="#" class="act-link">Home <i class="fa fa-caret-down"></i></a>
-                        <!--second level -->
-                        <ul>
-                            <li><a href="index.html">Parallax Image</a></li>
-                            <li><a href="index2.html">Video</a></li>
-                            <li><a href="index3.html">Map</a></li>
-                            <li><a href="index4.html">Slideshow</a></li>
-                            <li><a href="index5.html">Slider</a></li>
-                        </ul>
-                        <!--second level end-->
+                        <a href="#" class="act-link">Home</a>
                     </li>
                     <li>
                         <a href="#">Listings <i class="fa fa-caret-down"></i></a>
@@ -88,28 +79,6 @@
                                 </ul>
                                 <!--third  level end-->
                             </li>
-                        </ul>
-                        <!--second level end-->
-                    </li>
-                    <li>
-                        <a href="blog.html">News</a>
-                    </li>
-                    <li>
-                        <a href="#">Pages <i class="fa fa-caret-down"></i></a>
-                        <!--second level -->
-                        <ul>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="/contact">Contacts</a></li>
-                            <li><a href="author-single.html">User single</a></li>
-                            <li><a href="how-itworks.html">How it Works</a></li>
-                            <li><a href="pricing-tables.html">Pricing</a></li>
-                            <li><a href="dashboard-myprofile.html">User Dasboard</a></li>
-                            <li><a href="blog-single.html">Blog Single</a></li>
-                            <li><a href="dashboard-add-listing.html">Add Listing</a></li>
-                            <li><a href="404.html">404</a></li>
-                            <li><a href="coming-soon.html">Coming Soon</a></li>
-                            <li><a href="header2.html">Header 2</a></li>
-                            <li><a href="footer-fixed.html">Footer Fixed</a></li>
                         </ul>
                         <!--second level end-->
                     </li>

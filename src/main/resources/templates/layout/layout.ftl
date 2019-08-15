@@ -41,6 +41,10 @@
         <!-- wrapper end -->
         <#include "footer.ftl">
         <a class="to-top"><i class="fa fa-angle-up"></i></a>
+        <div id="notification-container">
+            This website is in active development, if you see any bugs, please help to report it
+            <a href="https://github.com/findeasily/findeasily.net/issues" target="_blank">here</a>. Thank you!
+        </div>
     </div>
     <!-- Main end -->
     <!--=============== scripts  ===============-->
