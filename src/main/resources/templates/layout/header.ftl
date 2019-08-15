@@ -12,11 +12,11 @@
                 <select data-placeholder="All Categories" class="chosen-select">
                     <option>All Categories</option>
                     <option>Sub-lease</option>
-                    <option>temp</option>
-                    <option>long-tern</option>
-                    <option>houses</option>
-                    <option>apartment</option>
-                    <option>more...</option>
+                    <option>Long-term</option>
+                    <option>Temp</option>
+                    <option>Houses</option>
+                    <option>Apartment</option>
+                    <option>More...</option>
                 </select>
             </div>
             <button class="header-search-button" onclick="window.location.href='listing.html'">Search</button>
