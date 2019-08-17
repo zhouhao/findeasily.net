@@ -47,6 +47,8 @@ Website for findeasily.net
 (*Note*: You need to purchase licenses before using these 2 resources into your personal project)
 1. The UI template I bought: [Official Demo Link with Images](http://citybook.kwst.net/)
 2. The Email template I bought: [Lil Commerce](http://notification-emails.com/transactional-email-templates) 
+3. UI: how freemarker work in Spring to make java developer happy.
+[Freemarker level up](https://freemarker.apache.org/docs/dgui_quickstart_basics.html)
 
 ### Roadmap
 - [x] Project configuration setup
