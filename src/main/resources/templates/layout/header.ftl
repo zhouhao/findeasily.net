@@ -9,10 +9,13 @@
                 <input type="text" placeholder="Keywords" value=""/>
             </div>
             <div class="header-search-select-item">
-                <select data-placeholder="All Categories" class="chosen-select">
+                <select data-placeholder="All Categories" class="chosen-select">   
                     <option>Sub-Lease</option>
                     <option>Long-term</option>
                     <option>Temp</option>
+                    <option>Houses</option>
+                    <option>Apartment</option>
+                    <option>More...</option>
                 </select>
             </div>
             <button class="header-search-button">Search</button>
