@@ -9,7 +9,7 @@
                 <input type="text" placeholder="Keywords" value=""/>
             </div>
             <div class="header-search-select-item">
-                <select data-placeholder="All Categories" class="chosen-select">   
+                <select data-placeholder="All Categories" class="chosen-select">
                     <option>Sub-Lease</option>
                     <option>Long-term</option>
                     <option>Temp</option>
@@ -62,20 +62,13 @@
                         <a href="#">Listings <i class="fa fa-caret-down"></i></a>
                         <!--second level -->
                         <ul>
-                            <li><a href="listing.html">Column map</a></li>
-                            <li><a href="listing2.html">Column map 2</a></li>
-                            <li><a href="listing3.html">Fullwidth Map</a></li>
-                            <li><a href="listing4.html">Fullwidth Map 2</a></li>
-                            <li><a href="listing5.html">Without Map</a></li>
-                            <li><a href="listing6.html">Without Map 2</a></li>
+                            <li><a href="#">Placeholder</a></li>
                             <li>
-                                <a href="#">Single <i class="fa fa-caret-down"></i></a>
+                                <a href="#">Placeholder <i class="fa fa-caret-down"></i></a>
                                 <!--third  level  -->
                                 <ul>
-                                    <li><a href="listing-single.html">Style 1</a></li>
-                                    <li><a href="listing-single2.html">Style 2</a></li>
-                                    <li><a href="listing-single3.html">Style 3</a></li>
-                                    <li><a href="listing-single4.html">Style 4</a></li>
+                                    <li><a href="#">Placeholder 1</a></li>
+                                    <li><a href="#">Placeholder 2</a></li>
                                 </ul>
                                 <!--third  level end-->
                             </li>
