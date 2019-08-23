@@ -1,3 +1,4 @@
+<#import "../utils/base.ftl" as BaseUtils>
 <#include "../layout/layout.ftl"/>
 <#if !pageTitle?has_content>
     <#assign pageTitle = 'Add Your New Listing'/>
@@ -34,12 +35,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="category">Category</label>
-                                        <select name="category" id="category" data-placeholder="All Categories"
-                                                class="chosen-select">
-                                            <option>Sub-Lease</option>
-                                            <option>Long-term</option>
-                                            <option>Temp</option>
-                                        </select>
+                                        <@BaseUtils.dropdownCategories name="category" />
                                     </div>
                                 </div>
                             </div>
