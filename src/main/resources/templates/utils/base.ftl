@@ -8,3 +8,7 @@
         <option>Apartment</option>
     </select>
 </#macro>
+
+<#macro requiredTextInput name placeholder="" class="">
+    <input type="text" id="${name}" name="${name}" class="${class}" placeholder="${placeholder}" required/>
+</#macro>

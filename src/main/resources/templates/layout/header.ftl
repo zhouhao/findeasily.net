@@ -1,4 +1,3 @@
-<#import "../utils/base.ftl" as BaseUtils>
 <!-- header-->
 <header class="main-header dark-header fs-header sticky">
     <div class="header-inner">

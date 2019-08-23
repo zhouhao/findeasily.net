@@ -1,4 +1,3 @@
-<#import "../utils/base.ftl" as BaseUtils>
 <#include "../layout/layout.ftl"/>
 <#if !pageTitle?has_content>
     <#assign pageTitle = 'Add Your New Listing'/>
@@ -47,8 +46,8 @@
                                 <h4>Location / Contacts</h4>
                             </div>
                             <div class="custom-form">
-                                <label>Address Line 1<i class="fa fa-map-marker"></i></label>
-                                <input type="text" placeholder="Address of your business" value=""/>
+                                <label for="address1">Address Line 1<i class="fa fa-map-marker"></i></label>
+                                <@BaseUtils.requiredTextInput name="address1" placeholder="Address1 of your business"/>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Address Line 2<i class="fa fa-map-marker"></i></label>
