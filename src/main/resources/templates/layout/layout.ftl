@@ -1,4 +1,5 @@
 <#macro layout>
+    <#import "../utils/base.ftl" as BaseUtils>
     <!DOCTYPE HTML>
     <html lang="en">
     <head>
