@@ -34,12 +34,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="category">Category</label>
-                                        <select name="category" id="category" data-placeholder="All Categories"
-                                                class="chosen-select">
-                                            <option>Sub-Lease</option>
-                                            <option>Long-term</option>
-                                            <option>Temp</option>
-                                        </select>
+                                        <@BaseUtils.dropdownCategories name="category" />
                                     </div>
                                 </div>
                             </div>
@@ -51,8 +46,8 @@
                                 <h4>Location / Contacts</h4>
                             </div>
                             <div class="custom-form">
-                                <label>Address Line 1<i class="fa fa-map-marker"></i></label>
-                                <input type="text" placeholder="Address of your business" value=""/>
+                                <label for="address1">Address Line 1<i class="fa fa-map-marker"></i></label>
+                                <@BaseUtils.requiredTextInput name="address1" placeholder="Address1 of your business"/>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Address Line 2<i class="fa fa-map-marker"></i></label>
