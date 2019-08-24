@@ -30,7 +30,8 @@
                     </div>
                     <ul>
                         <li><a href="/user"> Edit profile</a></li>
-                        <li><a href="#"> Add Listing</a></li>
+                        <li><a href="/mgmt/listings">My Listings </a></li>
+                        <li><a href="/mgmt/listing/new">Add Listing</a></li>
                         <li><a href="#"> Bookings </a></li>
                         <li><a href="#"> Reviews </a></li>
                         <li><a href="#" id="logout-header">Log Out</a></li>
