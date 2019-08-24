@@ -22,9 +22,7 @@ public class ControllerMonitor {
     public Object logServiceAccess(ProceedingJoinPoint pjp) throws Throwable {
         log.info("processing: " + pjp);
         long start = System.currentTimeMillis();
-        log.info("Going to call the method.");
         Object output = pjp.proceed();
-        log.info("Method execution completed.");
         long elapsedTime = System.currentTimeMillis() - start;
         log.info(pjp.getSignature() + " execution time: " + elapsedTime + " milliseconds.");
         return output;
