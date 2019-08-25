@@ -4,10 +4,13 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import net.findeasily.website.domain.enums.ListingStatus;
 
 @Data
 @Entity
@@ -89,5 +92,8 @@ public class Listing {
     @Column(name = "longitude")
     private Float longitude = 0F;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private ListingStatus status = ListingStatus.DRAFT;
 
 }

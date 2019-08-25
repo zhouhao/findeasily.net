@@ -7,11 +7,14 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +22,7 @@ import net.findeasily.website.entity.Token;
 import net.findeasily.website.service.TokenService;
 import net.findeasily.website.service.UserService;
 import net.findeasily.website.util.ToastrUtils;
+
 
 @Controller
 @Slf4j
@@ -92,6 +96,8 @@ public class HomeController {
         return new ModelAndView("user/forget_password", model);
     }
 
+    /***** endpoints used for test purpose *****/
+
     // Note: this is for test purpose, just render email template for review
     @GetMapping("/password/email")
     public ModelAndView email() {
@@ -101,4 +107,11 @@ public class HomeController {
         return new ModelAndView("email/account_password_reset_complete", model);
     }
 
+    @PostMapping("/public/echo")
+    @ResponseBody
+    public String greetingJson(HttpEntity<String> httpEntity) {
+        String json = httpEntity.getBody();
+        log.info(json);
+        return json;
+    }
 }

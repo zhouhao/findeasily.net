@@ -12,7 +12,7 @@
             <div class="profile-edit-wrap">
                 <div class="profile-edit-page-header">
                     <h2>Edit profile</h2>
-                    <div class="breadcrumbs"><a href="#">Home</a><a href="#">Dasboard</a><span>Edit profile</span></div>
+                    <div class="breadcrumbs"><a href="#">Home</a><a href="#">Dashboard</a><span>Edit profile</span></div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">

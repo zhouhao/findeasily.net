@@ -222,25 +222,6 @@ function initWebsite() {
     $('.sp-cont-next').on("click", function () {
         $(this).closest(".spons-list").find('.client-carousel').slick('slickNext');
     });
-    //   Bubbles ------------------
-    $('<div class="bubbles"></div>').appendTo(".bubble-bg");
-    var bArray = [];
-    var sArray = [5, 10, 15, 20];
-    for (var i = 0; i < $('.bubbles').width(); i++) {
-        bArray.push(i);
-    }
-
-    function randomValue(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-    }
-
-    setInterval(function () {
-        var size = randomValue(sArray);
-        $('.bubbles').append('<div class="individual-bubble" style="left: ' + randomValue(bArray) + 'px; width: ' + size + 'px; height:' + size + 'px;"></div>');
-        $('.individual-bubble').fadeOut(5000, function () {
-            $(this).remove()
-        });
-    }, 350);
     //   lightGallery------------------
     $(".image-popup").lightGallery({
         selector: "this",
@@ -353,56 +334,6 @@ function initWebsite() {
         4: '<i class="fa fa-warning"></i> E-mail address is not valid.',
         5: '<i class="fa fa-warning"></i> E-mail address is not valid.'
     };
-    //   Video------------------
-    var v = $(".background-youtube-wrapper").data("vid");
-    var f = $(".background-youtube-wrapper").data("mv");
-    $(".background-youtube-wrapper").YTPlayer({
-        fitToBackground: true,
-        videoId: v,
-        pauseOnScroll: true,
-        mute: f,
-        callback: function () {
-            var a = $(".background-youtube-wrapper").data("ytPlayer").player;
-        }
-    });
-
-    var w = $(".background-vimeo").data("vim"),
-        bvc = $(".background-vimeo"),
-        bvmc = $(".media-container"),
-        bvfc = $(".background-vimeo iframe "),
-        vch = $(".video-container");
-    bvc.append('<iframe src="//player.vimeo.com/video/' + w + '?background=1"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>');
-    $(".video-holder").height(bvmc.height());
-    if ($(window).width() > 1024) {
-        if ($(".video-holder").size() > 0)
-            if (bvmc.height() / 9 * 16 > bvmc.width()) {
-                bvfc.height(bvmc.height()).width(bvmc.height() / 9 * 16);
-                bvfc.css({
-                    "margin-left": -1 * $("iframe").width() / 2 + "px",
-                    top: "-75px",
-                    "margin-top": "0px"
-                });
-            } else {
-                bvfc.width($(window).width()).height($(window).width() / 16 * 9);
-                bvfc.css({
-                    "margin-left": -1 * $("iframe").width() / 2 + "px",
-                    "margin-top": -1 * $("iframe").height() / 2 + "px",
-                    top: "50%"
-                });
-            }
-    } else if ($(window).width() < 760) {
-        $(".video-holder").height(bvmc.height());
-        bvfc.height(bvmc.height());
-    } else {
-        $(".video-holder").height(bvmc.height());
-        bvfc.height(bvmc.height());
-    }
-    vch.css("width", $(window).width() + "px");
-    vch.css("height", 720 / 1280 * $(window).width()) + "px";
-    if (vch.height() < $(window).height()) {
-        vch.css("height", $(window).height() + "px");
-        vch.css("width", 1280 / 720 * $(window).height()) + "px";
-    }
     //   scroll to------------------
     $(".custom-scroll-link").on("click", function () {
         var a = 70 + $(".scroll-nav-wrapper").height();
@@ -642,6 +573,7 @@ cr2.each(function (cr) {
     var starcount2 = $(this).attr("data-starrating2");
     $("<i class='fa fa-star'></i>").duplicate(starcount2).prependTo(this);
 });
+
 $(".location a , .loc-act").on("click", function (e) {
     e.preventDefault();
     $.get("http://ipinfo.io", function (response) {
