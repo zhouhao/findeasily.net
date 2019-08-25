@@ -36,11 +36,31 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="category">Category</label>
-                                            <@BaseUtils.dropdownCategories name="category" includeAll=false />
+                                            <@BaseUtils.dropdownCategories name="category" durationOnly=true includeAll=false />
                                         </div>
+                                        <div class="col-md-6">
+                                            <label for="rent_price">Date Available<i class="fa fa-calendar"></i></label>
+                                            <input type="date" id="available_date" name="available_date" required placeholder="Available Date"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <label for="rent_price">Monthly Rent<i class="fa fa-dollar"></i></label>
                                             <input type="number" id="rent_price" name="rent_price" required placeholder="Monthly Rent"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="rent_price">Security Deposit<i class="fa fa-dollar"></i></label>
+                                            <input type="number" id="security_deposit" name="security_deposit" required placeholder="Security Deposit"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="rent_price">Bedroom Count<i class="fa fa-bed"></i></label>
+                                            <input type="number" id="bedroom_count" name="bedroom_count" required/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="rent_price">Bathroom Count<i class="fa fa-bath"></i></label>
+                                            <input type="number" id="bathroom_count" name="bathroom_count" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -84,10 +104,16 @@
                                     <div class="map-container">
                                         <div id="singleMap" data-latitude="40.7427837" data-longitude="-73.11445617675781"></div>
                                     </div>
-                                    <label>Phone<i class="fa fa-phone"></i></label>
-                                    <@BaseUtils.requiredTextInput name="contact_phone" placeholder="Contact Phone"/>
-                                    <label>Email<i class="fa fa-envelope-o"></i></label>
-                                    <@BaseUtils.requiredTextInput name="contact_email" placeholder="Contact Email"/>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Phone<i class="fa fa-phone"></i></label>
+                                            <@BaseUtils.requiredTextInput name="contact_phone" placeholder="Contact Phone"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Email<i class="fa fa-envelope-o"></i></label>
+                                            <@BaseUtils.requiredTextInput name="contact_email" placeholder="Contact Email"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- profile-edit-container end-->
