@@ -38,6 +38,10 @@
                                             <label for="category">Category</label>
                                             <@BaseUtils.dropdownCategories name="category" includeAll=false />
                                         </div>
+                                        <div class="col-md-6">
+                                            <label for="rent_price">Monthly Rent<i class="fa fa-dollar"></i></label>
+                                            <input type="number" id="rent_price" name="rent_price" required placeholder="Monthly Rent"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -75,15 +79,15 @@
                                             <@BaseUtils.requiredTextInput name="country"/>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="lat"/>
-                                    <input type="hidden" id="long"/>
+                                    <input type="hidden" id="latitude"/>
+                                    <input type="hidden" id="longitude"/>
                                     <div class="map-container">
                                         <div id="singleMap" data-latitude="40.7427837" data-longitude="-73.11445617675781"></div>
                                     </div>
                                     <label>Phone<i class="fa fa-phone"></i></label>
-                                    <input type="text" placeholder="Your Phone"/>
+                                    <@BaseUtils.requiredTextInput name="contact_phone" placeholder="Contact Phone"/>
                                     <label>Email<i class="fa fa-envelope-o"></i></label>
-                                    <input type="text" placeholder="Your Email"/>
+                                    <@BaseUtils.requiredTextInput name="contact_email" placeholder="Contact Email"/>
                                 </div>
                             </div>
                             <!-- profile-edit-container end-->
