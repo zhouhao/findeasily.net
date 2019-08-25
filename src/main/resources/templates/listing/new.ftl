@@ -23,7 +23,7 @@
                         <#include "../layout/dashboard-left-menu.ftl">
                     </div>
                     <div class="col-md-9">
-                        <form id="form" name="form"  method="post" action="/public/echo">
+                        <form id="form" name="form" method="post" action="/public/echo">
                             <!-- profile-edit-container-->
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="profile-edit-container add-list-container">
@@ -37,7 +37,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="category">Category</label>
-                                            <@BaseUtils.dropdownCategories name="category" />
+                                            <@BaseUtils.dropdownCategories name="category" includeAll=false />
                                         </div>
                                     </div>
                                 </div>
