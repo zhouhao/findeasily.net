@@ -3,9 +3,43 @@
 <#if !pageTitle?has_content>
     <#assign pageTitle = 'Add Your New Listing'/>
 </#if>
+<#assign inlineCss>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/simditor/2.3.28/styles/simditor.min.css" integrity="sha256-FNb142e6cJl0ruILhL4YZ2f4rVQMN9KEhEhoHofwm+I=" crossorigin="anonymous"/>
+    <style>
+        .simditor-body {
+            text-align: left;
+        }
+    </style>
+</#assign>
 <#assign inlineJs>
     <script src="https://maps.googleapis.com/maps/api/js?key=${google_map_api_key}"></script>
     <script type="text/javascript" src="/js/map-add.js"></script>
+    <script src="/vendor/simditor/module.js"></script>
+    <script src="/vendor/simditor/hotkeys.js"></script>
+    <script src="/vendor/simditor/simditor.js"></script>
+    <script>
+        Simditor.locale = 'en-US';
+        var editor = new Simditor({
+            textarea: $('#description'),
+            toolbar: ['title',
+                'bold',
+                'italic',
+                'underline',
+                'strikethrough',
+                'fontScale',
+                'color', '|',
+                'ol',
+                'ul',
+                'blockquote',
+                'code',
+                'table',
+                'link', '|',
+                'indent',
+                'outdent',
+                'alignment']
+            //optional options
+        });
+    </script>
 </#assign>
 <@layout>
     <!--section -->
@@ -123,8 +157,8 @@
                                     <h4>Detailed Information</h4>
                                 </div>
                                 <div class="custom-form">
-                                    <label>Description</label>
-                                    <textarea cols="40" rows="3" placeholder=""></textarea>
+                                    <label for="description">Description</label>
+                                    <textarea cols="40" rows="3" id="description" name="description"></textarea>
                                     <!-- Checkboxes -->
                                     <div class=" fl-wrap filter-tags">
                                         <h4>Amenities </h4>
