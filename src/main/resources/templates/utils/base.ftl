@@ -1,4 +1,4 @@
-<#macro dropdownCategories name class="chosen-select" includeAll=true>
+<#macro dropdownCategories name class="chosen-select" durationOnly=false includeAll=true>
     <select name="${name}" id="${name}" class="${class}">
         <#if includeAll>
             <option>All</option>
@@ -6,8 +6,10 @@
         <option>Sub-Lease</option>
         <option>Long-term</option>
         <option>Temp</option>
-        <option>Houses</option>
-        <option>Apartment</option>
+        <#if !durationOnly>
+            <option>Houses</option>
+            <option>Apartment</option>
+        </#if>
     </select>
 </#macro>
 

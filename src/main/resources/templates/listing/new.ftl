@@ -3,9 +3,43 @@
 <#if !pageTitle?has_content>
     <#assign pageTitle = 'Add Your New Listing'/>
 </#if>
+<#assign inlineCss>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/simditor/2.3.28/styles/simditor.min.css" integrity="sha256-FNb142e6cJl0ruILhL4YZ2f4rVQMN9KEhEhoHofwm+I=" crossorigin="anonymous"/>
+    <style>
+        .simditor-body {
+            text-align: left;
+        }
+    </style>
+</#assign>
 <#assign inlineJs>
     <script src="https://maps.googleapis.com/maps/api/js?key=${google_map_api_key}"></script>
     <script type="text/javascript" src="/js/map-add.js"></script>
+    <script src="/vendor/simditor/module.js"></script>
+    <script src="/vendor/simditor/hotkeys.js"></script>
+    <script src="/vendor/simditor/simditor.js"></script>
+    <script>
+        Simditor.locale = 'en-US';
+        var editor = new Simditor({
+            textarea: $('#description'),
+            toolbar: ['title',
+                'bold',
+                'italic',
+                'underline',
+                'strikethrough',
+                'fontScale',
+                'color', '|',
+                'ol',
+                'ul',
+                'blockquote',
+                'code',
+                'table',
+                'link', '|',
+                'indent',
+                'outdent',
+                'alignment']
+            //optional options
+        });
+    </script>
 </#assign>
 <@layout>
     <!--section -->
@@ -36,7 +70,31 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="category">Category</label>
-                                            <@BaseUtils.dropdownCategories name="category" includeAll=false />
+                                            <@BaseUtils.dropdownCategories name="category" durationOnly=true includeAll=false />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="rent_price">Date Available<i class="fa fa-calendar"></i></label>
+                                            <input type="date" id="available_date" name="available_date" required placeholder="Available Date"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="rent_price">Monthly Rent<i class="fa fa-dollar"></i></label>
+                                            <input type="number" id="rent_price" name="rent_price" required placeholder="Monthly Rent"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="rent_price">Security Deposit<i class="fa fa-dollar"></i></label>
+                                            <input type="number" id="security_deposit" name="security_deposit" required placeholder="Security Deposit"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="rent_price">Bedroom Count<i class="fa fa-bed"></i></label>
+                                            <input type="number" id="bedroom_count" name="bedroom_count" required/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="rent_price">Bathroom Count<i class="fa fa-bath"></i></label>
+                                            <input type="number" id="bathroom_count" name="bathroom_count" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -75,15 +133,21 @@
                                             <@BaseUtils.requiredTextInput name="country"/>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="lat"/>
-                                    <input type="hidden" id="long"/>
+                                    <input type="hidden" id="latitude"/>
+                                    <input type="hidden" id="longitude"/>
                                     <div class="map-container">
                                         <div id="singleMap" data-latitude="40.7427837" data-longitude="-73.11445617675781"></div>
                                     </div>
-                                    <label>Phone<i class="fa fa-phone"></i></label>
-                                    <input type="text" placeholder="Your Phone"/>
-                                    <label>Email<i class="fa fa-envelope-o"></i></label>
-                                    <input type="text" placeholder="Your Email"/>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Phone<i class="fa fa-phone"></i></label>
+                                            <@BaseUtils.requiredTextInput name="contact_phone" placeholder="Contact Phone"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Email<i class="fa fa-envelope-o"></i></label>
+                                            <@BaseUtils.requiredTextInput name="contact_email" placeholder="Contact Email"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- profile-edit-container end-->
@@ -93,8 +157,8 @@
                                     <h4>Detailed Information</h4>
                                 </div>
                                 <div class="custom-form">
-                                    <label>Description</label>
-                                    <textarea cols="40" rows="3" placeholder=""></textarea>
+                                    <label for="description">Description</label>
+                                    <textarea cols="40" rows="3" id="description" name="description"></textarea>
                                     <!-- Checkboxes -->
                                     <div class=" fl-wrap filter-tags">
                                         <h4>Amenities </h4>
