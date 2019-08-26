@@ -21,22 +21,7 @@
         Simditor.locale = 'en-US';
         var editor = new Simditor({
             textarea: $('#description'),
-            toolbar: ['title',
-                'bold',
-                'italic',
-                'underline',
-                'strikethrough',
-                'fontScale',
-                'color', '|',
-                'ol',
-                'ul',
-                'blockquote',
-                'code',
-                'table',
-                'link', '|',
-                'indent',
-                'outdent',
-                'alignment']
+            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', '|', 'indent', 'outdent', 'alignment']
             //optional options
         });
     </script>
@@ -140,11 +125,25 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>Phone<i class="fa fa-phone"></i></label>
+                                            <label for="contact_type">Contact Type</label>
+                                            <select id="contact_type" name="contact_type" class="chosen-select">
+                                                <option value="owner">Property Owner</option>
+                                                <option value="agent">Management Company / Broker</option>
+                                                <option value="tenant">Tenant</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Contact Name<i class="fa fa-user"></i></label>
+                                            <@BaseUtils.requiredTextInput name="contact_name" placeholder="Contact Name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Contact Phone<i class="fa fa-phone"></i></label>
                                             <@BaseUtils.requiredTextInput name="contact_phone" placeholder="Contact Phone"/>
                                         </div>
                                         <div class="col-md-6">
-                                            <label>Email<i class="fa fa-envelope-o"></i></label>
+                                            <label>Contact Email<i class="fa fa-envelope-o"></i></label>
                                             <@BaseUtils.requiredTextInput name="contact_email" placeholder="Contact Email"/>
                                         </div>
                                     </div>
@@ -159,25 +158,13 @@
                                 <div class="custom-form">
                                     <label for="description">Description</label>
                                     <textarea cols="40" rows="3" id="description" name="description"></textarea>
-                                    <!-- Checkboxes -->
-                                    <div class=" fl-wrap filter-tags">
-                                        <h4>Amenities </h4>
-                                        <input id="check-a" type="checkbox" name="check">
-                                        <label for="check-a">Elevator in building</label>
-                                        <input id="check-b" type="checkbox" name="check">
-                                        <label for="check-b">Friendly workspace</label>
-                                        <input id="check-c" type="checkbox" name="check">
-                                        <label for="check-c">Instant Book</label>
-                                        <input id="check-d" type="checkbox" name="check">
-                                        <label for="check-d">Wireless Internet</label>
-                                    </div>
                                 </div>
                             </div>
                             <!-- profile-edit-container end-->
                             <div class="profile-edit-container">
                                 <div class="custom-form">
                                     <button class="btn big-btn color-bg flat-btn" type="submit">
-                                        Save Changes<i class="fa fa-angle-right"></i>
+                                        Save & Continue<i class="fa fa-angle-right"></i>
                                     </button>
                                 </div>
                             </div>
