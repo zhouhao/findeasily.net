@@ -31,6 +31,13 @@
             country: 'long_name',
             postal_code: 'short_name'
         };
+        var elMap = {
+            address1: ['street_number', 'route'],
+            city: ['locality'],
+            state: ['administrative_area_level_1'],
+            country: ['country'],
+            zipcode: ['postal_code']
+        };
 
         function initAutocomplete() {
             autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), { types: ['geocode'] });
@@ -40,18 +47,21 @@
 
         function fillInAddress() {
             var place = autocomplete.getPlace();
-            console.log(JSON.stringify(place));
-            // for (var component in componentForm) {
-            //     document.getElementById(component).value = '';
-            //     document.getElementById(component).disabled = false;
-            // }
-            // for (var i = 0; i < place.address_components.length; i++) {
-            //     var addressType = place.address_components[i].types[0];
-            //     if (componentForm[addressType]) {
-            //         document.getElementById(addressType).value = place.address_components[i][componentForm[addressType]];
-            //     }
-            // }
-            console.log(JSON.stringify(place.geometry.location));
+            var dict = {};
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                    dict[addressType] = place.address_components[i][componentForm[addressType]];
+                }
+            }
+            for (var el in elMap) {
+                var val = '';
+                for (var v in elMap[el]) {
+                    val += dict[elMap[el][v]] + ' ';
+                }
+                document.getElementById(el).value = val.trim();
+            }
+
             $('#longitude').val(place.geometry.location.lng);
             $('#latitude').val(place.geometry.location.lat);
             singleMap();
