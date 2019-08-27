@@ -51,6 +51,10 @@
             //         document.getElementById(addressType).value = place.address_components[i][componentForm[addressType]];
             //     }
             // }
+            console.log(JSON.stringify(place.geometry.location));
+            $('#longitude').val(place.geometry.location.lng);
+            $('#latitude').val(place.geometry.location.lat);
+            singleMap();
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=${google_map_api_key}&libraries=places&callback=initAutocomplete"></script>
@@ -121,7 +125,7 @@
                                     <h4>Location / Contacts</h4>
                                 </div>
                                 <div class="custom-form">
-                                    <label for="autocomplete">Autocomplete Address<i class="fa fa-map-marker"></i></label>
+                                    <label for="autocomplete">Full Address<i class="fa fa-map-marker"></i></label>
                                     <input id="autocomplete" placeholder="Enter your address" type="text"/>
                                     <label for="address1">Address Line 1<i class="fa fa-map-marker"></i></label>
                                     <@BaseUtils.requiredTextInput name="address1"/>
@@ -150,10 +154,10 @@
                                             <@BaseUtils.requiredTextInput name="country"/>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="latitude"/>
-                                    <input type="hidden" id="longitude"/>
+                                    <input type="hidden" id="latitude" value="40.7427837"/>
+                                    <input type="hidden" id="longitude" value="-73.11445617675781"/>
                                     <div class="map-container">
-                                        <div id="singleMap" data-latitude="40.7427837" data-longitude="-73.11445617675781"></div>
+                                        <div id="singleMap"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">

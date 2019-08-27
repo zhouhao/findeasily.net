@@ -1,7 +1,7 @@
 function singleMap() {
     var myLatLng = {
-        lng: $('#singleMap').data('longitude'),
-        lat: $('#singleMap').data('latitude')
+        lng: Number($('#longitude').val()),
+        lat: Number($('#latitude').val())
     };
     var single_map = new google.maps.Map(document.getElementById('singleMap'), {
         zoom: 14,
