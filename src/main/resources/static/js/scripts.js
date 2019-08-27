@@ -112,7 +112,7 @@ function initWebsite() {
         arrows: false,
     });
     $('.slider-container').on('init', function (event, slick) {
-        initAutocomplete();
+        initAutocompleteHomePage();
     });
     sbp.on("click", function () {
         $(this).closest(".slider-container-wrap").find('.slider-container').slick('slickPrev');
@@ -582,7 +582,7 @@ $(".location a , .loc-act").on("click", function (e) {
     }, "jsonp");
 });
 
-function initAutocomplete() {
+function initAutocompleteHomePage() {
     var input = document.getElementById('autocomplete-input');
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.addListener('place_changed', function () {

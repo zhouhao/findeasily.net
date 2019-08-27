@@ -4,7 +4,7 @@
     <#assign pageTitle = 'Add Your New Listing'/>
 </#if>
 <#assign inlineCss>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/simditor/2.3.28/styles/simditor.min.css" integrity="sha256-FNb142e6cJl0ruILhL4YZ2f4rVQMN9KEhEhoHofwm+I=" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/vendor/simditor/simditor.css"/>
     <style>
         .simditor-body {
             text-align: left;
@@ -12,8 +12,6 @@
     </style>
 </#assign>
 <#assign inlineJs>
-    <script src="https://maps.googleapis.com/maps/api/js?key=${google_map_api_key}"></script>
-    <script type="text/javascript" src="/js/map-add.js"></script>
     <script src="/vendor/simditor/module.js"></script>
     <script src="/vendor/simditor/hotkeys.js"></script>
     <script src="/vendor/simditor/simditor.js"></script>
@@ -24,7 +22,39 @@
             toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', '|', 'indent', 'outdent', 'alignment']
             //optional options
         });
+        var placeSearch, autocomplete;
+        var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            locality: 'long_name',
+            administrative_area_level_1: 'short_name',
+            country: 'long_name',
+            postal_code: 'short_name'
+        };
+
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), { types: ['geocode'] });
+            autocomplete.setFields(['address_component', 'geometry']);
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        function fillInAddress() {
+            var place = autocomplete.getPlace();
+            console.log(JSON.stringify(place));
+            // for (var component in componentForm) {
+            //     document.getElementById(component).value = '';
+            //     document.getElementById(component).disabled = false;
+            // }
+            // for (var i = 0; i < place.address_components.length; i++) {
+            //     var addressType = place.address_components[i].types[0];
+            //     if (componentForm[addressType]) {
+            //         document.getElementById(addressType).value = place.address_components[i][componentForm[addressType]];
+            //     }
+            // }
+        }
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=${google_map_api_key}&libraries=places&callback=initAutocomplete"></script>
+    <script type="text/javascript" src="/js/map-add.js"></script>
 </#assign>
 <@layout>
     <!--section -->
@@ -91,6 +121,8 @@
                                     <h4>Location / Contacts</h4>
                                 </div>
                                 <div class="custom-form">
+                                    <label for="autocomplete">Autocomplete Address<i class="fa fa-map-marker"></i></label>
+                                    <input id="autocomplete" placeholder="Enter your address" type="text"/>
                                     <label for="address1">Address Line 1<i class="fa fa-map-marker"></i></label>
                                     <@BaseUtils.requiredTextInput name="address1"/>
                                     <div class="row">
