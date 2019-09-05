@@ -45,8 +45,11 @@ public class FileService {
     private Path fileRootPath;
 
     @PostConstruct
-    public void init() {
-        if (!fileRootPath.toFile().exists() || !Files.isWritable(fileRootPath)) {
+    public void init() throws IOException {
+        if (!Files.exists(fileRootPath)) {
+            Files.createDirectory(fileRootPath);
+        }
+        if (!Files.exists(fileRootPath) || !Files.isWritable(fileRootPath)) {
             throw new StorageException(fileRootPath + " does not exist or writable");
         }
 
