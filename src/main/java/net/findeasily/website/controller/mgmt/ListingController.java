@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.CurrentUser;
 import net.findeasily.website.domain.form.ListingCreateForm;
-import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.ListingCreateFormValidator;
 
 @Controller

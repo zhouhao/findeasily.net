@@ -102,28 +102,28 @@
                                             <@BaseUtils.dropdownCategories name="category" durationOnly=true includeAll=false />
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="rent_price">Date Available<i class="fa fa-calendar"></i></label>
-                                            <input type="date" id="available_date" name="available_date" required placeholder="Available Date"/>
+                                            <label for="availableDate">Date Available<i class="fa fa-calendar"></i></label>
+                                            <input type="date" id="availableDate" name="availableDate" required placeholder="Available Date"/>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="rent_price">Monthly Rent<i class="fa fa-dollar"></i></label>
-                                            <input type="number" id="rent_price" name="rent_price" required placeholder="Monthly Rent"/>
+                                            <label for="monthlyRent">Monthly Rent<i class="fa fa-dollar"></i></label>
+                                            <input type="number" id="monthlyRent" name="monthlyRent" required placeholder="Monthly Rent"/>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="rent_price">Security Deposit<i class="fa fa-dollar"></i></label>
-                                            <input type="number" id="security_deposit" name="security_deposit" required placeholder="Security Deposit"/>
+                                            <label for="securityDeposit">Security Deposit<i class="fa fa-dollar"></i></label>
+                                            <input type="number" id="securityDeposit" name="securityDeposit" required placeholder="Security Deposit"/>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="rent_price">Bedroom Count<i class="fa fa-bed"></i></label>
-                                            <input type="number" id="bedroom_count" name="bedroom_count" required/>
+                                            <label for="bedroomCount">Bedroom Count<i class="fa fa-bed"></i></label>
+                                            <input type="number" id="bedroomCount" name="bedroomCount" required/>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="rent_price">Bathroom Count<i class="fa fa-bath"></i></label>
-                                            <input type="number" id="bathroom_count" name="bathroom_count" required/>
+                                            <label for="bathroomCount">Bathroom Count<i class="fa fa-bath"></i></label>
+                                            <input type="number" id="bathroomCount" name="bathroomCount" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -171,8 +171,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="contact_type">Contact Type</label>
-                                            <select id="contact_type" name="contact_type" class="chosen-select">
+                                            <label for="contactType">Contact Type</label>
+                                            <select id="contactType" name="contactType" class="chosen-select">
                                                 <option value="owner">Property Owner</option>
                                                 <option value="agent">Management Company / Broker</option>
                                                 <option value="tenant">Tenant</option>
@@ -180,17 +180,17 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label>Contact Name<i class="fa fa-user"></i></label>
-                                            <@BaseUtils.requiredTextInput name="contact_name" placeholder="Contact Name"/>
+                                            <@BaseUtils.requiredTextInput name="contactName" placeholder="Contact Name"/>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Contact Phone<i class="fa fa-phone"></i></label>
-                                            <@BaseUtils.requiredTextInput name="contact_phone" placeholder="Contact Phone"/>
+                                            <@BaseUtils.requiredTextInput name="contactPhone" placeholder="Contact Phone"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label>Contact Email<i class="fa fa-envelope-o"></i></label>
-                                            <@BaseUtils.requiredTextInput name="contact_email" placeholder="Contact Email"/>
+                                            <@BaseUtils.requiredTextInput name="contactEmail" placeholder="Contact Email"/>
                                         </div>
                                     </div>
                                 </div>
