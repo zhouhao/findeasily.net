@@ -1,10 +1,9 @@
 package net.findeasily.website.domain.form;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -35,8 +34,10 @@ public class ListingCreateForm {
     @Min(0)
     private Integer bedroomCount;
 
-    @NotNull
-    private Date availableDate;
+    @NotEmpty
+    private String availableDate;
+    // This field will be populated in validator
+    private LocalDate availableDateTS;
 
     @Length(min = 4, max = 128)
     private String address1;

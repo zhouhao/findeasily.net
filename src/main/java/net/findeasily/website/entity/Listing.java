@@ -1,6 +1,6 @@
 package net.findeasily.website.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +20,9 @@ public class Listing {
     @Column(name = "id", insertable = false, nullable = false)
     private String id;
 
+    @Column(name = "title", nullable = false)
+    private String title;
+
     @Column(name = "property_id", nullable = false)
     private String propertyId;
 
@@ -33,7 +36,7 @@ public class Listing {
     private Integer securityDeposit;
 
     @Column(name = "available_date", nullable = false)
-    private Timestamp availableDate;
+    private LocalDate availableDate;
 
     @Column(name = "bedroom_count")
     private Integer bedroomCount = 1;
