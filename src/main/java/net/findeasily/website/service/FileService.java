@@ -108,7 +108,7 @@ public class FileService {
         }
     }
 
-    public File getFile(Folder folder, String file) {
+    private File getFile(Folder folder, String file) {
         return fileRootPath.resolve(Paths.get(folder.getPath(), file)).toFile();
     }
 
