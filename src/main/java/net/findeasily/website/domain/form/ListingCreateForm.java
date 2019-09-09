@@ -55,10 +55,12 @@ public class ListingCreateForm {
     @NotEmpty
     private String zipcode;
 
-    private float latitude;
-    private float longitude;
+    private Float latitude;
+    private Float longitude;
 
+    @NotEmpty
     private String contactType;
+    @NotEmpty
     private String contactName;
     private String contactPhone;
     private String contactEmail;

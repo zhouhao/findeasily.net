@@ -164,8 +164,8 @@
                                             <@BaseUtils.requiredTextInput name="country"/>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="latitude" value="40.7427837"/>
-                                    <input type="hidden" id="longitude" value="-73.11445617675781"/>
+                                    <input type="hidden" id="latitude" name="latitude" value="40.7427837"/>
+                                    <input type="hidden" id="longitude" name="longitude" value="-73.11445617675781"/>
                                     <div class="map-container">
                                         <div id="singleMap"></div>
                                     </div>

@@ -1,5 +1,6 @@
 package net.findeasily.website.domain.validator;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -20,12 +21,14 @@ public class ListingCreateFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
         log.debug("Validating {}", target);
         ListingCreateForm form = (ListingCreateForm) target;
-
-        validateAddress(errors, form);
+        log.info("form = {}", form);
+        validateContact(errors, form);
     }
 
-    private void validateAddress(Errors errors, ListingCreateForm form) {
-        errors.reject("address.empty", "Address info cannot be empty");
+    private void validateContact(Errors errors, ListingCreateForm form) {
+        if (StringUtils.isAnyBlank(form.getContactType(), form.getContactName())
+                || StringUtils.isAllBlank(form.getContactPhone(), form.getContactEmail())) {
+            errors.reject("contact.notCompleted", "Contact name and either phone or email are required");
+        }
     }
-
 }

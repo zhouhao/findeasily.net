@@ -44,7 +44,10 @@ public class ListingController {
 
     @PostMapping("/mgmt/listing/new")
     public String createListingHandler(@Valid @ModelAttribute("form") ListingCreateForm form, BindingResult bindingResult) {
-
+        log.debug("Processing listing create form={}, bindingResult={}", form, bindingResult);
+        if (bindingResult.hasErrors()) {
+            log.error("errors happen when creating new listing...");
+        }
         return "listing/new";
     }
 
