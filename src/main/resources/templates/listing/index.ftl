@@ -21,88 +21,32 @@
                     <div class="col-md-9">
                         <div class="dashboard-list-box fl-wrap">
                             <div class="dashboard-header fl-wrap">
-                                <h3>Listing Management</h3>
+                                <h3>Listings Management</h3>
                             </div>
-                            <!-- dashboard-list end-->
-                            <div class="dashboard-list">
-                                <div class="dashboard-message">
-                                    <div class="dashboard-listing-table-image">
-                                        <a href="#"><img src="/images/all/1.jpg" alt=""></a>
-                                    </div>
-                                    <div class="dashboard-listing-table-text">
-                                        <h4><a href="#">Event In City Hall</a></h4>
-                                        <span class="dashboard-listing-table-address"><i class="fa fa-map-marker"></i><a href="#">USA 27TH Brooklyn NY</a></span>
-                                        <div class="listing-rating card-popup-rainingvis fl-wrap" data-starrating2="5">
-                                            <span>(2 reviews)</span>
+                            <#list listings as lst>
+                                <!-- dashboard-list start-->
+                                <div class="dashboard-list">
+                                    <div class="dashboard-message">
+                                        <div class="dashboard-listing-table-image">
+                                            <a href="#"><img src="/images/all/1.jpg" alt=""></a>
                                         </div>
-                                        <ul class="dashboard-listing-table-opt  fl-wrap">
-                                            <li><a href="#">Edit <i class="fa fa-pencil-square-o"></i></a></li>
-                                            <li><a href="#" class="del-btn">Delete <i class="fa fa-trash-o"></i></a></li>
-                                        </ul>
+                                        <div class="dashboard-listing-table-text">
+                                            <h4><a href="#">${lst.title}</a></h4>
+                                            <span class="dashboard-listing-table-address"><i class="fa fa-map-marker"></i>
+                                                <a href="#">${lst.city}, ${lst.state}, ${lst.zip}</a>
+                                            </span>
+                                            <div class="listing-rating card-popup-rainingvis fl-wrap" data-starrating2="5">
+                                                <span>(2 reviews)</span>
+                                            </div>
+                                            <ul class="dashboard-listing-table-opt  fl-wrap">
+                                                <li><a href="#">Edit <i class="fa fa-pencil-square-o"></i></a></li>
+                                                <li><a href="#" class="del-btn">Delete <i class="fa fa-trash-o"></i></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- dashboard-list end-->
-                            <!-- dashboard-list end-->
-                            <div class="dashboard-list">
-                                <div class="dashboard-message">
-                                    <div class="dashboard-listing-table-image">
-                                        <a href="#"><img src="/images/all/1.jpg" alt=""></a>
-                                    </div>
-                                    <div class="dashboard-listing-table-text">
-                                        <h4><a href="#">Event In City Hall</a></h4>
-                                        <span class="dashboard-listing-table-address"><i class="fa fa-map-marker"></i><a href="#">USA 27TH Brooklyn NY</a></span>
-                                        <div class="listing-rating card-popup-rainingvis fl-wrap" data-starrating2="3">
-                                            <span>(2 reviews)</span>
-                                        </div>
-                                        <ul class="dashboard-listing-table-opt  fl-wrap">
-                                            <li><a href="#">Edit <i class="fa fa-pencil-square-o"></i></a></li>
-                                            <li><a href="#" class="del-btn">Delete <i class="fa fa-trash-o"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- dashboard-list end-->
-                            <!-- dashboard-list end-->
-                            <div class="dashboard-list">
-                                <div class="dashboard-message">
-                                    <div class="dashboard-listing-table-image">
-                                        <a href="#"><img src="/images/all/1.jpg" alt=""></a>
-                                    </div>
-                                    <div class="dashboard-listing-table-text">
-                                        <h4><a href="#">Event In City Hall</a></h4>
-                                        <span class="dashboard-listing-table-address"><i class="fa fa-map-marker"></i><a href="#">USA 27TH Brooklyn NY</a></span>
-                                        <div class="listing-rating card-popup-rainingvis fl-wrap" data-starrating2="4">
-                                            <span>(2 reviews)</span>
-                                        </div>
-                                        <ul class="dashboard-listing-table-opt  fl-wrap">
-                                            <li><a href="#">Edit <i class="fa fa-pencil-square-o"></i></a></li>
-                                            <li><a href="#" class="del-btn">Delete <i class="fa fa-trash-o"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- dashboard-list end-->
-                            <!-- dashboard-list end-->
-                            <div class="dashboard-list">
-                                <div class="dashboard-message">
-                                    <div class="dashboard-listing-table-image">
-                                        <a href="#"><img src="/images/all/1.jpg" alt=""></a>
-                                    </div>
-                                    <div class="dashboard-listing-table-text">
-                                        <h4><a href="#">Event In City Hall</a></h4>
-                                        <span class="dashboard-listing-table-address"><i class="fa fa-map-marker"></i><a href="#">USA 27TH Brooklyn NY</a></span>
-                                        <div class="listing-rating card-popup-rainingvis fl-wrap" data-starrating2="5">
-                                            <span>(2 reviews)</span>
-                                        </div>
-                                        <ul class="dashboard-listing-table-opt  fl-wrap">
-                                            <li><a href="#">Edit <i class="fa fa-pencil-square-o"></i></a></li>
-                                            <li><a href="#" class="del-btn">Delete <i class="fa fa-trash-o"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- dashboard-list end-->
+                                <!-- dashboard-list end-->
+                            </#list>
                         </div>
                         <!-- pagination-->
                         <div class="pagination">

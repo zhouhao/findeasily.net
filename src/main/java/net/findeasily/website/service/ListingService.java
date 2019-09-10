@@ -1,5 +1,6 @@
 package net.findeasily.website.service;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -53,5 +54,9 @@ public class ListingService {
         out.setDescription(form.getDescription());
 
         return listingRepository.save(out);
+    }
+
+    public List<Listing> getByOwnerId(@NonNull String ownerId) {
+        return listingRepository.getByOwnerId(ownerId);
     }
 }
