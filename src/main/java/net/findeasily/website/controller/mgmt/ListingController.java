@@ -62,6 +62,6 @@ public class ListingController {
         CurrentUser user = (CurrentUser) authentication.getPrincipal();
         Map<String, Object> model = new HashMap<>();
 
-        return new ModelAndView("listing/new", model);
+        return new ModelAndView("listing/index", model);
     }
 }
