@@ -5,7 +5,7 @@
             <h3>Main</h3>
             <ul>
                 <li><a href="/user" class="user-profile-act"><i class="fa fa-user-o"></i> Edit profile</a></li>
-                <li><a href="dashboard-messages.html"><i class="fa fa-envelope-o"></i> Messages <span>3</span></a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> Messages <span>3</span></a></li>
                 <li><a href="/user/password"><i class="fa fa-unlock-alt"></i>Change Password</a></li>
             </ul>
         </div>
@@ -19,5 +19,6 @@
             </ul>
         </div>
         <!-- user-profile-menu end-->
+        <a href="#" class="log-out-btn">Log Out</a>
     </div>
 </div>
