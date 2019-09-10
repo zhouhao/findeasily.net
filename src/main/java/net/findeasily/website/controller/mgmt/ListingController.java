@@ -61,7 +61,7 @@ public class ListingController {
     public ModelAndView myListings(Authentication authentication) {
         CurrentUser user = (CurrentUser) authentication.getPrincipal();
         Map<String, Object> model = new HashMap<>();
-
+        model.put("listings", listingService.getByOwnerId(user.getId()));
         return new ModelAndView("listing/index", model);
     }
 }
