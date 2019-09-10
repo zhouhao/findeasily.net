@@ -26,7 +26,6 @@
                             <!-- dashboard-list end-->
                             <div class="dashboard-list">
                                 <div class="dashboard-message">
-                                    <span class="new-dashboard-item">New</span>
                                     <div class="dashboard-listing-table-image">
                                         <a href="#"><img src="/images/all/1.jpg" alt=""></a>
                                     </div>
