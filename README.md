@@ -59,6 +59,9 @@ Website for findeasily.net
     - [x] Update profile picture
 - [ ] User can create/edit/delete listing info
    - [ ] Create
+      - [x] Add basic info
+      - [ ] Upload photos
+      - [ ] Add Amenities
    - [ ] Edit/Update
    - [ ] Delete
    - [ ] View
