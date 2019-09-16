@@ -13,6 +13,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -63,5 +64,13 @@ public class ListingController {
         Map<String, Object> model = new HashMap<>();
         model.put("listings", listingService.getByOwnerId(user.getId()));
         return new ModelAndView("listing/index", model);
+    }
+
+    @GetMapping("/mgmt/listing/{id}")
+    public ModelAndView listing(Authentication authentication, @PathVariable("id") String id) {
+        CurrentUser user = (CurrentUser) authentication.getPrincipal();
+        Map<String, Object> model = new HashMap<>();
+        model.put("listing", listingService.getById(id));
+        return new ModelAndView("listing/edit", model);
     }
 }

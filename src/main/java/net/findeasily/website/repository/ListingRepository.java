@@ -11,4 +11,6 @@ public interface ListingRepository extends JpaRepository<Listing, String>, JpaSp
     Listing getByContactType(String contactType);
 
     List<Listing> getByOwnerId(String ownerId);
+
+    Listing getById(String id);
 }

@@ -59,4 +59,8 @@ public class ListingService {
     public List<Listing> getByOwnerId(@NonNull String ownerId) {
         return listingRepository.getByOwnerId(ownerId);
     }
+
+    public Listing getById(@NonNull String id) {
+        return listingRepository.getById(id);
+    }
 }
