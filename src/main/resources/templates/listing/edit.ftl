@@ -1,7 +1,7 @@
 <#import "/spring.ftl" as spring>
 <#include "../layout/layout.ftl"/>
 <#if !pageTitle?has_content>
-    <#assign pageTitle = 'Add Your New Listing'/>
+    <#assign pageTitle = 'Edit: ${listing.title}'/>
 </#if>
 <#assign inlineCss>
     <link rel="stylesheet" href="/vendor/simditor/simditor.css"/>
@@ -20,7 +20,6 @@
         var editor = new Simditor({
             textarea: $('#description'),
             toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', '|', 'indent', 'outdent', 'alignment']
-            //optional options
         });
         var placeSearch, autocomplete;
         var componentForm = {
@@ -95,7 +94,7 @@
                                 </div>
                                 <div class="custom-form">
                                     <label for="title">Listing Title <i class="fa fa-briefcase"></i></label>
-                                    <input type="text" name="title" id="title" placeholder="Name of your listing"/>
+                                    <input type="text" name="title" id="title" value="${listing.title!''}" placeholder="Name of your listing"/>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="category">Category</label>
@@ -103,7 +102,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="availableDate">Date Available<i class="fa fa-calendar"></i></label>
-                                            <input type="date" id="availableDate" name="availableDate" required placeholder="Available Date"/>
+                                            <input type="date" id="availableDate" name="availableDate" value="${listing.availableDate!''}" required placeholder="Available Date"/>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -138,34 +137,34 @@
                                     <label for="autocomplete">Full Address<i class="fa fa-map-marker"></i></label>
                                     <input id="autocomplete" placeholder="Enter your address" type="text"/>
                                     <label for="address1">Address Line 1<i class="fa fa-map-marker"></i></label>
-                                    <@BaseUtils.requiredTextInput name="address1"/>
+                                    <@BaseUtils.requiredTextInput name="address1" value="${listing.address1}"/>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Address Line 2<i class="fa fa-map-marker"></i></label>
-                                            <@BaseUtils.requiredTextInput name="address2"/>
+                                            <@BaseUtils.requiredTextInput name="address2" value="${listing.address2}"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label>Zip Code:<i class="fa fa-map-marker"></i></label>
-                                            <@BaseUtils.requiredTextInput name="zipcode"/>
+                                            <@BaseUtils.requiredTextInput name="zipcode" value="${listing.zip}"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label>City:<i class="fa fa-map-marker"></i></label>
-                                            <@BaseUtils.requiredTextInput name="city"/>
+                                            <@BaseUtils.requiredTextInput name="city" value="${listing.city}"/>
                                         </div>
                                         <div class="col-md-4">
                                             <label>State:<i class="fa fa-map-marker"></i></label>
-                                            <@BaseUtils.requiredTextInput name="state"/>
+                                            <@BaseUtils.requiredTextInput name="state" value="${listing.state}"/>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Country:<i class="fa fa-map-marker"></i></label>
-                                            <@BaseUtils.requiredTextInput name="country"/>
+                                            <@BaseUtils.requiredTextInput name="country" value="${listing.country}"/>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="latitude" name="latitude" value="40.7427837"/>
-                                    <input type="hidden" id="longitude" name="longitude" value="-73.11445617675781"/>
+                                    <input type="hidden" id="latitude" name="latitude" value="${listing.latitude}"/>
+                                    <input type="hidden" id="longitude" name="longitude" value="${listing.longitude}"/>
                                     <div class="map-container">
                                         <div id="singleMap"></div>
                                     </div>
@@ -203,7 +202,7 @@
                                 </div>
                                 <div class="custom-form">
                                     <label for="description">Description</label>
-                                    <textarea cols="40" rows="3" id="description" name="description"></textarea>
+                                    <textarea cols="40" rows="3" id="description" name="description">${listing.description}</textarea>
                                 </div>
                             </div>
                             <!-- profile-edit-container end-->
