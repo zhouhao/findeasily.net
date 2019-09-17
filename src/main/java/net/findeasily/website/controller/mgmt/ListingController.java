@@ -21,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.CurrentUser;
 import net.findeasily.website.domain.form.ListingCreateForm;
 import net.findeasily.website.domain.validator.ListingCreateFormValidator;
+import net.findeasily.website.entity.Listing;
 import net.findeasily.website.service.ListingService;
 
 @Controller
@@ -71,7 +72,12 @@ public class ListingController {
                                 @Valid @ModelAttribute("form") ListingCreateForm form, BindingResult bindingResult) {
         CurrentUser user = (CurrentUser) authentication.getPrincipal();
         Map<String, Object> model = new HashMap<>();
-        model.put("listing", listingService.getById(id));
+        Listing listing = listingService.getById(id);
+        // if listing cannot be found by ID, then redirect to home page
+        if (listing == null) {
+            return new ModelAndView("redirect:/");
+        }
+        model.put("listing", listing);
         return new ModelAndView("listing/edit", model);
     }
 }
