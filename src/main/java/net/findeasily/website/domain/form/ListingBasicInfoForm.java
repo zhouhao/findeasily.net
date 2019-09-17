@@ -14,7 +14,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ListingCreateForm {
+public class ListingBasicInfoForm {
+
+    private String id;
 
     @NotEmpty
     private String title;

@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import lombok.NonNull;
-import net.findeasily.website.domain.form.ListingCreateForm;
+import net.findeasily.website.domain.form.ListingBasicInfoForm;
 import net.findeasily.website.entity.Listing;
 import net.findeasily.website.repository.ListingRepository;
 
@@ -23,7 +23,7 @@ public class ListingService {
         this.listingRepository = listingRepository;
     }
 
-    public Listing create(@NonNull ListingCreateForm form, @NonNull String ownerId) {
+    public Listing create(@NonNull ListingBasicInfoForm form, @NonNull String ownerId) {
         Listing out = new Listing();
         out.setId(UUID.randomUUID().toString());
         out.setType(form.getCategory());
