@@ -108,11 +108,11 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="monthlyRent">Monthly Rent<i class="fa fa-dollar"></i></label>
-                                            <input type="number" id="monthlyRent" value="${listing.rentPrice}" name="monthlyRent" required placeholder="Monthly Rent"/>
+                                            <input type="number" id="monthlyRent" value="${listing.rentPrice?c}" name="monthlyRent" required placeholder="Monthly Rent"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="securityDeposit">Security Deposit<i class="fa fa-dollar"></i></label>
-                                            <input type="number" id="securityDeposit" value="${listing.securityDeposit}" name="securityDeposit" required placeholder="Security Deposit"/>
+                                            <input type="number" id="securityDeposit" value="${listing.securityDeposit?c}" name="securityDeposit" required placeholder="Security Deposit"/>
                                         </div>
                                     </div>
                                     <div class="row">
