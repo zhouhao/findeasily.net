@@ -67,7 +67,8 @@ public class ListingController {
     }
 
     @GetMapping("/mgmt/listing/{id}")
-    public ModelAndView listing(Authentication authentication, @PathVariable("id") String id) {
+    public ModelAndView listing(Authentication authentication, @PathVariable("id") String id,
+                                @Valid @ModelAttribute("form") ListingCreateForm form, BindingResult bindingResult) {
         CurrentUser user = (CurrentUser) authentication.getPrincipal();
         Map<String, Object> model = new HashMap<>();
         model.put("listing", listingService.getById(id));
