@@ -1,18 +1,18 @@
-<#macro dropdownCategories name class="chosen-select" durationOnly=false includeAll=true>
+<#macro dropdownCategories name class="chosen-select" value="" durationOnly=false includeAll=true>
     <select name="${name}" id="${name}" class="${class}">
         <#if includeAll>
-            <option>All</option>
+            <option value="all">All</option>
         </#if>
-        <option>Sub-Lease</option>
-        <option>Long-term</option>
-        <option>Temp</option>
+        <option value="sub-lease">Sub-Lease</option>
+        <option value="long-term">Long-term</option>
+        <option value="temp">Temp</option>
         <#if !durationOnly>
-            <option>Houses</option>
-            <option>Apartment</option>
+            <option value="house">House</option>
+            <option value="apt">Apartment</option>
         </#if>
     </select>
 </#macro>
 
-<#macro requiredTextInput name placeholder="" class="">
-    <input type="text" id="${name}" name="${name}" class="${class}" placeholder="${placeholder}" required/>
+<#macro requiredTextInput name value="" placeholder="" class="">
+    <input type="text" id="${name}" name="${name}" value="${value}" class="${class}" placeholder="${placeholder}" required/>
 </#macro>
