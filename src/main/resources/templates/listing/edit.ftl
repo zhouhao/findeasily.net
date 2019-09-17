@@ -98,7 +98,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="category">Category</label>
-                                            <@BaseUtils.dropdownCategories name="category" durationOnly=true includeAll=false />
+                                            <@BaseUtils.dropdownCategories name="category" durationOnly=true value="${listing.type}" includeAll=false />
                                         </div>
                                         <div class="col-md-6">
                                             <label for="availableDate">Date Available<i class="fa fa-calendar"></i></label>
@@ -108,21 +108,21 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="monthlyRent">Monthly Rent<i class="fa fa-dollar"></i></label>
-                                            <input type="number" id="monthlyRent" name="monthlyRent" required placeholder="Monthly Rent"/>
+                                            <input type="number" id="monthlyRent" value="${listing.rentPrice}" name="monthlyRent" required placeholder="Monthly Rent"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="securityDeposit">Security Deposit<i class="fa fa-dollar"></i></label>
-                                            <input type="number" id="securityDeposit" name="securityDeposit" required placeholder="Security Deposit"/>
+                                            <input type="number" id="securityDeposit" value="${listing.securityDeposit}" name="securityDeposit" required placeholder="Security Deposit"/>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="bedroomCount">Bedroom Count<i class="fa fa-bed"></i></label>
-                                            <input type="number" id="bedroomCount" name="bedroomCount" required/>
+                                            <input type="number" id="bedroomCount" value="${listing.bedroomCount}" name="bedroomCount" required/>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="bathroomCount">Bathroom Count<i class="fa fa-bath"></i></label>
-                                            <input type="number" id="bathroomCount" name="bathroomCount" required/>
+                                            <input type="number" id="bathroomCount" value="${listing.bathroomCount}" name="bathroomCount" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -172,24 +172,24 @@
                                         <div class="col-md-6">
                                             <label for="contactType">Contact Type</label>
                                             <select id="contactType" name="contactType" class="chosen-select">
-                                                <option value="owner">Property Owner</option>
-                                                <option value="agent">Management Company / Broker</option>
-                                                <option value="tenant">Tenant</option>
+                                                <option value="owner" <#if listing.contactType == 'owner'>selected</#if>>Property Owner</option>
+                                                <option value="agent" <#if listing.contactType == 'agent'>selected</#if>>Management Company / Broker</option>
+                                                <option value="tenant" <#if listing.contactType == 'tenant'>selected</#if>>Tenant</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6">
                                             <label>Contact Name<i class="fa fa-user"></i></label>
-                                            <@BaseUtils.requiredTextInput name="contactName" placeholder="Contact Name"/>
+                                            <@BaseUtils.requiredTextInput name="contactName" placeholder="Contact Name" value="${listing.contactName}"/>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Contact Phone<i class="fa fa-phone"></i></label>
-                                            <@BaseUtils.requiredTextInput name="contactPhone" placeholder="Contact Phone"/>
+                                            <@BaseUtils.requiredTextInput name="contactPhone" placeholder="Contact Phone" value="${listing.contactPhone}"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label>Contact Email<i class="fa fa-envelope-o"></i></label>
-                                            <@BaseUtils.requiredTextInput name="contactEmail" placeholder="Contact Email"/>
+                                            <@BaseUtils.requiredTextInput name="contactEmail" placeholder="Contact Email" value="${listing.contactEmail}"/>
                                         </div>
                                     </div>
                                 </div>
