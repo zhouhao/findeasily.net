@@ -56,7 +56,7 @@ public class ListingController {
             log.error("errors happen when creating new listing...");
         }
         CurrentUser user = (CurrentUser) authentication.getPrincipal();
-        listingService.create(form, user.getId());
+        listingService.save(form, user.getId());
         return "listing/new";
     }
 
