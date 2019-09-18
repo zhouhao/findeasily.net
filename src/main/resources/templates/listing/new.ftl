@@ -86,7 +86,7 @@
                         <#include "../layout/dashboard-left-menu.ftl">
                     </div>
                     <div class="col-md-9">
-                        <form id="form" name="form" method="post">
+                        <form id="form" name="form" method="post" action="/mgmt/listing">
                             <!-- profile-edit-container-->
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="profile-edit-container add-list-container">

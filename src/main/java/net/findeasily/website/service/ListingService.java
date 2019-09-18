@@ -3,10 +3,11 @@ package net.findeasily.website.service;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import lombok.NonNull;
-import net.findeasily.website.domain.form.ListingCreateForm;
+import net.findeasily.website.domain.form.ListingBasicInfoForm;
 import net.findeasily.website.entity.Listing;
 import net.findeasily.website.repository.ListingRepository;
 
@@ -23,9 +24,13 @@ public class ListingService {
         this.listingRepository = listingRepository;
     }
 
-    public Listing create(@NonNull ListingCreateForm form, @NonNull String ownerId) {
+    public Listing save(@NonNull ListingBasicInfoForm form, @NonNull String ownerId) {
         Listing out = new Listing();
-        out.setId(UUID.randomUUID().toString());
+        if (StringUtils.isBlank(form.getId())) {
+            out.setId(UUID.randomUUID().toString());
+        } else {
+            out.setId(form.getId());
+        }
         out.setType(form.getCategory());
         out.setTitle(form.getTitle());
         out.setOwnerId(ownerId);
