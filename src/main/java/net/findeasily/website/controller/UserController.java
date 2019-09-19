@@ -66,7 +66,7 @@ public class UserController {
         binder.addValidators(userCreateFormValidator);
     }
 
-    @PreAuthorize("@currentUserService.canAccessUser(user, #id)")
+    @PreAuthorize("@currentUserService.canAccessUser(#user, #id)")
     @RequestMapping("/user/{id}")
     public ModelAndView getUserPage(@PathVariable("id") UUID id, CurrentUser user) {
         log.debug("Getting user page for user={}", id);

@@ -47,7 +47,7 @@ public class ListingController {
         return new ModelAndView("listing/new", "form", new ListingBasicInfoForm());
     }
 
-    @PreAuthorize("@currentUserService.canEditListing(user, #id)")
+    @PreAuthorize("@currentUserService.canEditListing(#user, #id)")
     @GetMapping("/mgmt/listing/{id}/photo")
     public ModelAndView uploadPhoto(@PathVariable("id") String id, CurrentUser user) {
         return new ModelAndView("listing/photo", "id", id);
@@ -68,13 +68,12 @@ public class ListingController {
 
     @GetMapping("/mgmt/listings")
     public ModelAndView myListings(CurrentUser user) {
-        log.info("User = {}", user);
         Map<String, Object> model = new HashMap<>();
         model.put("listings", listingService.getByOwnerId(user.getId()));
         return new ModelAndView("listing/index", model);
     }
 
-    @PreAuthorize("@currentUserService.canEditListing(user, #id)")
+    @PreAuthorize("@currentUserService.canEditListing(#user, #id)")
     @GetMapping("/mgmt/listing/{id}")
     public ModelAndView listing(CurrentUser user, @PathVariable("id") String id) {
         Map<String, Object> model = new HashMap<>();
