@@ -25,9 +25,7 @@ public class ListingCreateFormValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        log.debug("Validating {}", target);
         ListingBasicInfoForm form = (ListingBasicInfoForm) target;
-        log.info("form = {}", form);
         validateContact(errors, form);
     }
 
