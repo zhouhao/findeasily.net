@@ -3,7 +3,6 @@ package net.findeasily.website.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -67,9 +66,9 @@ public class UserController {
         binder.addValidators(userCreateFormValidator);
     }
 
-    @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
+    @PreAuthorize("@currentUserService.canAccessUser(user, #id)")
     @RequestMapping("/user/{id}")
-    public ModelAndView getUserPage(@PathVariable UUID id, Principal principal) {
+    public ModelAndView getUserPage(@PathVariable("id") UUID id, CurrentUser user) {
         log.debug("Getting user page for user={}", id);
         return new ModelAndView("user/user", "user", Optional.ofNullable(userService.getUserById(id.toString()))
                 .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
