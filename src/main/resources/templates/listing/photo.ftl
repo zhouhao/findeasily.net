@@ -42,7 +42,8 @@
                                 <!--col -->
                                 <div class="col-md-12">
                                     <div class="add-list-media-wrap">
-                                        <form class="fuzone dropzone" action="/mgmt/listing/${id}/photo">
+                                        <form class="fuzone dropzone" action="/mgmt/listing/${id}/photo" enctype="multipart/form-data">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                             <div class="dz-message needsclick">
                                                 Drop files here or click to upload.
                                             </div>

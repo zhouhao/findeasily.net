@@ -96,7 +96,7 @@ public class FileService {
     }
 
     public Path storeListingPhoto(@NonNull MultipartFile file, @NonNull String listingId) throws IOException {
-        return store(file, Folder.USER_PICTURE, Constant.ORIGIN_IMAGE_PREFIX + listingId + "_" + file.getOriginalFilename());
+        return store(file, Folder.LISTING_PHOTO, Constant.ORIGIN_IMAGE_PREFIX + listingId + "_" + file.getOriginalFilename());
     }
 
     public Path load(@NonNull String filename) {
