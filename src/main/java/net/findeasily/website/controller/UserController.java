@@ -75,8 +75,7 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public ModelAndView getSelfPage(Authentication authentication) {
-        CurrentUser user = (CurrentUser) authentication.getPrincipal();
+    public ModelAndView getSelfPage(CurrentUser user) {
         File pic = fileService.getUserPicture(user.getId());
         Map<String, Object> model = new HashMap<>();
         if (pic.exists()) {
@@ -88,10 +87,9 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public String postUserInfo(Authentication authentication,
+    public String postUserInfo(CurrentUser user,
                                @RequestParam(value = "file", required = false) MultipartFile file,
                                @RequestParam("self-introduction") String selfIntro) throws IOException {
-        CurrentUser user = (CurrentUser) authentication.getPrincipal();
         if (file != null && !file.isEmpty()) {
             Path saveFile = fileService.storeUserPicture(file, user.getUser());
             eventPublisher.publishEvent(new ImageUploadedEvent(this, saveFile.toString(), user.getId()));
@@ -106,11 +104,10 @@ public class UserController {
     }
 
     @PostMapping("/user/password")
-    public ModelAndView postPwsUpdate(Authentication authentication,
+    public ModelAndView postPwsUpdate(CurrentUser user,
                                       @RequestParam("current-password") String currentPassword,
                                       @RequestParam("new-password") String newPassword,
                                       @RequestParam("repeated-password") String repeatedPassword) {
-        CurrentUser user = (CurrentUser) authentication.getPrincipal();
         Map<String, String> model = new HashMap<>();
         if (StringUtils.isAnyBlank(currentPassword, newPassword, repeatedPassword)) {
             model.put(ToastrUtils.KEY, ToastrUtils.error("invalid request: current password, new password and password confirmation must be provided"));
