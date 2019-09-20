@@ -1,11 +1,15 @@
 package net.findeasily.website.controller.mgmt;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -15,13 +19,18 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.domain.CurrentUser;
+import net.findeasily.website.domain.GenericResponse;
 import net.findeasily.website.domain.form.ListingBasicInfoForm;
 import net.findeasily.website.domain.validator.ListingCreateFormValidator;
 import net.findeasily.website.entity.Listing;
+import net.findeasily.website.service.FileService;
 import net.findeasily.website.service.ListingService;
 
 @Controller
@@ -30,11 +39,14 @@ public class ListingController {
 
     private final ListingCreateFormValidator listingCreateFormValidator;
     private final ListingService listingService;
+    private final FileService fileService;
 
     @Autowired
-    public ListingController(ListingCreateFormValidator listingCreateFormValidator, ListingService listingService) {
+    public ListingController(ListingCreateFormValidator listingCreateFormValidator,
+                             ListingService listingService, FileService fileService) {
         this.listingCreateFormValidator = listingCreateFormValidator;
         this.listingService = listingService;
+        this.fileService = fileService;
     }
 
     @InitBinder("form")
@@ -51,6 +63,15 @@ public class ListingController {
     @GetMapping("/mgmt/listing/{id}/photo")
     public ModelAndView uploadPhoto(@PathVariable("id") String id, CurrentUser user) {
         return new ModelAndView("listing/photo", "id", id);
+    }
+
+    @PreAuthorize("@currentUserService.canEditListing(#user, #id)")
+    @PostMapping("/mgmt/listing/{id}/photo")
+    @ResponseBody
+    public ResponseEntity<GenericResponse> uploadPhotoHandler(@RequestParam(value = "file") MultipartFile file,
+                                                              @PathVariable("id") String id, CurrentUser user) throws IOException {
+        Path path = fileService.storeListingPhoto(file, id);
+        return ResponseEntity.ok(new GenericResponse(path != null, ""));
     }
 
     @PostMapping("/mgmt/listing")

@@ -32,7 +32,9 @@ import net.findeasily.website.exception.UnsupportedMediaTypeException;
 public class FileService {
 
     public enum Folder {
-        USER_PICTURE("images/user");
+        USER_PICTURE("images/user"),
+        LISTING_PHOTO("images/listing"),
+        ;
         @Getter
         private String path;
 
@@ -67,6 +69,13 @@ public class FileService {
     }
 
     public Path store(@NonNull MultipartFile file, Folder folder, String savedName) throws IOException {
+        if (file.getOriginalFilename() == null) {
+            throw new IOException("uploaded file is invalid, which does not have file name");
+        }
+        // we will only support PNG and JPG(JPEG) images now
+        if (!Constant.IMAGE_CONTENT_TYPE.contains(file.getContentType())) {
+            throw new UnsupportedMediaTypeException(file.getContentType() + " is not supported yet. Only PNG and JPG are supported now");
+        }
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         if (file.isEmpty()) {
             throw new StorageException("Failed to store empty file " + filename);
@@ -83,11 +92,11 @@ public class FileService {
     }
 
     public Path storeUserPicture(@NonNull MultipartFile file, @NonNull User user) throws IOException {
-        // we will only support PNG and JPG(JPEG) images now
-        if (!Constant.IMAGE_CONTENT_TYPE.contains(file.getContentType())) {
-            throw new UnsupportedMediaTypeException(file.getContentType() + " is not supported yet. Only PNG and JPG are supported now");
-        }
         return store(file, Folder.USER_PICTURE, Constant.ORIGIN_IMAGE_PREFIX + user.getId());
+    }
+
+    public Path storeListingPhoto(@NonNull MultipartFile file, @NonNull String listingId) throws IOException {
+        return store(file, Folder.USER_PICTURE, Constant.ORIGIN_IMAGE_PREFIX + listingId + "_" + file.getOriginalFilename());
     }
 
     public Path load(@NonNull String filename) {
