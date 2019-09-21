@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 
@@ -96,7 +97,7 @@ public class FileService {
     }
 
     public Path storeListingPhoto(@NonNull MultipartFile file, @NonNull String listingId) throws IOException {
-        return store(file, Folder.USER_PICTURE, Constant.ORIGIN_IMAGE_PREFIX + listingId + "_" + file.getOriginalFilename());
+        return store(file, Folder.LISTING_PHOTO, Constant.ORIGIN_IMAGE_PREFIX + "_" + UUID.randomUUID());
     }
 
     public Path load(@NonNull String filename) {
