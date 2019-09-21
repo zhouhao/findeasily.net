@@ -1,7 +1,7 @@
 package net.findeasily.website.entity;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,13 +27,12 @@ public class ListingPhoto implements Serializable {
     private String listingId;
 
     @Column(name = "upload_date", nullable = false)
-    private Timestamp uploadDate;
+    private LocalDateTime uploadDate;
 
     @Column(name = "path", nullable = false)
     private String path;
 
     @Column(name = "description")
     private String description;
-
 
 }

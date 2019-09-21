@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,6 +30,7 @@ import net.findeasily.website.domain.form.ListingBasicInfoForm;
 import net.findeasily.website.domain.validator.ListingCreateFormValidator;
 import net.findeasily.website.entity.Listing;
 import net.findeasily.website.service.FileService;
+import net.findeasily.website.service.ListingPhotoService;
 import net.findeasily.website.service.ListingService;
 
 @Controller
@@ -40,13 +40,16 @@ public class ListingController {
     private final ListingCreateFormValidator listingCreateFormValidator;
     private final ListingService listingService;
     private final FileService fileService;
+    private final ListingPhotoService listingPhotoService;
 
     @Autowired
     public ListingController(ListingCreateFormValidator listingCreateFormValidator,
-                             ListingService listingService, FileService fileService) {
+                             ListingService listingService, FileService fileService,
+                             ListingPhotoService listingPhotoService) {
         this.listingCreateFormValidator = listingCreateFormValidator;
         this.listingService = listingService;
         this.fileService = fileService;
+        this.listingPhotoService = listingPhotoService;
     }
 
     @InitBinder("form")
@@ -71,7 +74,8 @@ public class ListingController {
     public ResponseEntity<GenericResponse> uploadPhotoHandler(@RequestParam(value = "file") MultipartFile file,
                                                               @PathVariable("id") String id, CurrentUser user) throws IOException {
         Path path = fileService.storeListingPhoto(file, id);
-        return ResponseEntity.ok(new GenericResponse(path != null, ""));
+        listingPhotoService.save(path.getFileName().toString(), id);
+        return ResponseEntity.ok(new GenericResponse(true, "Photo is saved"));
     }
 
     @PostMapping("/mgmt/listing")
