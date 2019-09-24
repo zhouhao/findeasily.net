@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Base64;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
@@ -43,12 +41,12 @@ public class PublicController {
         }
     }
 
-    @GetMapping(value = "/public/images/{pathBase64}", produces = MediaType.IMAGE_PNG_VALUE)
-    public void getImage(HttpServletResponse response, @PathVariable("pathBase64") String pathBase64) throws IOException {
+    @GetMapping(value = "/public/images/{type}/{path}", produces = MediaType.IMAGE_PNG_VALUE)
+    public void getImage(HttpServletResponse response,
+                         @PathVariable("type") FileService.Folder type,
+                         @PathVariable("path") String path) throws IOException {
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
-        String path = new String(Base64.getDecoder().decode(pathBase64));
-        log.debug("path = {}", path);
-        File file = fileService.getFile(path);
+        File file = fileService.getFile(type, path);
         if (file.exists()) {
             try (InputStream is = new FileInputStream(file)) {
                 StreamUtils.copy(is, response.getOutputStream());
