@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
@@ -35,16 +37,24 @@ public class PublicController {
     public void getImage(HttpServletResponse response, @PathVariable("userId") UUID userId) throws IOException {
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
         File file = fileService.getUserPicture(userId.toString());
-        InputStream is = null;
-        if (!file.exists()) {
-            ClassPathResource imgFile = new ClassPathResource("static/images/avatar/avatar-bg.png");
-            is = imgFile.getInputStream();
-        } else {
-            is = new FileInputStream(file);
+        try (InputStream is = file.exists() ? new FileInputStream(file) :
+                new ClassPathResource("static/images/avatar/avatar-bg.png").getInputStream()) {
+            StreamUtils.copy(is, response.getOutputStream());
         }
+    }
 
-        StreamUtils.copy(is, response.getOutputStream());
-        is.close();
+    @GetMapping(value = "/public/images/{pathBase64}", produces = MediaType.IMAGE_PNG_VALUE)
+    public void getImage(HttpServletResponse response, @PathVariable("pathBase64") String pathBase64) throws IOException {
+        response.setContentType(MediaType.IMAGE_PNG_VALUE);
+        String path = new String(Base64.getDecoder().decode(pathBase64));
+        log.debug("path = {}", path);
+        File file = fileService.getFile(path);
+        if (file.exists()) {
+            try (InputStream is = new FileInputStream(file)) {
+                StreamUtils.copy(is, response.getOutputStream());
+            }
+        }
+        // TODO: if file not exists
     }
 
     @GetMapping("/contact")
