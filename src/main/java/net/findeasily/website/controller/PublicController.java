@@ -35,16 +35,24 @@ public class PublicController {
     public void getImage(HttpServletResponse response, @PathVariable("userId") UUID userId) throws IOException {
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
         File file = fileService.getUserPicture(userId.toString());
-        InputStream is = null;
-        if (!file.exists()) {
-            ClassPathResource imgFile = new ClassPathResource("static/images/avatar/avatar-bg.png");
-            is = imgFile.getInputStream();
-        } else {
-            is = new FileInputStream(file);
+        try (InputStream is = file.exists() ? new FileInputStream(file) :
+                new ClassPathResource("static/images/avatar/avatar-bg.png").getInputStream()) {
+            StreamUtils.copy(is, response.getOutputStream());
         }
+    }
 
-        StreamUtils.copy(is, response.getOutputStream());
-        is.close();
+    @GetMapping(value = "/public/images/{type}/{path}", produces = MediaType.IMAGE_PNG_VALUE)
+    public void getImage(HttpServletResponse response,
+                         @PathVariable("type") FileService.Folder type,
+                         @PathVariable("path") String path) throws IOException {
+        response.setContentType(MediaType.IMAGE_PNG_VALUE);
+        File file = fileService.getFile(type, path);
+        if (file.exists()) {
+            try (InputStream is = new FileInputStream(file)) {
+                StreamUtils.copy(is, response.getOutputStream());
+            }
+        }
+        // TODO: if file not exists
     }
 
     @GetMapping("/contact")

@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import net.findeasily.website.config.Constant;
@@ -33,14 +32,26 @@ import net.findeasily.website.exception.UnsupportedMediaTypeException;
 public class FileService {
 
     public enum Folder {
-        USER_PICTURE("images/user"),
-        LISTING_PHOTO("images/listing"),
+        USER_PICTURE("user"),
+        LISTING_PHOTO("listing"),
         ;
-        @Getter
         private String path;
+
+        public static Folder forValue(@NonNull String value) {
+            for (Folder f : Folder.values()) {
+                if (f.path.equalsIgnoreCase(value)) {
+                    return f;
+                }
+            }
+            return null;
+        }
 
         Folder(String path) {
             this.path = path;
+        }
+
+        public String getPath() {
+            return "images/" + this.path;
         }
     }
 
@@ -118,8 +129,12 @@ public class FileService {
         }
     }
 
-    private File getFile(Folder folder, String file) {
+    public File getFile(Folder folder, String file) {
         return fileRootPath.resolve(Paths.get(folder.getPath(), file)).toFile();
+    }
+
+    public File getFile(String file) {
+        return fileRootPath.resolve(Paths.get(file)).toFile();
     }
 
     public File getUserPicture(@NonNull String userId) {

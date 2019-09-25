@@ -21,7 +21,7 @@
             <#else>
                 <div class="header-user-menu">
                     <div class="header-user-name">
-                        <span><img src="${currentUser.avatar!'/images/avatar/1.jpg'}" alt="" title=""></span>Hello
+                        <span><img src="${fmInstance.getUserImage(currentUser.id)!'/images/avatar/1.jpg'}" alt="" title=""></span>Hello
                         , ${currentUser.user.username!''}
                     </div>
                     <ul>

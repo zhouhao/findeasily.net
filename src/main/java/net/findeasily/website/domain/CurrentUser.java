@@ -45,8 +45,4 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
                 "user=" + user +
                 "} " + super.toString();
     }
-
-    public String getAvatar() {
-        return "/public/user/" + user.getId() + "/avatar";
-    }
 }
