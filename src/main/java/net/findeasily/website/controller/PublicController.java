@@ -4,12 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
@@ -31,16 +29,6 @@ public class PublicController {
         this.fileService = fileService;
     }
 
-    @GetMapping(value = "/public/user/{userId}/avatar", produces = MediaType.IMAGE_PNG_VALUE)
-    public void getImage(HttpServletResponse response, @PathVariable("userId") UUID userId) throws IOException {
-        response.setContentType(MediaType.IMAGE_PNG_VALUE);
-        File file = fileService.getUserPicture(userId.toString());
-        try (InputStream is = file.exists() ? new FileInputStream(file) :
-                new ClassPathResource("static/images/avatar/avatar-bg.png").getInputStream()) {
-            StreamUtils.copy(is, response.getOutputStream());
-        }
-    }
-
     @GetMapping(value = "/public/images/{type}/{path}", produces = MediaType.IMAGE_PNG_VALUE)
     public void getImage(HttpServletResponse response,
                          @PathVariable("type") FileService.Folder type,
@@ -52,7 +40,7 @@ public class PublicController {
                 StreamUtils.copy(is, response.getOutputStream());
             }
         }
-        // TODO: if file not exists
+        //if file not exists, return empty response is fine
     }
 
     @GetMapping("/contact")
