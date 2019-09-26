@@ -1,6 +1,5 @@
 package net.findeasily.website.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -13,10 +12,8 @@ import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -36,7 +33,6 @@ import net.findeasily.website.domain.CurrentUser;
 import net.findeasily.website.domain.form.UserCreateForm;
 import net.findeasily.website.domain.validator.UserCreateFormValidator;
 import net.findeasily.website.entity.UserExt;
-import net.findeasily.website.event.ImageUploadedEvent;
 import net.findeasily.website.service.FileService;
 import net.findeasily.website.service.UserService;
 import net.findeasily.website.util.ToastrUtils;
@@ -49,16 +45,14 @@ public class UserController {
     private final UserCreateFormValidator userCreateFormValidator;
     private final PasswordEncoder passwordEncoder;
     private final FileService fileService;
-    private final ApplicationEventPublisher eventPublisher;
 
     @Autowired
     public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator,
-                          PasswordEncoder passwordEncoder, FileService fileService, ApplicationEventPublisher eventPublisher) {
+                          PasswordEncoder passwordEncoder, FileService fileService) {
         this.userService = userService;
         this.userCreateFormValidator = userCreateFormValidator;
         this.passwordEncoder = passwordEncoder;
         this.fileService = fileService;
-        this.eventPublisher = eventPublisher;
     }
 
     @InitBinder("form")
@@ -76,11 +70,7 @@ public class UserController {
 
     @GetMapping("/user")
     public ModelAndView getSelfPage(CurrentUser user) {
-        File pic = fileService.getUserPicture(user.getId());
         Map<String, Object> model = new HashMap<>();
-        if (pic.exists()) {
-            model.put("avatar", "/public/user/" + user.getId() + "/avatar");
-        }
         UserExt userExt = userService.getUserExt(user.getId());
         model.put("user_ext", userExt == null ? new UserExt() : userExt);
         return new ModelAndView("user/user", model);
@@ -92,7 +82,6 @@ public class UserController {
                                @RequestParam("self-introduction") String selfIntro) throws IOException {
         if (file != null && !file.isEmpty()) {
             Path saveFile = fileService.storeUserPicture(file, user.getUser());
-            eventPublisher.publishEvent(new ImageUploadedEvent(this, saveFile.toString(), user.getId()));
         }
         userService.updateSelfIntro(selfIntro, user.getId());
         return "redirect:/user";
