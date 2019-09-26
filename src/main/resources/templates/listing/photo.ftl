@@ -13,10 +13,30 @@
             min-height: 150px;
             padding: 54px 54px;
         }
+
+        img.listing-photo {
+            width: 100%;
+        }
+
+        .listing-photo-delete {
+            position: absolute;
+            right: 20px;
+            top: 5px;
+            color: #e23d3d;
+            font-size: large;
+        }
     </style>
 </#assign>
 <#assign inlineJs>
     <script src="/vendor/dropzone/dropzone.js"></script>
+    <script>
+        $('.listing-photo-delete').on('click', function () {
+            var confirmed = confirm("Are you sure to delete this photo? This cannot be undone later");
+            if (confirmed) {
+                console.log($(this).data('photo-id'));
+            }
+        });
+    </script>
 </#assign>
 <@layout>
     <!--section -->
@@ -37,6 +57,14 @@
                         <div class="profile-edit-container add-list-container">
                             <div class="profile-edit-header fl-wrap">
                                 <h4>Photo Management</h4>
+                            </div>
+                            <div class="row">
+                                <#list photos as p>
+                                    <div class="col-md-4">
+                                        <img src="${fmInstance.getListingImage(p.path)}" alt="" class="listing-photo">
+                                        <a href="javascript:void(0);" class="listing-photo-delete" data-photo-id="${p.id}"><i class="fa fa-trash"></i></a>
+                                    </div>
+                                </#list>
                             </div>
                             <div class="row">
                                 <!--col -->

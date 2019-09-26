@@ -62,10 +62,13 @@ public class ListingController {
         return new ModelAndView("listing/new", "form", new ListingBasicInfoForm());
     }
 
-    @PreAuthorize("@currentUserService.canEditListing(#user, #id)")
+    @PreAuthorize("@currentUserService.canEditListing(#user, #listingId)")
     @GetMapping("/mgmt/listing/{id}/photo")
-    public ModelAndView uploadPhoto(@PathVariable("id") String id, CurrentUser user) {
-        return new ModelAndView("listing/photo", "id", id);
+    public ModelAndView uploadPhoto(@PathVariable("id") String listingId, CurrentUser user) {
+        Map<String, Object> model = new HashMap<>();
+        model.put("id", listingId);
+        model.put("photos", listingPhotoService.getByListingId(listingId));
+        return new ModelAndView("listing/photo", model);
     }
 
     @PreAuthorize("@currentUserService.canEditListing(#user, #id)")

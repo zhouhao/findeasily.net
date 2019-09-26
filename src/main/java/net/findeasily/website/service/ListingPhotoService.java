@@ -1,6 +1,7 @@
 package net.findeasily.website.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,9 @@ public class ListingPhotoService {
         out.setPath(fileName);
         out.setUploadDate(LocalDateTime.now());
         return listingPhotoRepository.save(out);
+    }
+
+    public List<ListingPhoto> getByListingId(String listingId) {
+        return listingPhotoRepository.findByListingId(listingId);
     }
 }
