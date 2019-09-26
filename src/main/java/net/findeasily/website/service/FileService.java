@@ -20,8 +20,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
 import net.findeasily.website.config.Constant;
 import net.findeasily.website.entity.User;
 import net.findeasily.website.exception.StorageException;
@@ -32,10 +35,14 @@ import net.findeasily.website.exception.UnsupportedMediaTypeException;
 public class FileService {
 
     public enum Folder {
-        USER_PICTURE("user"),
-        LISTING_PHOTO("listing"),
+        USER_PICTURE("user", 400, 400),
+        LISTING_PHOTO("listing", 1000, 800),
         ;
         private String path;
+        @Getter
+        private int width;
+        @Getter
+        private int height;
 
         public static Folder forValue(@NonNull String value) {
             for (Folder f : Folder.values()) {
@@ -46,8 +53,10 @@ public class FileService {
             return null;
         }
 
-        Folder(String path) {
+        Folder(String path, int width, int height) {
             this.path = path;
+            this.width = width;
+            this.height = height;
         }
 
         public String getPath() {
@@ -57,6 +66,9 @@ public class FileService {
 
     @Value("${file.upload.path}")
     private Path fileRootPath;
+
+    @Value("${image.filename.extension}")
+    private String imageType;
 
     @PostConstruct
     public void init() throws IOException {
@@ -96,19 +108,28 @@ public class FileService {
             // This is a security check
             throw new StorageException("Cannot store file with relative path outside current directory " + filename);
         }
-        Path savedFile = fileRootPath.resolve(Paths.get(folder.getPath(), savedName + "." + FilenameUtils.getExtension(filename)));
+        Path savedFile = fileRootPath.resolve(Paths.get(folder.getPath(), Constant.ORIGIN_IMAGE_PREFIX + savedName + "." + FilenameUtils.getExtension(filename)));
         try (InputStream inputStream = file.getInputStream()) {
             Files.copy(inputStream, savedFile, StandardCopyOption.REPLACE_EXISTING);
         }
-        return savedFile;
+
+        // save a copy for site display
+        File out = getFile(folder, savedName + imageType);
+        Thumbnails.of(savedFile.toFile())
+                .crop(Positions.CENTER)
+                .size(folder.width, folder.height)
+                .keepAspectRatio(true)
+                .toFile(out);
+
+        return out.toPath();
     }
 
     public Path storeUserPicture(@NonNull MultipartFile file, @NonNull User user) throws IOException {
-        return store(file, Folder.USER_PICTURE, Constant.ORIGIN_IMAGE_PREFIX + user.getId());
+        return store(file, Folder.USER_PICTURE, user.getId());
     }
 
     public Path storeListingPhoto(@NonNull MultipartFile file, @NonNull String listingId) throws IOException {
-        return store(file, Folder.LISTING_PHOTO, Constant.ORIGIN_IMAGE_PREFIX + "_" + UUID.randomUUID());
+        return store(file, Folder.LISTING_PHOTO, UUID.randomUUID().toString());
     }
 
     public Path load(@NonNull String filename) {
@@ -138,7 +159,7 @@ public class FileService {
     }
 
     public File getUserPicture(@NonNull String userId) {
-        return getFile(Folder.USER_PICTURE, userId + ".png");
+        return getFile(Folder.USER_PICTURE, userId + imageType);
     }
 }
 

@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="edit-profile-photo fl-wrap">
-                                <img src="${avatar!'/images/avatar/1.jpg'}" class="respimg" alt="">
+                                <img src="${fmInstance.getUserImage(currentUser.id)!'/images/avatar/1.jpg'}" class="respimg" alt="">
                                 <div class="change-photo-btn">
                                     <div class="photoUpload">
                                         <span><i class="fa fa-upload"></i> Upload Photo</span>
