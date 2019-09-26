@@ -58,6 +58,9 @@ public class FileService {
     @Value("${file.upload.path}")
     private Path fileRootPath;
 
+    @Value("${image.filename.extension}")
+    private String imageType;
+
     @PostConstruct
     public void init() throws IOException {
         if (!Files.exists(fileRootPath)) {
@@ -138,7 +141,7 @@ public class FileService {
     }
 
     public File getUserPicture(@NonNull String userId) {
-        return getFile(Folder.USER_PICTURE, userId + ".png");
+        return getFile(Folder.USER_PICTURE, userId + imageType);
     }
 }
 
