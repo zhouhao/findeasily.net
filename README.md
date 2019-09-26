@@ -60,7 +60,7 @@ Website for findeasily.net
 - [ ] User can create/edit/delete listing info
    - [ ] Create
       - [x] Add basic info
-      - [ ] Upload photos
+      - [x] Upload photos
       - [ ] Add Amenities
    - [ ] Edit/Update
    - [ ] Delete
