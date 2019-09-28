@@ -10,4 +10,8 @@ import net.findeasily.website.entity.ListingPhoto;
 public interface ListingPhotoRepository extends JpaRepository<ListingPhoto, Integer>, JpaSpecificationExecutor<ListingPhoto> {
 
     List<ListingPhoto> findByListingId(String listingId);
+
+    void deleteById(Integer id);
+
+    ListingPhoto findByListingIdAndId(String listingId, Integer photoId);
 }

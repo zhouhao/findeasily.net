@@ -30,15 +30,31 @@
 <#assign inlineJs>
     <script src="/vendor/dropzone/dropzone.js"></script>
     <script>
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+
         $('.listing-photo-delete').on('click', function () {
             var confirmed = confirm("Are you sure to delete this photo? This cannot be undone later");
             if (confirmed) {
-                console.log($(this).data('photo-id'));
+                var photoId = $(this).data('photo-id');
+                $.ajax({
+                    url: '/mgmt/listing/${id}/photo/' + photoId,
+                    type: 'DELETE',
+                    success: function (result) {
+                        location.reload();
+                    }
+                });
             }
         });
     </script>
 </#assign>
 <@layout>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <!--section -->
     <section id="sec1">
         <!-- container -->
