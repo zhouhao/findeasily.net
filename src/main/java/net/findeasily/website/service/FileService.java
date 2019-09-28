@@ -154,12 +154,9 @@ public class FileService {
         return fileRootPath.resolve(Paths.get(folder.getPath(), file)).toFile();
     }
 
-    public File getFile(String file) {
-        return fileRootPath.resolve(Paths.get(file)).toFile();
-    }
-
-    public File getUserPicture(@NonNull String userId) {
-        return getFile(Folder.USER_PICTURE, userId + imageType);
+    public boolean deleteFile(Folder folder, String file) {
+        File f = getFile(folder, file);
+        return f.exists() && f.delete();
     }
 }
 

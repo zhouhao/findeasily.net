@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -79,6 +80,15 @@ public class ListingController {
         Path path = fileService.storeListingPhoto(file, id);
         listingPhotoService.save(path.getFileName().toString(), id);
         return ResponseEntity.ok(new GenericResponse(true, "Photo is saved"));
+    }
+
+    @PreAuthorize("@currentUserService.canEditListing(#user, #listingId)")
+    @DeleteMapping("/mgmt/listing/{listingId}/photo/{photoId}")
+    @ResponseBody
+    public ResponseEntity<GenericResponse> deletePhotoHandler(@PathVariable("listingId") String listingId,
+                                                              @PathVariable("photoId") Integer photoId,
+                                                              CurrentUser user) {
+        return ResponseEntity.ok(new GenericResponse(listingPhotoService.delete(listingId, photoId), "Photo deletion request is done"));
     }
 
     @PostMapping("/mgmt/listing")
