@@ -17,6 +17,7 @@ import net.findeasily.website.service.UserService;
 @Slf4j
 public class DevProfileStartup implements CommandLineRunner {
     private final UserService userService;
+    private static final String TEST_EMAIL = "test@test.com";
 
     @Autowired
     public DevProfileStartup(UserService userService) {
@@ -29,15 +30,14 @@ public class DevProfileStartup implements CommandLineRunner {
     }
 
     private void createDevUser() {
-        User user = userService.getUserByEmail("test@test.com");
+        User user = userService.getUserByEmail(TEST_EMAIL);
         if (user != null) {
             return;
         }
 
         String testPwd = "test123!";
-        String testEmail = "test@test.com";
         UserCreateForm ucf = new UserCreateForm();
-        ucf.setEmail(testEmail);
+        ucf.setEmail(TEST_EMAIL);
         ucf.setPassword(testPwd);
         ucf.setPasswordRepeated(testPwd);
         ucf.setRole(Role.USER);
@@ -48,6 +48,6 @@ public class DevProfileStartup implements CommandLineRunner {
             return;
         }
         userService.activate(user.getId());
-        log.info("Dev user is created now, you can login with `{}` with password `{}`", testEmail, testPwd);
+        log.info("Dev user is created now, you can login with `{}` with password `{}`", TEST_EMAIL, testPwd);
     }
 }
