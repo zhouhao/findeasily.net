@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.NonNull;
 import net.findeasily.website.domain.form.ListingBasicInfoForm;
@@ -19,9 +20,14 @@ import net.findeasily.website.repository.ListingRepository;
 public class ListingService {
 
     private final ListingRepository listingRepository;
+    private final ListingPhotoService listingPhotoService;
+    private final ListingUtilityService listingUtilityService;
 
-    public ListingService(ListingRepository listingRepository) {
+    public ListingService(ListingRepository listingRepository, ListingPhotoService listingPhotoService,
+                          ListingUtilityService listingUtilityService) {
         this.listingRepository = listingRepository;
+        this.listingPhotoService = listingPhotoService;
+        this.listingUtilityService = listingUtilityService;
     }
 
     public Listing save(@NonNull ListingBasicInfoForm form, @NonNull String ownerId) {
@@ -67,5 +73,13 @@ public class ListingService {
 
     public Listing getById(@NonNull String id) {
         return listingRepository.getById(id);
+    }
+
+    @Transactional
+    public boolean delete(@NonNull String listingId) {
+        listingUtilityService.deleteByListingId(listingId);
+        listingPhotoService.deleteByListingId(listingId);
+        listingRepository.deleteById(listingId);
+        return true; // if error, exception should be thrown above
     }
 }

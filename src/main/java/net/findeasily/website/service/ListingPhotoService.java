@@ -57,4 +57,9 @@ public class ListingPhotoService {
     public boolean delete(String listingId, Integer photoId) {
         return delete(getByListingIdAndPhotoId(listingId, photoId));
     }
+
+    public long deleteByListingId(String listingId) {
+        // todo: delete photo files
+        return listingPhotoRepository.deleteByListingId(listingId);
+    }
 }
