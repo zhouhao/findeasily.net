@@ -125,7 +125,7 @@ public class ListingController {
         return new ModelAndView("listing/edit", model);
     }
 
-    @PreAuthorize("@currentUserService.canEditListing(#user, #id)")
+    @PreAuthorize("@currentUserService.canEditListing(#user, #listingId)")
     @DeleteMapping("/mgmt/listing/{id}")
     public ResponseEntity<GenericResponse> deleteListing(CurrentUser user, @PathVariable("id") String listingId) {
         return ResponseEntity.ok(new GenericResponse(listingService.delete(listingId), "Listing deletion request is done"));
