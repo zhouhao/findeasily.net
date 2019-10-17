@@ -29,7 +29,7 @@ services:
       # ws
       - "61614:61614"
       # jms
-      - "61616:p"
+      - "61616:61616"
     volumes: ["activemq-data:/opt/activemq/conf", "activemq-data:/data/activemq", "activemq-data:/var/log/activemq"]
     environment:
       ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT: "true"
