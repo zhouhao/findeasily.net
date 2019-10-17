@@ -124,4 +124,10 @@ public class ListingController {
         model.put("form", new ListingBasicInfoForm());
         return new ModelAndView("listing/edit", model);
     }
+
+    @PreAuthorize("@currentUserService.canEditListing(#user, #id)")
+    @DeleteMapping("/mgmt/listing/{id}")
+    public ResponseEntity<GenericResponse> deleteListing(CurrentUser user, @PathVariable("id") String listingId) {
+        return ResponseEntity.ok(new GenericResponse(listingService.delete(listingId), "Listing deletion request is done"));
+    }
 }

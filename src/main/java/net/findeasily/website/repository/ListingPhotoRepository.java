@@ -14,4 +14,7 @@ public interface ListingPhotoRepository extends JpaRepository<ListingPhoto, Inte
     void deleteById(Integer id);
 
     ListingPhoto findByListingIdAndId(String listingId, Integer photoId);
+
+    long deleteByListingId(String listingId);
+
 }

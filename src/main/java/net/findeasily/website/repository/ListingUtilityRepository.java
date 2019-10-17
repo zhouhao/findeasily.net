@@ -7,4 +7,5 @@ import net.findeasily.website.entity.ListingUtility;
 
 public interface ListingUtilityRepository extends JpaRepository<ListingUtility, String>, JpaSpecificationExecutor<ListingUtility> {
 
+    long deleteByListingId(String listingId);
 }
