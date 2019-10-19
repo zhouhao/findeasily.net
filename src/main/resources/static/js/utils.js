@@ -20,9 +20,11 @@ function ajaxDelete(el, alertMsg, url, successCallback) {
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
 
-    $(document).ajaxSend(function (e, xhr, options) {
-        xhr.setRequestHeader(header, token);
-    });
+    if (token && header) {
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    }
 
     var confirmed = confirm(alertMsg);
     if (confirmed) {
