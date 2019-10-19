@@ -3,7 +3,20 @@
 <#if !pageTitle?has_content>
     <#assign pageTitle = 'My Listings'/>
 </#if>
+<#assign inlineJs>
+    <script>
+        $('.del-btn').on('click', function () {
+            var listingId = $(this).data('id');
+            ajaxDelete(this, "Are you sure to delete this listing? This cannot be undone later",
+                '/mgmt/listing/' + listingId, function () {
+                    location.reload()
+                });
+        });
+    </script>
+</#assign>
 <@layout>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <!--section -->
     <section id="sec1">
         <!-- container -->
@@ -39,7 +52,7 @@
                                             </span>
                                             <ul class="dashboard-listing-table-opt  fl-wrap">
                                                 <li><a href="/mgmt/listing/${lst.id}">Edit <i class="fa fa-pencil-square-o"></i></a></li>
-                                                <li><a href="#" class="del-btn">Delete <i class="fa fa-trash-o"></i></a></li>
+                                                <li><a href="javascript:void(0);" class="del-btn" data-id="${lst.id}">Delete <i class="fa fa-trash-o"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
