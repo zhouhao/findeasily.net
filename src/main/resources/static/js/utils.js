@@ -15,3 +15,23 @@ function ajaxForm(myForm, successCallback) {
         e.preventDefault(); // avoid to execute the actual submit of the form.
     });
 }
+
+function ajaxDelete(el, alertMsg, url, successCallback) {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
+    $(document).ajaxSend(function (e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+
+    var confirmed = confirm(alertMsg);
+    if (confirmed) {
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            success: function (result) {
+                successCallback && successCallback(result);
+            }
+        });
+    }
+}
