@@ -25,6 +25,10 @@
             color: #e23d3d;
             font-size: large;
         }
+
+        .filter-tags {
+            margin-top: -10px;
+        }
     </style>
 </#assign>
 <#assign inlineJs>
@@ -82,6 +86,22 @@
                                     </div>
                                 </div>
                                 <!--col end-->
+                            </div>
+
+                        </div>
+                        <div class="profile-edit-container add-list-container">
+                            <div class="profile-edit-header fl-wrap">
+                                <h4>Amenities Management</h4>
+                            </div>
+                            <div class="fl-wrap filter-tags">
+                                <input id="check-a" type="checkbox" name="check">
+                                <label for="check-a">Elevator in building</label>
+                                <input id="check-b" type="checkbox" name="check">
+                                <label for="check-b">Friendly workspace</label>
+                                <input id="check-c" type="checkbox" name="check">
+                                <label for="check-c">Instant Book</label>
+                                <input id="check-d" type="checkbox" name="check">
+                                <label for="check-d">Wireless Internet</label>
                             </div>
 
                         </div>
