@@ -33,6 +33,7 @@ import net.findeasily.website.entity.Listing;
 import net.findeasily.website.service.FileService;
 import net.findeasily.website.service.ListingPhotoService;
 import net.findeasily.website.service.ListingService;
+import net.findeasily.website.service.ListingUtilityService;
 
 @Controller
 @Slf4j
@@ -42,15 +43,18 @@ public class ListingController {
     private final ListingService listingService;
     private final FileService fileService;
     private final ListingPhotoService listingPhotoService;
+    private final ListingUtilityService listingUtilityService;
 
     @Autowired
     public ListingController(ListingCreateFormValidator listingCreateFormValidator,
                              ListingService listingService, FileService fileService,
-                             ListingPhotoService listingPhotoService) {
+                             ListingPhotoService listingPhotoService,
+                             ListingUtilityService listingUtilityService) {
         this.listingCreateFormValidator = listingCreateFormValidator;
         this.listingService = listingService;
         this.fileService = fileService;
         this.listingPhotoService = listingPhotoService;
+        this.listingUtilityService = listingUtilityService;
     }
 
     @InitBinder("form")
@@ -64,12 +68,13 @@ public class ListingController {
     }
 
     @PreAuthorize("@currentUserService.canEditListing(#user, #listingId)")
-    @GetMapping("/mgmt/listing/{id}/photo")
+    @GetMapping("/mgmt/listing/{id}/amenity-photo")
     public ModelAndView uploadPhoto(@PathVariable("id") String listingId, CurrentUser user) {
         Map<String, Object> model = new HashMap<>();
         model.put("id", listingId);
         model.put("photos", listingPhotoService.getByListingId(listingId));
-        return new ModelAndView("listing/photo", model);
+        model.put("amenity", listingUtilityService.getByListingId(listingId));
+        return new ModelAndView("listing/amenity-photo", model);
     }
 
     @PreAuthorize("@currentUserService.canEditListing(#user, #id)")

@@ -2,6 +2,7 @@ package net.findeasily.website.service;
 
 import org.springframework.stereotype.Service;
 
+import net.findeasily.website.entity.ListingUtility;
 import net.findeasily.website.repository.ListingUtilityRepository;
 
 /**
@@ -19,5 +20,9 @@ public class ListingUtilityService {
 
     public long deleteByListingId(String listingId) {
         return listingUtilityRepository.deleteByListingId(listingId);
+    }
+
+    public ListingUtility getByListingId(String listingId) {
+        return listingUtilityRepository.getByListingId(listingId);
     }
 }

@@ -25,6 +25,10 @@
             color: #e23d3d;
             font-size: large;
         }
+
+        .filter-tags {
+            margin-top: -10px;
+        }
     </style>
 </#assign>
 <#assign inlineJs>
@@ -59,7 +63,7 @@
                     <div class="col-md-9">
                         <div class="profile-edit-container add-list-container">
                             <div class="profile-edit-header fl-wrap">
-                                <h4>Photo Management</h4>
+                                <h4>Photos Management</h4>
                             </div>
                             <div class="row">
                                 <#list photos as p>
@@ -84,6 +88,28 @@
                                 <!--col end-->
                             </div>
 
+                        </div>
+                        <div class="profile-edit-container add-list-container">
+                            <div class="profile-edit-header fl-wrap">
+                                <h4>Amenities Management</h4>
+                            </div>
+                            <div class="fl-wrap filter-tags">
+                                <input id="check-a" type="checkbox" name="check">
+                                <label for="check-a">Elevator in building</label>
+                                <input id="check-b" type="checkbox" name="check">
+                                <label for="check-b">Friendly workspace</label>
+                                <input id="check-c" type="checkbox" name="check">
+                                <label for="check-c">Instant Book</label>
+                                <input id="check-d" type="checkbox" name="check">
+                                <label for="check-d">Wireless Internet</label>
+                            </div>
+                            <div class="profile-edit-container">
+                                <div class="custom-form">
+                                    <button class="btn big-btn color-bg flat-btn" type="submit">
+                                        Save<i class="fa fa-angle-right"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

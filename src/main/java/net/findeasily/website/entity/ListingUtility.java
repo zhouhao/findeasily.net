@@ -40,5 +40,4 @@ public class ListingUtility implements Serializable {
     @Column(name = "parking", nullable = false)
     private Boolean parking = Boolean.FALSE;
 
-
 }

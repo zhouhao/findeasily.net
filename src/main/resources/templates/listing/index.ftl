@@ -52,6 +52,7 @@
                                             </span>
                                             <ul class="dashboard-listing-table-opt  fl-wrap">
                                                 <li><a href="/mgmt/listing/${lst.id}">Edit <i class="fa fa-pencil-square-o"></i></a></li>
+                                                <li><a href="/mgmt/listing/${lst.id}/amenity-photo">Amenity & Photo <i class="fa fa-puzzle-piece"></i></a></li>
                                                 <li><a href="javascript:void(0);" class="del-btn" data-id="${lst.id}">Delete <i class="fa fa-trash-o"></i></a></li>
                                             </ul>
                                         </div>
