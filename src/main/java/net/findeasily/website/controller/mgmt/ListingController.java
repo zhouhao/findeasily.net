@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -105,7 +106,11 @@ public class ListingController {
             log.error("errors happen when creating new listing...");
         }
         Listing listing = listingService.save(form, user.getId());
-        return "redirect:/mgmt/listing/" + listing.getId();
+        // TODO: show error message to user
+        if (listing == null || StringUtils.isBlank(listing.getId())) {
+            return "redirect:/mgmt/listing/new";
+        }
+        return "redirect:/mgmt/listing/" + listing.getId() + "/amenity-photo";
     }
 
 
