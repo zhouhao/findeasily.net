@@ -1,4 +1,4 @@
-<#include "../layout/layout.ftl"/>
+<#include "../layout/layout.ftlh"/>
 <#if !pageTitle?has_content>
     <#assign pageTitle = 'User Profile'/>
 </#if>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <#include "../layout/dashboard-left-menu.ftl">
+                        <#include "../layout/dashboard-left-menu.ftlh">
                     </div>
                     <form method="post" enctype="multipart/form-data">
                         <div class="col-md-7">

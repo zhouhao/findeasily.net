@@ -23,9 +23,9 @@ public class EmailEvent extends ApplicationEvent {
     }
 
     public enum Type {
-        ACCOUNT_CONFIRMATION("account_confirmation.ftl", "Confirm your account"),
-        PASSWORD_RESET_REQUEST("account_password_reset_request.ftl", "Request for password reset"),
-        PASSWORD_RESET_COMPLETE("account_password_reset_complete.ftl", "Your password is reset");
+        ACCOUNT_CONFIRMATION("account_confirmation.ftlh", "Confirm your account"),
+        PASSWORD_RESET_REQUEST("account_password_reset_request.ftlh", "Request for password reset"),
+        PASSWORD_RESET_COMPLETE("account_password_reset_complete.ftlh", "Your password is reset");
 
         private String templateFile;
         private String subject;
