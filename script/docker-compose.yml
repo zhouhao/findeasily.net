@@ -3,7 +3,6 @@ version: "3"
 services:
   mysql:
     image: mariadb:10.4
-    restart: always
     ports:
       - "3306:3306"
     environment:
