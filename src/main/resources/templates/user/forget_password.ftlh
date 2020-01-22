@@ -1,4 +1,4 @@
-<#include "../layout/layout.ftl"/>
+<#include "../layout/layout.ftlh"/>
 <#if !pageTitle?has_content>
     <#assign pageTitle = 'Forget Password'/>
 </#if>

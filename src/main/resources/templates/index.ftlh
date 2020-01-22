@@ -1,4 +1,4 @@
-<#include "layout/layout.ftl"/>
+<#include "layout/layout.ftlh"/>
 <#assign includeMap = true />
 <@layout>
     <!-- home-map-->

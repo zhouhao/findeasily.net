@@ -1,5 +1,5 @@
 <#import "/spring.ftl" as spring>
-<#include "../layout/layout.ftl"/>
+<#include "../layout/layout.ftlh"/>
 <#if !pageTitle?has_content>
     <#assign pageTitle = 'Add Your New Listing'/>
 </#if>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <#include "../layout/dashboard-left-menu.ftl">
+                        <#include "../layout/dashboard-left-menu.ftlh">
                     </div>
                     <div class="col-md-9">
                         <form id="form" name="form" method="post" action="/mgmt/listing">

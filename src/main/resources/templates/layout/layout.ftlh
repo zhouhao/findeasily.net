@@ -1,5 +1,5 @@
 <#macro layout>
-    <#import "../utils/base.ftl" as BaseUtils>
+    <#import "../utils/base.ftlh" as BaseUtils>
     <!DOCTYPE HTML>
     <html lang="en">
     <head>
@@ -30,7 +30,7 @@
     <!--loader end-->
     <!-- Main  -->
     <div id="main">
-        <#include "header.ftl">
+        <#include "header.ftlh">
         <!-- wrapper -->
         <div id="wrapper">
             <!-- Content-->
@@ -40,7 +40,7 @@
             <!-- Content end -->
         </div>
         <!-- wrapper end -->
-        <#include "footer.ftl">
+        <#include "footer.ftlh">
         <a class="to-top"><i class="fa fa-angle-up"></i></a>
         <div id="notification-container">
             This website is in active development, if you see any bugs, please help to report it
